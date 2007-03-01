@@ -116,3 +116,8 @@ export TAPE=/dev/nst0
 
 unset LANG
 export LANG
+
+# function definitions
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
