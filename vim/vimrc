@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 30. November 2005
+" Last Change: 13. March 2007, 15:44:58
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -76,11 +76,7 @@
 
     " Pfad zum VIM-Helpfile - Diese Option ist nur nötig wenn das
     " Aufrufen der VIM-Hilfe zu einer Fehlermeldung führt
-"   set helpfile=/usr/share/vim/vim63/doc/help.txt.gz
-
-	" split-fenster unterhalb bzw. rechts
-	set splitbelow
-	set splitright
+"   set helpfile=/usr/share/vim/vim63/doc/help.txt.gz       
 
 " }}}
 
@@ -96,10 +92,11 @@
     if has("autocmd")
 
         " LastMod - Funktion beim Speichern einer Datei aufrufen
-        autocmd BufWrite *.c,*.h,*.cpp	ks|call LastMod()|'s
-        autocmd BufWrite *.tex			ks|call LastMod()|'s
-        autocmd BufWrite *.bib			ks|call LastMod()|'s
-        autocmd BufWrite *.gdf			ks|call LastMod()|'s
+        autocmd BufWrite *.vimrc		call LastMod()
+        autocmd BufWrite *.c,*.h,*.cpp	call LastMod()
+        autocmd BufWrite *.tex			call LastMod()
+        autocmd BufWrite *.bib			call LastMod()
+        autocmd BufWrite *.gdf			call LastMod()
 
         " filetype plugin on
 
@@ -109,15 +106,26 @@
 
 " Funktionen {{{
 
-    " Sucht in den ersten 20 Zeilen einer Datei nach den Worten 'Last Change: ' 
+    " Sucht in den ersten $tail_size Zeilen einer Datei nach dem Muster $pat
     " und erneuert das Datum wenn die Datei verändert wurde
     fun! LastMod()
-        if line("$") > 20
-    let l = 20
-        else
-    let l = line("$")
+		let pat = "Last Change: "
+		" define nr of checked lines
+		let tail_size = 20
+		" get nr of overall lines
+		let last_line = line("$")
+		let _date = strftime("%d. %B %Y, %X")
+		" before changing anything, save cursor position
+		let save_cursor = getpos(".")
+        if line("$") > tail_size
+			" only if file is longer than $tail_size lines, check the tail too...
+			let tail_start = last_line - tail_size
+			exe tail_start . "," . last_line . "g/" . pat . "/s/" . pat . ".*/" . pat . "" . _date
+			let last_line = tail_size
         endif
-        exe "1," . l . "g/Last Change: /s/Last Change: .*/Last Change: " . strftime("%d. %B %Y")
+		exe "1," . last_line . "g/" . pat . "/s/" . pat . ".*/" . pat . "" . _date
+		" restore cursor position
+		call setpos('.', save_cursor)
     endfun
 
 " }}}
@@ -144,5 +152,8 @@
 
     " lade makro fuer cpp-debug define in register 'd'
     let @d = "O0C#ifdef DEBUGjo0C#endif"
+
+	" TPM-kommentar in register 't'
+	let @t = "A	/*TPM*/"
 
 " }}}
