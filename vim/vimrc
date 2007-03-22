@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 13. March 2007, 15:44:58
+" Last Change: 22. March 2007, 17:24:43
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -106,27 +106,31 @@
 
 " Funktionen {{{
 
-    " Sucht in den ersten $tail_size Zeilen einer Datei nach dem Muster $pat
-    " und erneuert das Datum wenn die Datei verändert wurde
-    fun! LastMod()
-		let pat = "Last Change: "
-		" define nr of checked lines
-		let tail_size = 20
-		" get nr of overall lines
-		let last_line = line("$")
-		let _date = strftime("%d. %B %Y, %X")
-		" before changing anything, save cursor position
-		let save_cursor = getpos(".")
-        if line("$") > tail_size
-			" only if file is longer than $tail_size lines, check the tail too...
-			let tail_start = last_line - tail_size
-			exe tail_start . "," . last_line . "g/" . pat . "/s/" . pat . ".*/" . pat . "" . _date
-			let last_line = tail_size
+    " Sucht in einem Bereich von $range_size Zeilen am Anfang und Ende 
+	" einer Datei nach dem Muster $pat und erneuert dort das Datum
+    function! LastMod()
+		let curpos = getpos(".")        " save current position
+		let pat = "Last Change: "       " define pattern
+		let range_size = 20             " define nr of checked lines
+		let line$ = line("$")           " get nr of last last
+		let date = strftime("%d. %B %Y, %X")
+
+		" only if file is longer than $range_size lines, check the begin too...
+        if line("$") > range_size
+			let begin = line$ - range_size
+			let range = begin . "," . line$
+			exe range . "g/" . pat . "/s/" . pat . ".*/" . pat . date
+			let line$ = range_size
         endif
-		exe "1," . last_line . "g/" . pat . "/s/" . pat . ".*/" . pat . "" . _date
-		" restore cursor position
-		call setpos('.', save_cursor)
-    endfun
+		let range = "1," . line$
+		exe range . "g/" . pat . "/s/" . pat . ".*/" . pat . date
+		call setpos('.', curpos)   " restore cursor position
+		
+		" redraw the screen to avoid annoying 'Pattern not found' messages
+		" that force the user to press enter manually (they appear when the
+		" number of (error-) messages produced > 'cmdheight' (default = 1)
+		redraw
+    endfunction
 
 " }}}
 
