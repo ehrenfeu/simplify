@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 13. April 2007, 18:33:45
+" Last Change: 16. April 2007, 14:22:37
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -170,6 +170,8 @@
 
     " lade makro fuer cpp-debug define in register 'd'
     let @d = "O0C#ifdef DEBUGjo0C#endif"
+    let @v = "O0C#ifdef TSS_DEBUG_VERBOSEjo0C#endif"
+    let @i = "O0C#ifdef TSS_DEBUG_INFOjo0C#endif"
 
 	" TPM-kommentar in register 't'
 	let @t = "A	/*TPM*/"
