@@ -38,7 +38,7 @@ blw='\[\033[00m\]'
 case "$TERM" in
 xterm)
 	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
-	[ ! -z "$SSH_TTY" ] && PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw':'$bblu'\W'$blw'\$ '
+	[ ! -z "$SSH_TTY" ] && PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
 	;;
 screen)
 	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw'(SCRN):'$bblu'\W'$blw'\$ '
@@ -57,8 +57,7 @@ _trunc_pwd() {
 	local shortPWD="${PWD/$HOME/~}"
 # Indicator that there has been directory truncation:
 	local trunc_symbol="..."
-	if [ ${#shortPWD} -gt $pwdmaxlen ]
-	then
+	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
 		local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
 		newPWD="${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
 	else
