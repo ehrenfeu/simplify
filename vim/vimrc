@@ -61,8 +61,11 @@
     " Statusline - 2 Zeilen hoch
     set laststatus=2
 
-    " Modeline nur in 1. Zeile zulässig
-    set modelines=1
+    " Modeline nur in Zeile 1-10zulaessig
+    set modelines=10
+
+	" aktiviere Modeline
+	set modeline
 
     " Name der aktuellen Datei in Fenster-Titel-Leiste
     set title
@@ -73,6 +76,9 @@
     set viminfo='20,\"50
 
     set history=50
+
+	" disable beep and visual bell
+	set vb t_vb=
 
     " Pfad zum VIM-Helpfile - Diese Option ist nur nötig wenn das
     " Aufrufen der VIM-Hilfe zu einer Fehlermeldung führt
