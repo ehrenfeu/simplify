@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 16. April 2007, 14:22:37
+" Last Change: 02. Februar 2009, 01:25:45
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -61,7 +61,7 @@
     " Statusline - 2 Zeilen hoch
     set laststatus=2
 
-    " Modeline nur in Zeile 1-10zulaessig
+    " Modeline nur in Zeile 1-10 zulaessig
     set modelines=10
 
 	" aktiviere Modeline
