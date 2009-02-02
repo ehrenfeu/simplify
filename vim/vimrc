@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 02. Februar 2009, 01:25:45
+" Last Change: 02. February 2009, 17:52:36
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -165,6 +165,9 @@
     if has("gui_running")
         colorscheme darkblue
     endif
+
+	let g:debchangelog_fold_enable = 1
+	let g:debcontrol_fold_enable = 1
 
 " }}}
 
