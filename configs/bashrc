@@ -111,9 +111,6 @@ fi
 #set bell-style none
 xset b off &> /dev/null
 
-# set tape device
-export TAPE=/dev/nst0
-
 unset LANG
 export LANG
 
