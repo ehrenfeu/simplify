@@ -22,6 +22,11 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+# schroot struggles with TERM-settings in a screen-session, so:
+if [ -n "$debian_chroot" ] && [ "$TERM" == "screen.rxvt" ] ; then
+	export TERM="screen"
+fi
+
 
 # bold green
 bgrn='\[\033[01;32m\]'
@@ -33,16 +38,18 @@ bylw='\[\033[01;33m\]'
 bblu='\[\033[01;34m\]'
 # black-white
 blw='\[\033[00m\]'
+# red
+red='\[\033[31m\]'
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-xterm)
+xterm|screen*)
 	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
-	[ ! -z "$SSH_TTY" ] && PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	[ -n "$SSH_TTY" ] && PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
 	;;
-screen)
-	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw'(SCRN):'$bblu'\W'$blw'\$ '
-	;;
+# screen)
+#	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw'(SCRN):'$bblu'\W'$blw'\$ '
+#	;;
 *)
 	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
 	;;
