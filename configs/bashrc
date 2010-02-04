@@ -43,7 +43,7 @@ red='\[\033[31m\]'
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-xterm|screen*)
+xterm|rxvt|screen*)
 	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
 	[ -n "$SSH_TTY" ] && PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
 	;;
