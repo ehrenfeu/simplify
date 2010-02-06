@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 15. Januar 2010, 18:27:48
+" Last Change: 06. Februar 2010, 14:20:44
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -83,6 +83,9 @@
     " Pfad zum VIM-Helpfile - Diese Option ist nur nötig wenn das
     " Aufrufen der VIM-Hilfe zu einer Fehlermeldung führt
 "   set helpfile=/usr/share/vim/vim63/doc/help.txt.gz       
+
+	" default to split window to the right:
+	set splitright
 
 " }}}
 
