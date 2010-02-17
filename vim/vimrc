@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 06. Februar 2010, 14:20:44
+" Last Change: 11. February 2010, 13:46:51
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -29,10 +29,10 @@
     " zum Ende einer Faltung verwendet
     set foldmethod=marker
 
-    " Automatisches Einrücken
+    " Automatisches Einruecken
     set smartindent
 
-    " Einrücktiefe
+    " Einruecktiefe (indenting)
     set shiftwidth=4
 
     set tabstop=4
@@ -52,7 +52,7 @@
     " Zeigt den aktuellen Modus an
     set showmode
 
-    " Zeigt die aktuelle Cursorposition
+    " Zeigt die aktuelle Cursorposition unten rechts
     set ruler
 
     " Ein Leerzeichen nach .,?,! beim Zusammenfügen von zwei Zeilen
@@ -67,15 +67,16 @@
 	" aktiviere Modeline
 	set modeline
 
-    " Name der aktuellen Datei in Fenster-Titel-Leiste
-    set title
+    " Name der aktuellen Datei in Fenster-Titel-Leiste (funktioniert
+	" bei cygwin-rxvt leider nicht, daher deaktiviert)
+    set notitle
 
     " Liste von Verzeichnissen die durchsucht werden
     set runtimepath=~/.vim,$VIMRUNTIME
 
     set viminfo='20,\"50
 
-    set history=50
+    set history=500
 
 	" disable beep and visual bell
 	set vb t_vb=
@@ -93,6 +94,10 @@
 
     " Hervorhebungen der Suche mit Strg-L enfernen
     map <silent> <c-l> :silent nohl<cr>
+
+	" switch mappings of ` and ' (jump to marker)
+	nnoremap ' `
+	nnoremap ` '
 
 " }}}
 
