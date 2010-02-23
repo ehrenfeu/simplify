@@ -28,30 +28,31 @@ if [ -n "$debian_chroot" ] && [ "$TERM" == "screen.rxvt" ] ; then
 fi
 
 
-# bold green
-bgrn='\[\033[01;32m\]'
-# normal green
-grn='\[\033[0;32m\]'
-# bold yellow
-bylw='\[\033[01;33m\]'
-# bold blue
-bblu='\[\033[01;34m\]'
-# black-white
-blw='\[\033[00m\]'
-# red
-red='\[\033[31m\]'
+blw='\[\033[00m\]'     # black-white
+grn='\[\033[0;32m\]'   # normal green
+red='\[\033[31m\]'     # red
+bgrn='\[\033[01;32m\]' # bold green
+bylw='\[\033[01;33m\]' # bold yellow
+bblu='\[\033[01;34m\]' # bold blue
+
+# set a prefix if we're inside a screen since old screen-versions (or
+# non-ubuntu ones) can't be easily distinguished from a regular session
+[ "$TERM" == "screen" ] && _PFX="$bylw[S]$blw"
+
+# red hostname if we're on SSH (doesn't work for dropbear):
+if [ -n "$SSH_TTY" ] ; then
+	_HOST_DIR_=$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+else
+	_HOST_DIR_=$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
 xterm|rxvt|screen*)
-	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
-	[ -n "$SSH_TTY" ] && PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	PS1=${_PFX}${red}'${debian_chroot:+($debian_chroot)}'$grn'\u'$blw${_HOST_DIR_}
 	;;
-# screen)
-#	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw'(SCRN):'$bblu'\W'$blw'\$ '
-#	;;
 *)
-	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	PS1=${_PFX}'${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 	;;
 esac
 
@@ -63,7 +64,7 @@ _trunc_pwd() {
 # use '~' instead of full path for homedir
 	local shortPWD="${PWD/$HOME/~}"
 # Indicator that there has been directory truncation:
-	local trunc_symbol="..."
+	local trunc_symbol="[...]"
 	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
 		local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
 		newPWD="${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
