@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 11. February 2010, 13:46:51
+" Last Change: 18. Februar 2010, 17:42:41
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -27,7 +27,7 @@
 
     " Faltungsmethode = Markierungen - Standardm‰ﬂig werden {{{ zum Anfang und }}}
     " zum Ende einer Faltung verwendet
-    set foldmethod=marker
+    " set foldmethod=marker
 
     " Automatisches Einruecken
     set smartindent
