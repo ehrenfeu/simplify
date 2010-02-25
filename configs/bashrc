@@ -119,9 +119,6 @@ fi
 #set bell-style none
 xset b off &> /dev/null
 
-unset LANG
-export LANG
-
 # function definitions
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
