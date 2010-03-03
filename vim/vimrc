@@ -2,7 +2,7 @@
 " VIM - Konfiguration von Niko Ehrenfeuchter
 " VIM - Version 6.3
 " ~/.vimrc
-" Last Change: 18. Februar 2010, 17:42:41
+" Last Change: 03. March 2010, 10:28:19
 " -----------------------------------------------------------
 
 " Settings {{{
@@ -16,7 +16,7 @@
     " W‰hrend der Eingabe zum entsprechenden Text springen
     set incsearch
 
-    " Groﬂ- und Kleinschreibung bei der Suche ignorieren 
+    " Gross- und Kleinschreibung bei der Suche ignorieren 
     set ignorecase
 
     " ignorecase abschalten, wenn Muster Groﬂbuchstaben enth‰lt
@@ -25,7 +25,7 @@
     " Syntax-Highlighting 
     syntax on
 
-    " Faltungsmethode = Markierungen - Standardm‰ﬂig werden {{{ zum Anfang und }}}
+    " Faltungsmethode = Markierungen - damit werden {{{ zum Anfang und }}}
     " zum Ende einer Faltung verwendet
     " set foldmethod=marker
 
@@ -36,6 +36,9 @@
     set shiftwidth=4
 
     set tabstop=4
+
+	" <TAB>s durch blanks ersetzen (ich werde von anderen leuten dazu genoetigt...)
+	set expandtab
 
     " Treppeneffekt beim Copy & Paste verhindern
     set pastetoggle=<F8>
@@ -138,7 +141,7 @@
 		let curpos = getpos(".")        " save current position
 		let pat = "Last Change: "       " define pattern
 		let range_size = 20             " define nr of checked lines
-		let lline = line("$")           " get nr of last last
+		let lline = line("$")           " get nr of last line
 		let date = strftime("%d. %B %Y, %X")
 
 		" only if file is longer than $range_size lines, check the begin too...
