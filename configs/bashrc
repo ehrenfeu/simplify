@@ -123,3 +123,6 @@ xset b off &> /dev/null
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
+
+export HOSTTYPE # required by many devel-tools
+export LANG=
