@@ -29,8 +29,8 @@ while true ; do
             echo "state: $OLD"
             echo
             SLEEP=1
-            date +%F >> /tmp/issued_hdsleep
-            hdparm -y /dev/$1
+            date "+%F %R" >> /tmp/issued_hdsleep
+            hdparm -q -y /dev/$1
         fi
     else
         if [ "$SLEEP" -eq "1" ] ; then
