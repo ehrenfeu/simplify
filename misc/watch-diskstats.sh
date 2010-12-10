@@ -25,7 +25,7 @@ while true ; do
     OLD=$NEW
     if [ -z "$DIFF" ] ; then
         if [ "$SLEEP" -eq "0" ] ; then
-            echo "issuing hdsleep command (sleep: 0->1)"
+            echo "$(date "+%F %R") issuing hdsleep command (sleep: 0->1)"
             echo "state: $OLD"
             echo
             SLEEP=1
@@ -34,7 +34,7 @@ while true ; do
         fi
     else
         if [ "$SLEEP" -eq "1" ] ; then
-            echo "disk woke up (sleep: 1->0)"
+            echo "$(date "+%F %R") disk woke up (sleep: 1->0)"
             echo "state: $OLD"
             echo
             SLEEP=0
