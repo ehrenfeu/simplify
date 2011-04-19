@@ -1,0 +1,5 @@
+mtab
+.*.sw?
+group-
+gshadow-
+passwd-
