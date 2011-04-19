@@ -3,7 +3,8 @@
 #
 
 MAILTO=ne704
+GIT_ETC_COMMIT=/opt/simplify/git-etc/git-etc-commit.sh
 
 # look for (and commit) changes in /etc every 5 minutes
-*/5 * * * *	root if [ -x /usr/local/sbin/git-etc-cron-commit.sh ]; then /usr/local/sbin/git-etc-cron-commit.sh ; fi
+*/5 * * * *	root $GIT_ETC_COMMIT
 
