@@ -1,0 +1,9 @@
+#
+# cron-job for git-etc
+#
+
+MAILTO=ne704
+
+# look for (and commit) changes in /etc every 5 minutes
+*/5 * * * *	root if [ -x /usr/local/sbin/git-etc-cron-commit.sh ]; then /usr/local/sbin/git-etc-cron-commit.sh ; fi
+
