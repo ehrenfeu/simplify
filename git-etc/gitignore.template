@@ -3,3 +3,4 @@ mtab
 group-
 gshadow-
 passwd-
+ld.so.cache
