@@ -3,8 +3,8 @@
 #
 
 MAILTO=ne704
-GIT_ETC_COMMIT=/opt/simplify/git-etc/git-etc-commit.sh
+AUTOCOMMIT=/opt/simplify/git-etc/git-autocommit.sh
 
 # look for (and commit) changes in /etc every 5 minutes
-*/5 * * * *	root $GIT_ETC_COMMIT
+*/5 * * * *	root $AUTOCOMMIT /etc
 
