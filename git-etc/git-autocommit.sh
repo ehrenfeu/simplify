@@ -18,7 +18,7 @@ cd "$1"
 set +e
 
 if ! [ -d ".git" ] ; then
-    echo "ERROR: '$1' is no git repository!"
+    echo "ERROR: '$1' is not a git repository!"
     echo
     _exit_usage
 fi
@@ -31,22 +31,22 @@ git add .
 if ! git status | grep -qs '^nothing to commit (working directory clean)$' ; then
     # '-a' is required to delete files in the repository that
     # have been deleted locally
-    COMMIT=$(git commit -a -m "git-autocommit: changes from $(date +%F_%H-%M)")
-    # get the hash-ID of our commit:
-    CID=$(git log -1 --pretty=format:%H)
-    # check diff size before committing, remember diff if small enough:
-    if [ $(git show --format=format:'' $CID | wc -l) -le 100 ] ; then
-        GITDIFF="$(git show --format=format:'' $CID)"
+    COMMIT=$(git commit -a -m "[autocommit] changes in $1")
+    # check diff size and remember if small enough:
+    if [ $(git diff-tree -p --no-commit-id HEAD | wc -l) -le 100 ] ; then
+        GITDIFF="$(git diff-tree -p --no-commit-id HEAD)"
     fi
-    # print the header and the list of changed files (+modes +hashes):
-    git whatchanged -1
-    echo '-- SUMMARY -----------------------------------------------------'
-    # only print the summary line of the commit:
-    echo "$COMMIT" | sed -n 2p
-    echo '----------------------------------------------------------------'
+    # print the commit message, list changed files (+stats)
+    FMT='%s%n%n-- stats ------'
+    git diff-tree --abbrev -C -M --numstat --pretty=format:"$FMT" HEAD
+    git diff-tree --abbrev -C -M --shortstat --no-commit-id HEAD
+    echo '---------------'
     # determine if we have a remote repository to push to:
     if git remote -v | grep -qs push ; then
+        echo '-- push -------'
         git push
+        echo '---------------'
     fi
+    echo
     echo "${GITDIFF}"
 fi
