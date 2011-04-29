@@ -9,6 +9,10 @@ _exit_usage() {
     exit 100
 }
 
+quote() {
+    sed 's:^:> :'
+}
+
 if [ -z "$1" ] ; then
     _exit_usage
 fi
@@ -31,22 +35,24 @@ git add .
 if ! git status | grep -qs '^nothing to commit (working directory clean)$' ; then
     # '-a' is required to delete files in the repository that
     # have been deleted locally
-    COMMIT=$(git commit -a -m "[autocommit] changes in $1")
+    git commit -q -a -m "[autogit] changes in $1"
     # check diff size and remember if small enough:
     if [ $(git diff-tree -p --no-commit-id HEAD | wc -l) -le 100 ] ; then
-        GITDIFF="$(git diff-tree -p --no-commit-id HEAD)"
+        DIFF="$(git diff-tree -p --no-commit-id HEAD)"
     fi
     # print the commit message, list changed files (+stats)
-    FMT='%s%n%n-- stats ------'
-    git diff-tree --abbrev -C -M --numstat --pretty=format:"$FMT" HEAD
+    FMT='%s%n%n> stats >>>%n'
+    git log -1 --pretty=format:"$FMT" HEAD
+    git diff-tree --abbrev -C -M --numstat --no-commit-id HEAD | quote
+    echo -n '>>'
     git diff-tree --abbrev -C -M --shortstat --no-commit-id HEAD
     echo '---------------'
     # determine if we have a remote repository to push to:
     if git remote -v | grep -qs push ; then
-        echo '-- push -------'
-        git push
+        echo '>  push >>>'
+        git push 2>&1 | quote
         echo '---------------'
     fi
     echo
-    echo "${GITDIFF}"
+    echo "${DIFF}"
 fi
