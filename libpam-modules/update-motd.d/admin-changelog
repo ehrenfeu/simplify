@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+
+CHLG="/admin/CHANGELOG"
+
+# silently exit if there is no changelog:
+if ! [ -r ${CHLG} ] ; then
+    exit 0
+fi
+
+echo ">>>>> >>>>> last entry in '${CHLG}':"
+echo
+sed -n '0,/^ *$/p' ${CHLG}
+echo "<<<<< <<<<<"
