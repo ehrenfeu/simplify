@@ -8,6 +8,7 @@ if ! [ -r ${CHLG} ] ; then
     exit 0
 fi
 
+echo
 echo ">>>>> >>>>> last entry in '${CHLG}':"
 echo
 sed -n '0,/^ *$/p' ${CHLG}
