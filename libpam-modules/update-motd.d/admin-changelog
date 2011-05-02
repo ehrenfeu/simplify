@@ -9,4 +9,7 @@ if ! [ -r ${CHLG} ] ; then
 fi
 
 echo
+# delete ("d") from the first empty line ("/^\s*$/" (where '\s' is sed's
+# character class for whitespaces)) until the end of the file ("$")
+# NOTE: file is *NOT* modified, sed prints the result to stdout!
 sed '/^\s*$/,$d' ${CHLG}
