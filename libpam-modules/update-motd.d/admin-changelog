@@ -9,4 +9,4 @@ if ! [ -r ${CHLG} ] ; then
 fi
 
 echo
-sed '/^ *$/,$d' ${CHLG}
+sed '/^\s*$/,$d' ${CHLG}
