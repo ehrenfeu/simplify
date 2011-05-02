@@ -9,7 +9,4 @@ if ! [ -r ${CHLG} ] ; then
 fi
 
 echo
-echo ">>>>> >>>>> last entry in '${CHLG}':"
-echo
-sed -n '0,/^ *$/p' ${CHLG}
-echo "<<<<< <<<<<"
+sed '/^ *$/,$d' ${CHLG}
