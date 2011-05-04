@@ -16,7 +16,7 @@ let g:colors_name = "quiche"
 " GUI Comment : #80a0ff = Light blue
 
 " Console
-highlight Normal     ctermfg=LightGrey	ctermbg=Black
+highlight Normal     ctermfg=LightGrey
 highlight Search     ctermfg=Black	ctermbg=Red	cterm=NONE
 highlight Visual					cterm=reverse
 highlight Cursor     ctermfg=Black	ctermbg=Green	cterm=bold
