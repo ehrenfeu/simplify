@@ -22,3 +22,4 @@ ld.so.cache
 nologin
 *.old
 .pwd.lock
+sudoers.tmp
