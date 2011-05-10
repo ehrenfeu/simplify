@@ -1,12 +1,21 @@
 #!/bin/bash
 #
 
-if ! [ -r "debootstrap_inc.sh" ] ; then
+_INC="debootstrap_inc.sh"
+_SOURCE=""
+
+if [ -r "$_INC" ] ; then
+    _SOURCE="$_INC"
+elif [ -r "chroot_helper/$_INC" ] ; then
+    _SOURCE="chroot_helper/$_INC"
+fi
+
+if [ -z "$_SOURCE" ] ; then
 	echo "ERROR: can't find 'debootstrap_inc.sh', stopping"
 	exit 200
 fi
 
-. "debootstrap_inc.sh"
+. "$_SOURCE"
 
 check_if_really_root
 
