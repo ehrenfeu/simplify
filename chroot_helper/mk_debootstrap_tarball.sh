@@ -20,19 +20,10 @@ fi
 check_required $_fakeroot
 check_required $_debootstrap
 
-if test -n "${INCL}" ; then
-    EXTRA="--include=${INCL}"
-fi
-
-if test -n "${COMPONENTS}" ; then
-    EXTRA="$EXTRA --components=${COMPONENTS}"
-fi
+assemble_opts
 
 $_fakeroot $_debootstrap $EXTRA \
 	--make-tarball debootstrap_${SUITE}_${ARCH}.tar \
-	--verbose \
-	--variant=buildd \
-	--arch ${ARCH} \
 	${SUITE} \
 	${DEST} \
 	${REPO}

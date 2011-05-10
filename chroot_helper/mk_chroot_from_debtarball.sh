@@ -22,18 +22,14 @@ check_if_really_root
 check_required "$TARBL"
 check_required $_debootstrap
 
+assemble_opts
 
-$_debootstrap \
-	--include="$INCL" \
+$_debootstrap $EXTRA \
 	--unpack-tarball ${TARBL} \
-	--verbose \
-	--variant=buildd \
 	--keep-debootstrap-dir \
-	--arch ${ARCH} \
 	${SUITE} \
 	${DEST} \
 	${REPO}
-
 
 echo "--------------------------"
 echo "creating directories:"
