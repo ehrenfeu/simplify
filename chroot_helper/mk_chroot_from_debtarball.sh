@@ -1,12 +1,12 @@
 #!/bin/bash
 #
 
-if ! [ -r "mk_debootstrap.functions" ] ; then
-	echo "ERROR: can't find 'mk_debootstrap.functions, stopping"
+if ! [ -r "debootstrap_inc.sh" ] ; then
+	echo "ERROR: can't find 'debootstrap_inc.sh', stopping"
 	exit 200
 fi
 
-. "mk_debootstrap.functions"
+. "debootstrap_inc.sh"
 
 check_if_really_root
 
