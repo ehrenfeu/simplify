@@ -47,3 +47,16 @@ check_if_really_root() {
 		exit 3
 	fi
 }
+
+assemble_opts() {
+        if test -n "${INCL}" ; then
+            EXTRA="--include=${INCL}"
+        fi
+
+        if test -n "${COMPONENTS}" ; then
+            EXTRA="$EXTRA --components=${COMPONENTS}"
+        fi
+        EXTRA="$EXTRA --verbose \
+                --variant=buildd \
+                --arch ${ARCH}"
+}
