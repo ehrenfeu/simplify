@@ -7,6 +7,8 @@
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
+export HISTFILESIZE=5000
+export HISTSIZE=5000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -20,26 +22,60 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+
+# bold green
+bgrn='\[\033[01;32m\]'
+# normal green
+grn='\[\033[0;32m\]'
+# bold yellow
+bylw='\[\033[01;33m\]'
+# bold blue
+bblu='\[\033[01;34m\]'
+# black-white
+blw='\[\033[00m\]'
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-xterm-color)
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    ;;
+xterm)
+	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	[ ! -z "$SSH_TTY" ] && PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw':'$bblu'\W'$blw'\$ '
+	;;
+screen)
+	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bylw'@\h'$blw'(SCRN):'$bblu'\W'$blw'\$ '
+	;;
 *)
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    ;;
+	PS1='${debian_chroot:+($debian_chroot)}'$grn'\u'$blw$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	;;
 esac
 
-# Comment in the above and uncomment this below for a color prompt
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# _trunc_pwd truncates the value of pwd into a new variable
+# called newPWD if length is above a certain limit
+_trunc_pwd() {
+# How many characters of the $PWD should be kept
+	local pwdmaxlen=30
+# use '~' instead of full path for homedir
+	local shortPWD="${PWD/$HOME/~}"
+# Indicator that there has been directory truncation:
+	local trunc_symbol="..."
+	if [ ${#shortPWD} -gt $pwdmaxlen ]
+	then
+		local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
+		newPWD="${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
+	else
+		newPWD=${shortPWD}
+	fi
+}
+
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    ;;
+xterm*)
+	PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
+					_trunc_pwd'
+	;;
 *)
-    ;;
+	PROMPT_COMMAND='_trunc_pwd'
+	;;
 esac
 
 # Alias definitions.
@@ -51,18 +87,19 @@ esac
 #    . ~/.bash_aliases
 #fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d ~/bin ] ; then
+	PATH=~/bin:"${PATH}"
+	export PATH
+fi
+
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
+	alias grep='grep --color=auto'
 fi
 
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -70,3 +107,12 @@ fi
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+#set bell-style none
+xset b off &> /dev/null
+
+# set tape device
+export TAPE=/dev/nst0
+
+unset LANG
+export LANG
