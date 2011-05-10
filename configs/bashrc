@@ -33,7 +33,7 @@ if [ -n "$debian_chroot" ] && [ "$TERM" == "screen.rxvt" ] ; then
 	export TERM="screen"
 fi
 
-
+# define color shorthands
 blw='\[\033[00m\]'     # black-white
 grn='\[\033[0;32m\]'   # normal green
 red='\[\033[31m\]'     # red
@@ -47,9 +47,9 @@ bblu='\[\033[01;34m\]' # bold blue
 
 # red hostname if we're on SSH (doesn't work for dropbear):
 if [ -n "$SSH_TTY" ] ; then
-	_HOST_DIR_=$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	host_dir=$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
 else
-	_HOST_DIR_=$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	host_dir=$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
@@ -74,11 +74,12 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-	PS1=${_PFX}${red}'${debian_chroot:+($debian_chroot)}'$grn'\u'$blw${_HOST_DIR_}
+	PS1=${_PFX}${red}'${debian_chroot:+($debian_chroot)}'$grn'\u'$blw${host_dir}
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
 unset color_prompt force_color_prompt
+unset host_dir blw grn red bgrn bylw bblu
 
 # _trunc_pwd truncates the value of pwd into a new variable
 # called newPWD if length is above a certain limit
@@ -133,7 +134,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
