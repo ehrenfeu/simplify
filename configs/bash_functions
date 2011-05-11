@@ -1,0 +1,6 @@
+# ~/.bash_functions: sourced from ~/.bashrc
+
+# read function-files provided for inclusion
+for INC in "$HOME"/.bash_functions_inc.* ; do
+    . "$INC"
+done
