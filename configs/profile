@@ -21,3 +21,8 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
     export PATH
 fi
+
+# read profile-files provided for inclusion
+for INC in "$HOME"/.profile_inc.* ; do
+    . "$INC"
+done
