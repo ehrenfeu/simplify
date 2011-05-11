@@ -69,16 +69,16 @@ unset TEMP
 
 # If this shell is interactive, turn on programmable completion enhancements.
 # Any completions you add in ~/.bash_completion are sourced last.
-# case $- in
-#   *i*) [[ -f /etc/bash_completion ]] && . /etc/bash_completion ;;
-# esac
+case $- in
+  *i*) [[ -f /etc/bash_completion ]] && . /etc/bash_completion ;;
+esac
 
 
 # History Options
 # ###############
 
-# Don't put duplicate lines in the history.
-# export HISTCONTROL="ignoredups"
+# Don't put duplicate lines and lines starting with a whitespace in the history.
+export HISTCONTROL="ignoreboth"
 
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
@@ -88,6 +88,9 @@ unset TEMP
 
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
+
+
+export PS1='\[\e[32m\]\u\[\033[00m\]\[\033[01;32m\]@\h\[\033[00m\]:\[\e[33m\]\w\[\e[0m\]\$ '
 
 
 # Aliases
@@ -114,7 +117,7 @@ unset TEMP
 # alias grep='grep --color'                     # show differences in colour
 
 # Some shortcuts for different directory listings
-# alias ls='ls -hF --color=tty'                 # classify files in colour
+alias ls='ls -hF --color=tty'                 # classify files in colour
 # alias dir='ls --color=auto --format=vertical'
 # alias vdir='ls --color=auto --format=long'
 # alias ll='ls -l'                              # long list
@@ -128,3 +131,6 @@ unset TEMP
 # Some example functions
 # function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 
+function _explorer() {
+    cmd /C start "explorer.exe" $(cygpath.exe -w "$1")
+}
