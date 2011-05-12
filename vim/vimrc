@@ -6,9 +6,6 @@
 " -----------------------------------------------------------
 
 " settings {{{
-    " use colorscheme optimized for transparent dark terminals
-    colorscheme quiche
-
     " don't use Vi-compatible mode
     set nocompatible
 
@@ -176,6 +173,10 @@
 
     " status line of *current* window:
     " highlight StatusLine cterm=bold,reverse
+
+    " use colorscheme optimized for transparent dark terminals
+    " (silent! ignores the warning if the scheme is not available)
+    silent! colorscheme quiche
 
     " set a different colorscheme for the GUI
     if has("gui_running")

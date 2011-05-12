@@ -5,7 +5,7 @@
 " grey on transparent bg, optimized for TFT panels
 
 set background=dark
-hi clear
+highlight clear
 if exists("syntax_on")
   syntax reset
 endif
