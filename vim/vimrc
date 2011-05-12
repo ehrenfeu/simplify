@@ -1,101 +1,106 @@
 " -----------------------------------------------------------
-" VIM - Konfiguration von Niko Ehrenfeuchter
-" VIM - Version 6.3
+" VIM - config of Niko Ehrenfeuchter
+" VIM - Version 7.2
 " ~/.vimrc
-" Last Change: 03. March 2010, 10:28:19
+" Last Change: 11. Mai 2011, 18:47:54
 " -----------------------------------------------------------
 
-" Settings {{{
+" settings {{{
+    " use colorscheme optimized for transparent dark terminals
+    colorscheme quiche
 
-    " Kein Vi-kompatibler Modus 
+    " don't use Vi-compatible mode
     set nocompatible
 
-    " Alle Suchtreffer farblich hervorheben 
+    " highlight search matches
     set hlsearch
 
-    " Während der Eingabe zum entsprechenden Text springen
+    " jump to incremental search results while typing
     set incsearch
 
-    " Gross- und Kleinschreibung bei der Suche ignorieren 
+    " ignore case when matching patterns
     set ignorecase
 
-    " ignorecase abschalten, wenn Muster Großbuchstaben enthält
+    " do *NOT* ignore case if the search pattern contains capital letters
     set smartcase
 
-    " Syntax-Highlighting 
+    " syntax highlighting 
     syntax on
 
-    " Faltungsmethode = Markierungen - damit werden {{{ zum Anfang und }}}
-    " zum Ende einer Faltung verwendet
+    " use markers "{{{" and "}}}" to delimit folds
     " set foldmethod=marker
 
-    " Automatisches Einruecken
+    " smart indenting raises/lowers the indention level at special
+    " programming keywords and brackets
     set smartindent
 
-    " Einruecktiefe (indenting)
+    " width of indenting levels
     set shiftwidth=4
 
     set tabstop=4
 
-	" <TAB>s durch blanks ersetzen (ich werde von anderen leuten dazu genoetigt...)
+	" replace <TAB>s by blanks (I'm forced by other people to do so...)
 	set expandtab
 
-    " Treppeneffekt beim Copy & Paste verhindern
+    " shortcut to switch the paste mode on/off
     set pastetoggle=<F8>
 
-    " Backup-File anlegen
+    " create a backup-file when saving
 "     set backup
 
-    " Pfad zum Backup-Verzeichnis
+    " path to directory for backup-files
 "    set backupdir=~/.vim/backupdir
 
-    " Normales Verhalten der Backspace-Taste
+    " allow backspace to work over autoindent, linebreaks and the start
+    " of the current insert mode (aka: make backspace behave normal)
     set backspace=2
 
-    " Zeigt den aktuellen Modus an
+    " show the current mode (insert/replace/visual) in the last line
     set showmode
 
-    " Zeigt die aktuelle Cursorposition unten rechts
+    " show the current cursor position in the status line
     set ruler
 
-    " Ein Leerzeichen nach .,?,! beim Zusammenfügen von zwei Zeilen
+    " set only *one* space after .,?,! when joining lines
     set nojoinspaces
 
-    " Statusline - 2 Zeilen hoch
+    " always show a status line, no matter how many windows
     set laststatus=2
 
-    " Modeline nur in Zeile 1-40 zulaessig
-    set modelines=40
-
-	" aktiviere Modeline
+	" enable modeline evaluation
 	set modeline
 
-    " Name der aktuellen Datei in Fenster-Titel-Leiste (funktioniert
-	" bei cygwin-rxvt leider nicht, daher deaktiviert)
+    " allow modelines in lines 1-40
+    set modelines=40
+
+    " show the name of the current file in the terminal's title
+    " (doesn't work for cygwin-rxvt, so disable this)
     set notitle
 
-    " Liste von Verzeichnissen die durchsucht werden
+    " list of directories that are searched for runtime files
     set runtimepath=~/.vim,$VIMRUNTIME
 
-    set viminfo='20,\"50
+    " use the 'viminfo' file to remember stuff:
+    "  '50 - remember marks for the last 50 files
+    "  <50 - remember up to 50 lines *per* register
+    set viminfo='50,<50
 
+    " remember the last 500 ":" commands and the last 500 searches (each)
     set history=500
 
 	" disable beep and visual bell
 	set vb t_vb=
 
-    " Pfad zum VIM-Helpfile - Diese Option ist nur nötig wenn das
-    " Aufrufen der VIM-Hilfe zu einer Fehlermeldung führt
-"   set helpfile=/usr/share/vim/vim63/doc/help.txt.gz       
-
-	" default to split window to the right:
+	" default to split windows to the right
 	set splitright
+
+    " filetype plugin on
 
 " }}}
 
-" Mappings {{{
+" mappings {{{
 
-    " Hervorhebungen der Suche mit Strg-L enfernen
+    " remove search-highlighting with <ctrl>-L
     map <silent> <c-l> :silent nohl<cr>
 
 	" switch mappings of ` and ' (jump to marker)
@@ -104,25 +109,24 @@
 
 " }}}
 
-" Autocommands {{{
+" autocommands {{{
 
     if has("autocmd")
 
-        " LastMod - Funktion beim Speichern einer Datei aufrufen
+        " call LastMod() when saving special files
         autocmd BufWrite *.vimrc		call LastMod()
         autocmd BufWrite *.c,*.h,*.cpp	call LastMod()
         autocmd BufWrite *.tex			call LastMod()
         autocmd BufWrite *.bib			call LastMod()
         autocmd BufWrite *.gdf			call LastMod()
 
-        " filetype plugin on
-
     endif
 
 " }}}
 
-" Funktionen {{{
+" functions {{{
 
+    " looks for a special cpp-macro and increases its number
 	function! IncBuildNo()
 		let pat = "#define BUILDNO"
 		let lineno = search('^' . pat, 'nw')
@@ -135,8 +139,8 @@
 		endif
 	endfunction
 
-    " Sucht in einem Bereich von $range_size Zeilen am Anfang und Ende 
-	" einer Datei nach dem Muster $pat und erneuert dort das Datum
+    " searches a certain range of lines at the beginnging and the end
+    " of a file for a pattern "$pat" and renews the date noted there
     function! LastMod()
 		let curpos = getpos(".")        " save current position
 		let pat = "Last Change: "       " define pattern
@@ -165,35 +169,38 @@
 
 " }}}
 
-" Syntax {{{
+" syntax {{{
 
-    " Folds
-    "hi Folded ctermbg=blue ctermfg=white
+    " line used for closed folds, use white on blue for color terminals
+    highlight Folded ctermbg=blue ctermfg=white
 
-    " Statusline
-    "hi StatusLine cterm=bold,reverse
+    " status line of *current* window:
+    " highlight StatusLine cterm=bold,reverse
 
+    " set a different colorscheme for the GUI
     if has("gui_running")
         colorscheme darkblue
     endif
 
+    " enable folding for debian changelog/control files
 	let g:debchangelog_fold_enable = 1
 	let g:debcontrol_fold_enable = 1
 
 " }}}
 
-" Plugins {{{
+" plugins {{{
 
 " }}}
 
-" Registers {{{
+" registers {{{
 
-    " lade makro fuer cpp-debug define in register 'd'
+    " load macro for cpp-debug in register "d"
     let @d = "O0C#ifdef DEBUGjo0C#endif"
-    let @v = "O0C#ifdef TSS_DEBUG_VERBOSEjo0C#endif"
-    let @i = "O0C#ifdef TSS_DEBUG_INFOjo0C#endif"
 
-	" TPM-kommentar in register 't'
-	let @t = "A	/*TPM*/"
+    " trailing FIXME-comment in register "f"
+	let @f = "A	/* FIXME */"
+
+    " trailing TODO-comment in register "t"
+	let @f = "A	/* TODO */"
 
 " }}}
