@@ -99,7 +99,6 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
 unset color_prompt force_color_prompt
-unset scn host wdir blw grn red bgrn bylw bblu
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -141,6 +140,17 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+# after sourcing bash_completion, we can look for git-goodies and use them:
+if type -t __git_ps1 > /dev/null ; then
+    PS1="$PS1"'$(__git_ps1 "'$bylw'(%s)'$blw' ")'
+    GIT_PS1_SHOWDIRTYSTATE=yes
+    GIT_PS1_SHOWSTASHSTATE=yes
+    GIT_PS1_SHOWUNTRACKEDFILES=yes
+fi
+
+# clean up our variables
+unset scn host wdir blw grn red bgrn bylw bblu
 
 #set bell-style none
 xset b off &> /dev/null
