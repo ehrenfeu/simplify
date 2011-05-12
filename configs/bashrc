@@ -69,8 +69,11 @@ _short_wdir() {
 
 # define color shorthands
 blw='\[\033[00m\]'     # black-white
-grn='\[\033[0;32m\]'   # normal green
-red='\[\033[31m\]'     # red
+red='\[\033[0;31m\]'   # red
+grn='\[\033[0;32m\]'   # green
+ylw='\[\033[0;33m\]'   # yellow
+blu='\[\033[0;34m\]'   # blue
+bred='\[\033[01;31m\]' # bold red
 bgrn='\[\033[01;32m\]' # bold green
 bylw='\[\033[01;33m\]' # bold yellow
 bblu='\[\033[01;34m\]' # bold blue
@@ -106,7 +109,7 @@ xterm*|rxvt*)
 	PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 	;;
 *)
-	;;
+    ;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -143,6 +146,8 @@ fi
 
 # after sourcing bash_completion, we can look for git-goodies and use them:
 if type -t __git_ps1 > /dev/null ; then
+    # you could insert some utf8-art like '$bred±$bgrn±$bred±' if desired
+    # note: use '$ylw' instead of '$bylw' on light backgrounds
     PS1="$PS1"'$(__git_ps1 "'$bylw'(%s)'$blw' ")'
     GIT_PS1_SHOWDIRTYSTATE=yes
     GIT_PS1_SHOWSTASHSTATE=yes
