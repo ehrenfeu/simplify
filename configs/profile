@@ -23,6 +23,6 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # read profile-files provided for inclusion
-for INC in "$HOME"/.profile_inc.* ; do
+for INC in $(find "$HOME" -maxdepth 1 -name '.profile_inc.*') ; do
     . "$INC"
 done
