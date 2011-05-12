@@ -41,17 +41,6 @@ bgrn='\[\033[01;32m\]' # bold green
 bylw='\[\033[01;33m\]' # bold yellow
 bblu='\[\033[01;34m\]' # bold blue
 
-# set a prefix if we're inside a screen since old screen-versions (or
-# non-ubuntu ones) can't be easily distinguished from a regular session
-[ "$TERM" == "screen" ] && _PFX="$bylw[S]$blw"
-
-# red hostname if we're on SSH (doesn't work for dropbear):
-if [ -n "$SSH_TTY" ] ; then
-	host_dir=$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
-else
-	host_dir=$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
-fi
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -71,6 +60,17 @@ if [ -n "$force_color_prompt" ]; then
     else
 	color_prompt=
     fi
+fi
+
+# set a prefix if we're inside a screen since old screen-versions (or
+# non-ubuntu ones) can't be easily distinguished from a regular session
+[ "$TERM" == "screen" ] && _PFX="$bylw[S]$blw"
+
+# red hostname if we're on SSH (doesn't work for dropbear):
+if [ -n "$SSH_TTY" ] ; then
+	host_dir=$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+else
+	host_dir=$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
 fi
 
 if [ "$color_prompt" = yes ]; then
