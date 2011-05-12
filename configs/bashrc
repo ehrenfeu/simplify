@@ -50,7 +50,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 # define a function '_short_wdir' that takes the value of pwd and returns
-# a truncated version (with a prefix to indicate tuncation) if the length
+# a truncated version (with a prefix to indicate truncation) if the length
 # is above a certain limit, otherwise just $HOME is substitued by '~'
 _short_wdir() {
     # how many characters of the $PWD should be kept
