@@ -81,7 +81,7 @@ fi
 
 # set a prefix if we're inside a screen since old screen-versions (or
 # non-ubuntu ones) can't be easily distinguished from a regular session
-[ "$TERM" == "screen" ] && _PFX="$bylw[S]$blw"
+[ "$TERM" == "screen" ] && scn="$bylw[S]$blw"
 
 # red hostname if we're on SSH (doesn't work for dropbear):
 if [ -n "$SSH_TTY" ] ; then
@@ -91,7 +91,7 @@ else
 fi
 
 if [ "$color_prompt" = yes ]; then
-	PS1=${_PFX}${red}'${debian_chroot:+($debian_chroot)}'$grn'\u'$blw${host_dir}
+	PS1=$scn${red}'${debian_chroot:+($debian_chroot)}'$grn'\u'$blw${host_dir}
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
