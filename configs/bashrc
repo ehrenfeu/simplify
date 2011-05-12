@@ -49,6 +49,23 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# _trunc_pwd truncates the value of pwd into a new variable
+# called newPWD if length is above a certain limit
+_trunc_pwd() {
+# How many characters of the $PWD should be kept
+	local pwdmaxlen=30
+# use '~' instead of full path for homedir
+	local shortPWD="${PWD/$HOME/~}"
+# Indicator that there has been directory truncation:
+	local trunc_symbol="[...]"
+	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
+		local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
+		newPWD="${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
+	else
+		newPWD=${shortPWD}
+	fi
+}
+
 # define color shorthands
 blw='\[\033[00m\]'     # black-white
 grn='\[\033[0;32m\]'   # normal green
@@ -80,23 +97,6 @@ else
 fi
 unset color_prompt force_color_prompt
 unset host_dir blw grn red bgrn bylw bblu
-
-# _trunc_pwd truncates the value of pwd into a new variable
-# called newPWD if length is above a certain limit
-_trunc_pwd() {
-# How many characters of the $PWD should be kept
-	local pwdmaxlen=30
-# use '~' instead of full path for homedir
-	local shortPWD="${PWD/$HOME/~}"
-# Indicator that there has been directory truncation:
-	local trunc_symbol="[...]"
-	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
-		local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
-		newPWD="${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
-	else
-		newPWD=${shortPWD}
-	fi
-}
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
