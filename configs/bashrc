@@ -49,20 +49,21 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# _trunc_pwd truncates the value of pwd into a new variable
-# called newPWD if length is above a certain limit
-_trunc_pwd() {
-# How many characters of the $PWD should be kept
+# define a function '_short_wdir' that takes the value of pwd and returns
+# a truncated version (with a prefix to indicate tuncation) if the length
+# is above a certain limit, otherwise just $HOME is substitued by '~'
+_short_wdir() {
+    # how many characters of the $PWD should be kept
 	local pwdmaxlen=30
-# use '~' instead of full path for homedir
+    # use '~' instead of full path for homedir
 	local shortPWD="${PWD/$HOME/~}"
-# Indicator that there has been directory truncation:
+    # indicator that there has been directory truncation:
 	local trunc_symbol="[...]"
 	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
 		local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
-		newPWD="${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
+		printf "${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
 	else
-		newPWD=${shortPWD}
+		printf "${shortPWD}"
 	fi
 }
 
@@ -90,7 +91,7 @@ else
 	host=$blw$bgrn'@\h'
 fi
 # blue directory name
-wdir=$blw':'$bblu'$newPWD'$blw'\$ '
+wdir=$blw':'$bblu'$(_short_wdir)'$blw'\$ '
 
 if [ "$color_prompt" = yes ]; then
 	PS1=$scn$red'${debian_chroot:+($debian_chroot)}'$grn'\u'$host$wdir
@@ -103,11 +104,9 @@ unset scn host wdir blw grn red bgrn bylw bblu
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-	PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"
-					_trunc_pwd'
+	PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 	;;
 *)
-	PROMPT_COMMAND='_trunc_pwd'
 	;;
 esac
 
