@@ -85,18 +85,20 @@ fi
 
 # red hostname if we're on SSH (doesn't work for dropbear):
 if [ -n "$SSH_TTY" ] ; then
-	host_dir=$red'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	host=$blw$red'@\h'
 else
-	host_dir=$bgrn'@\h'$blw':'$bblu'$newPWD'$blw'\$ '
+	host=$blw$bgrn'@\h'
 fi
+# blue directory name
+wdir=$blw':'$bblu'$newPWD'$blw'\$ '
 
 if [ "$color_prompt" = yes ]; then
-	PS1=$scn${red}'${debian_chroot:+($debian_chroot)}'$grn'\u'$blw${host_dir}
+	PS1=$scn$red'${debian_chroot:+($debian_chroot)}'$grn'\u'$host$wdir
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
 unset color_prompt force_color_prompt
-unset host_dir blw grn red bgrn bylw bblu
+unset scn host wdir blw grn red bgrn bylw bblu
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
