@@ -26,3 +26,4 @@ highlight StatusLine ctermfg=blue	ctermbg=white
 highlight Statement  ctermfg=Yellow			cterm=NONE
 highlight Type						cterm=NONE
 highlight Folded     ctermbg=blue   ctermfg=white
+highlight Typedef    ctermfg=Red

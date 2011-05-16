@@ -13,13 +13,13 @@ syn match cfgWritable    /^writable/
 syn match cfgMember    /\(^members * = *\)\@<=.\+/ contains=cfgGroupInclude
 syn match cfgGroupInclude    /\w\@<!@[a-z0-9_-]\+/ contained
 
-hi link cfgHeader   Title
-hi link cfgComment  Comment
+hi link cfgHeader 	Title
+hi link cfgComment 	Comment
 hi link cfgOperator Operator
 hi link cfgMembers  Statement
-hi link cfgReadonly Question
-hi link cfgWritable Operator
-hi link cfgGroupInclude String
+hi link cfgReadonly Typedef
+hi link cfgWritable Question
+hi link cfgGroupInclude Identifier
 hi link cfgMember Special
 
 " vim: set ai et sw=4 :
