@@ -17,6 +17,9 @@ if [ -z "$1" ] ; then
     exit_usage
 fi
 
+echo -n "current sleep state:"
+hdparm -C /dev/$1 | tail -n 1 | cut -d ':' -f 2
+
 update_temp_hitachi
 SLEEP=0 # remember sleep-state
 OLD=$(grep "$1 " /proc/diskstats)
