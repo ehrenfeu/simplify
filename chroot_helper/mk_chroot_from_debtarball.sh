@@ -39,8 +39,11 @@ done
 
 echo "--------------------------"
 echo "adding to /etc/sudoers:"
-echo $ADD_TO_SUDOERS
-echo $ADD_TO_SUDOERS > ${DEST}/etc/sudoers
+{
+    echo
+    echo 'Defaults    env_keep = "http_proxy ftp_proxy"'
+    echo $ADD_TO_SUDOERS
+} | tee -a ${DEST}/etc/sudoers
 
 
 if [ "$ARCH" == "i386" ] ; then
