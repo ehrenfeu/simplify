@@ -19,6 +19,7 @@ lvm/backup
 lvm/archive
 # various other files:
 ld.so.cache
+prelink.cache
 nologin
 *.old
 .pwd.lock
