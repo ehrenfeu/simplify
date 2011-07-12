@@ -9,3 +9,16 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Engine version: [\.[:digit:]]+ <API:[\.[:digit:]]+>$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Total virus records: [[:digit:]]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Daemon is installed, active interfaces:  [/:\. [:alnum:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [/\. [:alnum:]-]+ with such CRC32 already exists, downloading has been skipped$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Path to (bases|URL list|blacklists|lzma) *: [/[:alnum:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: custom URL list isn't defined$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: try using Dr.Web URL list \([/\.[:alnum:]]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: downloading (notifications|updated files|new/updated files) ...$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: exec\([/ \._[:alnum:]]+\) ...$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: no custom update servers$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: main update servers: [/:\., [:alnum:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: drldir not found: "[/[:alnum:]]+", assuming there are no plugins to update$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Attempting to fetch [/:\.[:alnum:]]+ ...$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: request with [[:digit:]]+ bytes length was sent to [\.[:alnum:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [\.[:alnum:]]+ return 200 OK$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [[:digit:]]+ bytes received from [/:\.[:alnum:]]+\.$
