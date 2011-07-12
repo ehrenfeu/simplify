@@ -22,3 +22,10 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: request with [[:digit:]]+ bytes length was sent to [\.[:alnum:]]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [\.[:alnum:]]+ return 200 OK$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [[:digit:]]+ bytes received from [/:\.[:alnum:]]+\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Dr.Web \(R\) Updater \(\$Revision: [\.[:digit:]]+ \$\) started ...$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: deleting old files ...$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: moving downloaded files from temporary to working directory ...$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: sending notifications ...$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: summary => updated: [[:digit:]]+, removed: [[:digit:]]+ files and [[:digit:]]+ messages$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Finish Success: *[[:digit:]-]+ [[:digit:]:]+#[[:digit:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Socket path is [/[:alnum:]#]+$
