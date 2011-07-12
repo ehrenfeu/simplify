@@ -1,0 +1,11 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Loading /var/drweb/bases/[[:alnum:]]+.vdb - Ok, virus records: [[:digit:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: SIGHUP received, reloading...$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Dr.Web \(R\) daemon for Linux/Plesk Edition v[\.[:digit:]]+ \([ [:alnum:]]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Copyright \(c\) Igor Daniloff, [[:digit:]-]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Doctor Web, Moscow, Russia$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Support service: http://support.drweb.com$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: To purchase: http://buy.drweb.com$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Shell version: [\.[:digit:]]+ <API:[\.[:digit:]]+>$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Engine version: [\.[:digit:]]+ <API:[\.[:digit:]]+>$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Total virus records: [[:digit:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Daemon is installed, active interfaces:  [/:\. [:alnum:]]+$
