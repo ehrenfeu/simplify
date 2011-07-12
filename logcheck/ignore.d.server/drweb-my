@@ -29,3 +29,4 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: summary => updated: [[:digit:]]+, removed: [[:digit:]]+ files and [[:digit:]]+ messages$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Finish Success: *[[:digit:]-]+ [[:digit:]:]+#[[:digit:]]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Socket path is [/[:alnum:]#]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: move [/\.[:alnum:]]+ to [/\.[:alnum:]]+$
