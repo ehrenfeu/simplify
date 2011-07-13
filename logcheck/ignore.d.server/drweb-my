@@ -33,3 +33,6 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [\.[:alnum:]]+ has been downloaded \(CRC32=[[:alnum:]]+\)$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [\.[:alnum:]]+ return 503 Very busy$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: remote host [\.[:alnum:]]+ closed connection variant \(\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [\.[:alnum:]]+ return 200 The requested document follow$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: *timestamp has been downloaded \(CRC32=[[:alnum:]]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: signal HUP has been sent to Dr.Web \(R\) daemon ...$
