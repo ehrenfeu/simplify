@@ -30,3 +30,6 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Finish Success: *[[:digit:]-]+ [[:digit:]:]+#[[:digit:]]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: Socket path is [/[:alnum:]#]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: move [/\.[:alnum:]]+ to [/\.[:alnum:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [\.[:alnum:]]+ has been downloaded \(CRC32=[[:alnum:]]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: [\.[:alnum:]]+ return 503 Very busy$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ update.pl\[[[:digit:]]+\]: remote host [\.[:alnum:]]+ closed connection variant \(\)$
