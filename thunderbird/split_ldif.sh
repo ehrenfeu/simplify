@@ -17,6 +17,7 @@ USAGE:
 $0 thunderbird-addressbook-export.ldif
 
 __USAGE__
+exit 1
 }
 
 if ! [ -r "$1" ] ; then
