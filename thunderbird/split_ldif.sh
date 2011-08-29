@@ -49,11 +49,10 @@ while true ; do
     sed '1,/^\s*$/d' "$TEMP" > "$REST"
     # "dn:: " means a base64 encoded string, while "dn: " is ASCII formatted
     NAME="$(grep '^dn:' "$FIRST" | cut -d ' ' -f 2- | sed 's,[ /],_,g')"
-    mv "$FIRST" "$TGT/$NAME"
+    mv "$FIRST" "$TGT/$NAME" && echo "$NAME"
     if [ "$(wc -l "$REST" | cut -d ' ' -f 1)" -eq "0" ] ; then
         break
     fi
 done
 
 rm -f "$FIRST" "$REST" "$TEMP"
-ls -1 "$TGT"
