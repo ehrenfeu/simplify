@@ -27,15 +27,13 @@ if ! [ -d ".git" ] ; then
     _exit_usage
 fi
 
-# 'add' is required to track new files
-git add .
+# tell git to stage all changes (new, modified, deleted)
+git add --all
 
 # only call 'commit' on real changes, otherwise git exits
 # with status '1' and cron will complain...
 if ! git status | grep -qs '^nothing to commit (working directory clean)$' ; then
-    # '-a' is required to delete files in the repository that
-    # have been deleted locally
-    git commit -q -a -m "[autogit] changes in $1"
+    git commit -q -m "[autogit] changes in $1"
     # check diff size and remember if small enough:
     if [ $(git diff-tree -p --no-commit-id HEAD | wc -l) -le 100 ] ; then
         DIFF="$(git diff-tree -p --no-commit-id HEAD)"
