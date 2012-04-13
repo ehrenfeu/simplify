@@ -51,13 +51,15 @@ if __name__ == '__main__':
         print 'Newer version of pyexiv2 required.'
         sys.exit(1)
 
-    if (len(sys.argv) != 2):
-        print 'Usage: ' + sys.argv[0] + ' path/to/file/containing/exifdata'
+    if (len(sys.argv) != 3):
+        print 'Usage: ' + sys.argv[0] + ' <sourcefile> <targetfile>'
         sys.exit(1)
 
     # Load the image, read the metadata and extract the thumbnail data
-    metadata = ImageMetadata(sys.argv[1])
-    metadata.read()
+    src_metadata = ImageMetadata(sys.argv[1])
+    src_metadata.read()
+    tgt_metadata = ImageMetadata(sys.argv[2])
+    tgt_metadata.read()
 
     for groupName, tagList in copy_tags.iteritems():
         # print groupName
@@ -65,7 +67,13 @@ if __name__ == '__main__':
         for i, tagName in enumerate(tagList):
             fullkey = 'Exif.' + groupName + '.' + tagName
             try: 
-                tag = metadata[fullkey]
+                tag = src_metadata[fullkey]
                 print fullkey + ': ' + tag.raw_value
             except KeyError:
                 print "WARNING: can't find EXIF key '" + fullkey + "'"
+
+            tgt_metadata[fullkey] = tag
+
+    # we're done, so write the updates to the target file (preserving
+    # the file's timestamps via the 'True' parameter)
+    tgt_metadata.write(True)
