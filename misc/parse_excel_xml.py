@@ -18,6 +18,7 @@ def end_element(name):
 def char_data(data):
 	global print_chardata
 	if print_chardata:
+		data = data.strip()
 		print 'char data:', repr(data)
 
 # set the file to read
