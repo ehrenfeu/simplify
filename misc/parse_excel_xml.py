@@ -13,7 +13,8 @@ def start_element(name, attrs):
 def end_element(name):
 	global print_chardata
 	#print "end_element:", name
-	print_chardata = False
+	if name == 'ss:Worksheet':
+		print_chardata = False
 
 def char_data(data):
 	global print_chardata
