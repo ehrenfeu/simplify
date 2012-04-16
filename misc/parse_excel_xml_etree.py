@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import xml.etree.ElementTree as etree
 import sys
 import math
@@ -17,7 +19,8 @@ def calc_dist_xyz(p1, p2):
 
 spots = []
 
-# FIXME: we need a way to set infile if we're not called via execfile()
+if len(sys.argv) > 1:
+	infile = sys.argv[1]
 print "Processing file: " + infile
 tree = etree.parse(infile)
 print "Done parsing the XML."
