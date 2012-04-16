@@ -8,6 +8,8 @@ def start_element(name, attrs):
 	# print 'start element: "',name, '", "', attrs, '"'
 	if name == 'ss:Worksheet':
 		print "worksheet, attrs:", attrs
+		if 'ss:Name' in attrs:
+			print attrs['ss:Name']
 		print_chardata = True
 
 def end_element(name):
