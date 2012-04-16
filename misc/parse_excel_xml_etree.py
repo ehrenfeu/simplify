@@ -3,10 +3,7 @@
 import xml.etree.ElementTree as etree
 import sys
 import math
-# import numpy
-
-# for arg in sys.argv:
-	# print arg
+import numpy
 
 def calc_dist_xyz(p1, p2):
 	dx = abs(p2[0] - p1[0])
@@ -14,8 +11,11 @@ def calc_dist_xyz(p1, p2):
 	dz = abs(p2[2] - p1[2])
 	dist = math.sqrt(dx**2 + dy**2 + dz**2)
 	return(dist)
-	# a = numpy.array(p1)
-	# b = numpy.array(p2)
+
+def dist(p1, p2):
+	point1 = numpy.array(p1)
+	point2 = numpy.array(p2)
+	return(numpy.linalg.norm(point1 - point2))
 
 spots = []
 
@@ -54,7 +54,13 @@ for row in rows:
 	spots.insert(id, coordinates)
 	
 print "Parsed spots: " + str(len(spots))
-print spots[0]
-print calc_dist_xyz((0,0,0), spots[0])
-print calc_dist_xyz((0,0,0), (3,4,0))
-# print spots[444]
+# print spots[0]
+# # print calc_dist_xyz((0,0,0), spots[0])
+# print dist((0,0,0), spots[0])
+# # print calc_dist_xyz((0,0,0), (3,4,0))
+# print dist((0,0,0), (3,4,0))
+# # print spots[444]
+
+for spot in spots:
+	dist((0,0,0), spot)
+print "Calculated all distances to (0,0,0)"
