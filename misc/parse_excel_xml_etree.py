@@ -25,6 +25,19 @@ ws_position = tree.findall(pattern)
 
 rows = ws_position[0].findall('.//{%s}Row' % myns)
 for row in rows:
-	for att in row.keys():
-		print att + ' -> ' + row.get(att)
-	etree.dump(row)
+	# check if this is a header row:
+	style_att = '{%s}StyleID' % myns
+	if style_att in row.attrib:
+		# currently we don't process the header rows, so skip to the next
+		continue
+	# extract positions and ID:
+	id = int(row[7][0].text)
+	pos_x = float(row[0][0].text)
+	pos_y = float(row[1][0].text)
+	pos_z = float(row[2][0].text)
+	
+	coordinates = (pos_x, pos_y, pos_z)
+	spots.insert(id, coordinates)
+	
+print "Parsed spots: " + str(len(spots))
+print spots[444]
