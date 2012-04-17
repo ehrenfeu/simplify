@@ -25,7 +25,7 @@ def char_data(data):
 		print 'char data:', repr(data)
 
 # set the file to read
-infile = open('c:/Temp/green_single.xml')
+infile = open('h:/green_single.xml')
 
 p = xml.parsers.expat.ParserCreate('UTF-8')
 p.StartElementHandler = start_element
