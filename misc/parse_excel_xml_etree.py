@@ -45,11 +45,16 @@ worksheets = tree.findall('{%s}Worksheet' % myns)
 pattern = ".//{%s}Worksheet[@{%s}Name='Position']" % (myns, myns)
 
 ws_position = tree.findall(pattern)
-etree.dump(ws_position[0])
+# etree.dump(ws_position[0])
+
+print
 
 #rows = t[0].findall('.//{%s}Row' % myns)
-rows = tree.findall('.//{%s}Row' % myns)
+# rows = tree.findall('.//{%s}Row' % myns)
+rows = ws_position[0].findall('.//{%s}Row' % myns)
 for row in rows:
+	for att in row.keys():
+		print att + ' -> ' + row.get(att)
 	etree.dump(row)
 	# for child in row:
 		# print "child:", child
