@@ -103,24 +103,26 @@ def main():
     cells1 = parse_celldata(ws1_pos[0], myns)
     cells2 = parse_celldata(ws2_pos[0], myns)
 
-    spots1 = IMS_extract_coords(cells1)
-    spots2 = IMS_extract_coords(cells2)
+    # reference_spots are taken as the base to find the closest ones
+    # in the set of cand_spots
+    reference_spots = IMS_extract_coords(cells1)
+    cand_spots = IMS_extract_coords(cells2)
 
     # test if calculation seems to be plausible:
-    # spots1[len(spots1) - 1] = (59.84, 25.602, 1.161)
+    # cand_spots[len(cand_spots) - 1] = (59.84, 25.602, 1.161)
 
-    for idx_orig, spot_orig in enumerate(spots2):
+    for refid, refspot in enumerate(reference_spots):
         # create a numpy array for the distances to all spots in file1
-        distances = np.empty(len(spots1))
+        distances = np.empty(len(cand_spots))
         print
         print 'Calculating closest neighbour.'
         # add an offset of 3 for the current dataset:
-        print 'Original spot:  [' + str(idx_orig + 3) + ']', spot_orig
-        for idx_rem, remote in enumerate(spots1):
-            distances[idx_rem] = dist(spot_orig, remote)
-        closest_id = distances.argmin()
-        print "Neighbour spot: [" + str(closest_id) + ']', spots1[closest_id]
-        print "Distance:", distances[closest_id]
+        print 'Original spot:  [' + str(refid + 3) + ']', refspot
+        for idx, candspot in enumerate(cand_spots):
+            distances[idx] = dist(refspot, candspot)
+        nearest = distances.argmin()
+        print "Neighbour spot: [" + str(nearest) + ']', cand_spots[nearest]
+        print "Distance:", distances[nearest]
     return(0)
 
 # see http://www.artima.com/weblogs/viewpost.jsp?thread=4829
