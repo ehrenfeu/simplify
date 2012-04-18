@@ -1,5 +1,14 @@
 #!/usr/bin/python
 
+"""Parse Excel XML files into a python datastructure.
+"""
+
+# TODO:
+#  - create a class for handling Excel XML, move to separate package
+#  - do sanity checking
+#  - evaluate datatypes from XML cells
+#  - document functions
+
 import xml.etree.ElementTree as etree
 import sys
 import math
@@ -34,7 +43,7 @@ def check_namesp(xml_etree, expected_ns):
 
 def get_worksheet(xml_etree, ns, pattern):
     pattern = ".//{%s}Worksheet[@{%s}Name='%s']" % (ns, ns, pattern)
-    worksheet = tree.findall(pattern)
+    worksheet = xml_etree.findall(pattern)
     return(worksheet)
 
 def parse_celldata(worksheet, ns):
