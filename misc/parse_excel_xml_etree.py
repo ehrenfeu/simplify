@@ -17,27 +17,39 @@ def dist(p1, p2):
 	point2 = numpy.array(p2)
 	return(numpy.linalg.norm(point1 - point2))
 
+def parse_xml(infile):
+    print "Processing file: " + infile
+    tree = etree.parse(infile)
+    print "Done parsing the XML."
+    return(tree)
+
+def check_namesp(xml_etree, expected_ns):
+    real_ns = xml_etree.getroot().tag[1:].split("}")[0]
+    if not real_ns == expected_ns:
+        print "ERROR, this file doesn't have the expected XML namespace!"
+        sys.exit(1)
+    print "Namespace parsed from XML document: '" + real_ns + "'"
+    print
+    return(real_ns)
+
+def get_worksheet(xml_etree, ns, pattern):
+    pattern = ".//{%s}Worksheet[@{%s}Name='%s']" % (ns, ns, pattern)
+    worksheet = tree.findall(pattern)
+    return(worksheet)
+
 spots = []
 
 if len(sys.argv) > 1:
 	infile = sys.argv[1]
-print "Processing file: " + infile
-tree = etree.parse(infile)
-print "Done parsing the XML."
 
-expected_ns = 'urn:schemas-microsoft-com:office:spreadsheet'
-myns = tree.getroot().tag[1:].split("}")[0]
-if not myns == expected_ns:
-	print "ERROR, this file doesn't have the expected XML namespace!"
-	sys.exit(1)
-print "Namespace parsed from XML document: '" + myns + "'"
-print
+tree = parse_xml(infile)
+
+myns = check_namesp(tree, 'urn:schemas-microsoft-com:office:spreadsheet')
 
 # we're looking for stuff in the "Position" worksheet:
-pattern = ".//{%s}Worksheet[@{%s}Name='Position']" % (myns, myns)
-ws_position = tree.findall(pattern)
+ws_pos = get_worksheet(tree, myns, 'Position')
 
-rows = ws_position[0].findall('.//{%s}Row' % myns)
+rows = ws_pos[0].findall('.//{%s}Row' % myns)
 for row in rows:
 	# check if this is a header row:
 	style_att = '{%s}StyleID' % myns
