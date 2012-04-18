@@ -106,17 +106,21 @@ def main():
     spots1 = IMS_extract_coords(cells1)
     spots2 = IMS_extract_coords(cells2)
 
-    distances = []
-    for origin in spots2:
+    # test if calculation seems to be plausible:
+    # spots1[len(spots1) - 1] = (59.84, 25.602, 1.161)
+
+    for idx_orig, spot_orig in enumerate(spots2):
+        # create a numpy array for the distances to all spots in file1
+        distances = np.empty(len(spots1))
         print
-        print "Processing spot", origin
-        for remote in spots1:
-            distances.append(dist(origin, remote))
-        print "Calculated all distances."
-        distances_ = np.array(distances)
-        closest_id = distances_.argmin()
-        print "ID of closest neighbour:", closest_id
-        print "Coords:", spots1[closest_id]
+        print 'Calculating closest neighbour.'
+        # add an offset of 3 for the current dataset:
+        print 'Original spot:  [' + str(idx_orig + 3) + ']', spot_orig
+        for idx_rem, remote in enumerate(spots1):
+            distances[idx_rem] = dist(spot_orig, remote)
+        closest_id = distances.argmin()
+        print "Neighbour spot: [" + str(closest_id) + ']', spots1[closest_id]
+        print "Distance:", distances[closest_id]
     return(0)
 
 # see http://www.artima.com/weblogs/viewpost.jsp?thread=4829
