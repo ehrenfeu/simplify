@@ -37,7 +37,28 @@ def get_worksheet(xml_etree, ns, pattern):
     worksheet = tree.findall(pattern)
     return(worksheet)
 
-spots = []
+def parse_celldata(worksheet, ns):
+    cells = []
+    rows = worksheet.findall('.//{%s}Row' % ns)
+    for row in rows:
+        content = []
+        # check if this is a header row:
+        style_att = '{%s}StyleID' % ns
+        if style_att in row.attrib:
+            # currently we don't process the header rows, so skip to the next
+            continue
+        # print str(len(row))
+        for cell in row:
+            content.append(cell[0].text)
+        # print content
+        cells.append(content)
+    # print cells
+    # cells is now [ [r1c1, r1c2, r1c3, ...],
+    #                [r2c1, r2c2, r2c3, ...],
+    #                [r3c1, r3c2, r3c3, ...],
+    #                ...                      ]
+    print "Parsed rows: " + str(len(cells))
+    return(cells)
 
 if len(sys.argv) > 1:
 	infile = sys.argv[1]
@@ -49,26 +70,23 @@ myns = check_namesp(tree, 'urn:schemas-microsoft-com:office:spreadsheet')
 # we're looking for stuff in the "Position" worksheet:
 ws_pos = get_worksheet(tree, myns, 'Position')
 
-rows = ws_pos[0].findall('.//{%s}Row' % myns)
-for row in rows:
-	# check if this is a header row:
-	style_att = '{%s}StyleID' % myns
-	if style_att in row.attrib:
-		# currently we don't process the header rows, so skip to the next
-		continue
-	# extract positions and ID:
-	id = int(row[7][0].text)
-	pos_x = float(row[0][0].text)
-	pos_y = float(row[1][0].text)
-	pos_z = float(row[2][0].text)
-	
-	coordinates = (pos_x, pos_y, pos_z)
-	spots.insert(id, coordinates)
-	
-print "Parsed spots: " + str(len(spots))
-# print spots[0]
+cells = parse_celldata(ws_pos[0], myns)
+
+spots = []
+
+# extract positions and ID:
+cellno = 0
+id = int(cells[cellno][7])
+pos_x = float(cells[cellno][0])
+pos_y = float(cells[cellno][1])
+pos_z = float(cells[cellno][2])
+
+coordinates = (pos_x, pos_y, pos_z)
+spots.insert(id, coordinates)
+
+# print spots[cellno]
 # # print calc_dist_xyz((0,0,0), spots[0])
-# print dist((0,0,0), spots[0])
+# print dist((0,0,0), spots[cellno])
 # # print calc_dist_xyz((0,0,0), (3,4,0))
 # print dist((0,0,0), (3,4,0))
 # # print spots[444]
