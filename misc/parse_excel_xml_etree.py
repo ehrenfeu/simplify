@@ -13,6 +13,7 @@ import xml.etree.ElementTree as etree
 import sys
 import math
 import numpy
+from numpy import numarray
 
 def calc_dist_xyz(p1, p2):
 	dx = abs(p2[0] - p1[0])
@@ -106,6 +107,17 @@ def main():
     spots1 = IMS_extract_coords(cells1)
     spots2 = IMS_extract_coords(cells2)
 
+    distances = []
+    for origin in spots2:
+        print
+        print "Processing spot", origin
+        for remote in spots1:
+            distances.append(dist(origin, remote))
+        print "Calculated all distances."
+        distances_ = numpy.array(distances)
+        closest_id = distances_.argmin()
+        print "ID of closest neighbour:", closest_id
+        print "Coords:", spots1[closest_id]
     return(0)
 
 # see http://www.artima.com/weblogs/viewpost.jsp?thread=4829
