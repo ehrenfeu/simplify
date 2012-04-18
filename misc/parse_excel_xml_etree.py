@@ -12,8 +12,7 @@
 import xml.etree.ElementTree as etree
 import sys
 import math
-import numpy
-from numpy import numarray
+import numpy as np
 
 def calc_dist_xyz(p1, p2):
 	dx = abs(p2[0] - p1[0])
@@ -23,9 +22,9 @@ def calc_dist_xyz(p1, p2):
 	return(dist)
 
 def dist(p1, p2):
-	point1 = numpy.array(p1)
-	point2 = numpy.array(p2)
-	return(numpy.linalg.norm(point1 - point2))
+	point1 = np.array(p1)
+	point2 = np.array(p2)
+	return(np.linalg.norm(point1 - point2))
 
 def parse_xml(infile):
     print "Processing file: " + infile
@@ -114,7 +113,7 @@ def main():
         for remote in spots1:
             distances.append(dist(origin, remote))
         print "Calculated all distances."
-        distances_ = numpy.array(distances)
+        distances_ = np.array(distances)
         closest_id = distances_.argmin()
         print "ID of closest neighbour:", closest_id
         print "Coords:", spots1[closest_id]
