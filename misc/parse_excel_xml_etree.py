@@ -30,6 +30,7 @@ def parse_xml(infile):
     print "Processing file: " + infile
     tree = etree.parse(infile)
     print "Done parsing the XML."
+    print
     return(tree)
 
 def check_namesp(xml_etree, expected_ns):
@@ -71,6 +72,7 @@ def parse_celldata(worksheet, ns):
 
 def IMS_extract_coords(table_cells):
     coords = []
+    # extract positions and ID:
     for cell in table_cells:
         id = int(cell[7])
         x = float(cell[0])
@@ -80,37 +82,33 @@ def IMS_extract_coords(table_cells):
     print "Parsed coordinates:", str(len(coords))
     return(coords)
 
-if len(sys.argv) > 1:
-	infile = sys.argv[1]
+def main():
+    if not len(sys.argv) == 3:
+        print __doc__
+        return(1)
 
-tree = parse_xml(infile)
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
 
-myns = check_namesp(tree, 'urn:schemas-microsoft-com:office:spreadsheet')
+    tree1 = parse_xml(file1)
+    myns = check_namesp(tree1, 'urn:schemas-microsoft-com:office:spreadsheet')
 
-# we're looking for stuff in the "Position" worksheet:
-ws_pos = get_worksheet(tree, myns, 'Position')
+    tree2 = parse_xml(file2)
+    myns = check_namesp(tree2, 'urn:schemas-microsoft-com:office:spreadsheet')
 
-cells = parse_celldata(ws_pos[0], myns)
+    # we're looking for stuff in the "Position" worksheet:
+    ws1_pos = get_worksheet(tree1, myns, 'Position')
+    ws2_pos = get_worksheet(tree2, myns, 'Position')
 
-spots = []
+    cells1 = parse_celldata(ws1_pos[0], myns)
+    cells2 = parse_celldata(ws2_pos[0], myns)
 
-# extract positions and ID:
-cellno = 0
-id = int(cells[cellno][7])
-pos_x = float(cells[cellno][0])
-pos_y = float(cells[cellno][1])
-pos_z = float(cells[cellno][2])
+    spots1 = IMS_extract_coords(cells1)
+    spots2 = IMS_extract_coords(cells2)
 
-coordinates = (pos_x, pos_y, pos_z)
-spots.insert(id, coordinates)
+    return(0)
 
-# print spots[cellno]
-# # print calc_dist_xyz((0,0,0), spots[0])
-# print dist((0,0,0), spots[cellno])
-# # print calc_dist_xyz((0,0,0), (3,4,0))
-# print dist((0,0,0), (3,4,0))
-# # print spots[444]
-
-for spot in spots:
-	dist((0,0,0), spot)
-print "Calculated all distances to (0,0,0)"
+# see http://www.artima.com/weblogs/viewpost.jsp?thread=4829
+# for this nice way to handle the sys.exit()/return() calls
+if __name__ == "__main__":
+    sys.exit(main())
