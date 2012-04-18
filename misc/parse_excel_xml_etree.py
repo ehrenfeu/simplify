@@ -60,6 +60,17 @@ def parse_celldata(worksheet, ns):
     print "Parsed rows: " + str(len(cells))
     return(cells)
 
+def IMS_extract_coords(table_cells):
+    coords = []
+    for cell in table_cells:
+        id = int(cell[7])
+        x = float(cell[0])
+        y = float(cell[1])
+        z = float(cell[2])
+        coords.insert(id, (x, y, z))
+    print "Parsed coordinates:", str(len(spots))
+    return(coords)
+
 if len(sys.argv) > 1:
 	infile = sys.argv[1]
 
