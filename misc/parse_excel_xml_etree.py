@@ -77,7 +77,7 @@ def IMS_extract_coords(table_cells):
         y = float(cell[1])
         z = float(cell[2])
         coords.insert(id, (x, y, z))
-    print "Parsed coordinates:", str(len(spots))
+    print "Parsed coordinates:", str(len(coords))
     return(coords)
 
 if len(sys.argv) > 1:
