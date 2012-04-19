@@ -29,8 +29,8 @@ def dist(p1, p2):
 def parse_xml(infile):
     print "Processing file: " + infile
     tree = etree.parse(infile)
-    print "Done parsing the XML."
-    print
+    # print "Done parsing the XML."
+    # print
     return(tree)
 
 def check_namesp(xml_etree, expected_ns):
@@ -38,8 +38,8 @@ def check_namesp(xml_etree, expected_ns):
     if not real_ns == expected_ns:
         print "ERROR, this file doesn't have the expected XML namespace!"
         sys.exit(1)
-    print "Namespace parsed from XML document: '" + real_ns + "'"
-    print
+    # print "Namespace parsed from XML document: '" + real_ns + "'"
+    # print
     return(real_ns)
 
 def get_worksheet(xml_etree, ns, pattern):
@@ -67,7 +67,7 @@ def parse_celldata(worksheet, ns):
     #                [r2c1, r2c2, r2c3, ...],
     #                [r3c1, r3c2, r3c3, ...],
     #                ...                      ]
-    print "Parsed rows: " + str(len(cells))
+    # print "Parsed rows: " + str(len(cells))
     return(cells)
 
 def IMS_extract_coords(table_cells):
@@ -79,7 +79,7 @@ def IMS_extract_coords(table_cells):
         y = float(cell[1])
         z = float(cell[2])
         coords.insert(id, (x, y, z))
-    print "Parsed coordinates:", str(len(coords))
+    # print "Parsed coordinates:", str(len(coords))
     return(coords)
 
 def main():
@@ -116,8 +116,7 @@ def main():
         distances = np.empty(len(cand_spots))
         print
         print 'Calculating closest neighbour.'
-        # add an offset of 3 for the current dataset:
-        print 'Original spot:  [' + str(refid + 3) + ']', refspot
+        print 'Original spot:  [' + str(refid) + ']', refspot
         for idx, candspot in enumerate(cand_spots):
             distances[idx] = dist(refspot, candspot)
         nearest = distances.argmin()
