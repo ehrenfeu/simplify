@@ -3,7 +3,7 @@
 # http://www.xuvtools.org/ for details)
 
 # set the paths required by xuvtools-buildscripts:
-BUILDENV="${HOME}/buildenvs/all"
+BUILDENV="${HOME}/.lmbsoft"
 export LMBSOFTSRC=${BUILDENV}/src
 export LMBSOFTDEST=${BUILDENV}/dst
 export LMBSOFTTEMP=${BUILDENV}/tmp
@@ -12,7 +12,7 @@ export LMBSOFTTEMP=${BUILDENV}/tmp
 use_local_qt() {
 	# VERSION="${VERSION:-4.5.3}"
 	# export QTDIR="${BUILDENV}/external/lin_gcc$(gcc -dumpversion)/Qt-${VERSION}"
-	export QTDIR="${LMBSOFTDEST}/thirdparty_lin-${HOSTTYPE}-gcc$(gcc -dumpversion)/Qt"
+	export QTDIR="${LMBSOFTDEST}/thirdparty/Qt"
 	export PATH="${QTDIR}/bin:$PATH"
 	QTCONFIGUREFLAGS="-debug-and-release -opensource -optimized-qmake -static \
 			-no-qt3support -nomake examples -nomake demos -nomake docs"
