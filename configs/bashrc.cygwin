@@ -131,6 +131,31 @@ alias ls='ls -hF --color=tty'                 # classify files in colour
 # Some example functions
 # function settitle() { echo -ne "\e]2;$@\a\e]1;$@\a"; }
 
+
+### personal settings (non-upstream) ###
+
 function _explorer() {
     cmd /C start "explorer.exe" $(cygpath.exe -w "$1")
 }
+
+# define color shorthands
+blw='\[\033[00m\]'     # black-white
+red='\[\033[0;31m\]'   # red
+grn='\[\033[0;32m\]'   # green
+ylw='\[\033[0;33m\]'   # yellow
+blu='\[\033[0;34m\]'   # blue
+bred='\[\033[01;31m\]' # bold red
+bgrn='\[\033[01;32m\]' # bold green
+bylw='\[\033[01;33m\]' # bold yellow
+bblu='\[\033[01;34m\]' # bold blue
+
+
+# after sourcing bash_completion, we can look for git-goodies and use them:
+if type -t __git_ps1 > /dev/null ; then
+    # you could insert some utf8-art like '$bred±$bgrn±$bred±' if desired
+    # note: use '$ylw' instead of '$bylw' on light backgrounds
+    PS1="$PS1"'$(__git_ps1 "'$bylw'(%s)'$blw' ")'
+    GIT_PS1_SHOWDIRTYSTATE=yes
+    GIT_PS1_SHOWSTASHSTATE=yes
+    GIT_PS1_SHOWUNTRACKEDFILES=yes
+fi
