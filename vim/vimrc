@@ -110,6 +110,9 @@
 
     if has("autocmd")
 
+        " PowerShell syntax highlighting
+        autocmd BufRead *.ps1			set filetype=ps1
+
         " call LastMod() when saving special files
         autocmd BufWrite *.vimrc		call LastMod()
         autocmd BufWrite *.c,*.h,*.cpp	call LastMod()
