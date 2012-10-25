@@ -171,3 +171,9 @@ fi
 
 export HOSTTYPE # required by many devel-tools
 export LANG=
+
+# give a warning if deprecated inclusion files were found:
+if [ -f ~/.found_deprecated_incfiles ] ; then
+    echo "WARN: Found deprecated profile include files, please migrate!"
+    cat ~/.found_deprecated_incfiles
+fi
