@@ -18,6 +18,8 @@ echo "$LOG_BODY" > $WORKDIR/COMMIT_MSG_2
 
 LOG_FULL=$(git log -1 --parents --name-status $GIT_COMMIT)
 
+# the regular expressions must be defined such that they match files
+# including their complete path relative to the repository root!
 MATCHES=$(git ls-files | egrep --only-matching -f $REGEXPS)
 for match in $MATCHES ; do
     # checkout is not required in tree-filter:
