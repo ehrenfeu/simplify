@@ -1,13 +1,19 @@
+# NOTE: this can be used like this:
+# git filter-branch -f --tree-filter '/path/to/git-filter-tree.sh' \
+#     --msg-filter 'cat /tmp/git_filtering/COMMIT_MSG_*' \
+#     --tag-name-filter cat -- --all
+
 # this echo is required since the "rewrite" message of git does
 # not have a trailing newline:
 echo
 
 REGEXPS="/home/ehrenfeu/usr/packages/simplify/misc/git-filter.regexps"
-rm /tmp/asdfasdf/COMMIT_EDITMSG_*
+WORKDIR="/tmp/git_filtering"
+rm $WORKDIR/COMMIT_MSG_*
 
 # remember the existing log message (title + body):
 LOG_BODY=$(git log -1 --pretty=format:%s%n%n%b $GIT_COMMIT)
-echo "$LOG_BODY" > /tmp/asdfasdf/COMMIT_EDITMSG_2
+echo "$LOG_BODY" > $WORKDIR/COMMIT_MSG_2
 # echo "-- $LOG_BODY --"
 
 LOG_FULL=$(git log -1 --parents --name-status $GIT_COMMIT)
@@ -33,7 +39,7 @@ for match in $MATCHES ; do
     echo "$LOG_FULL" > "$match.orig-log"
 
     # remove the file from the repository:
-    TGT="/tmp/gittests/removed/$SHA1"
+    TGT="$WORKDIR/removed/$SHA1"
     mkdir -p $TGT
     mkdir -p $TGT/orig-commitlogs
     mv -v $match $TGT
@@ -41,12 +47,10 @@ for match in $MATCHES ; do
 
     # add a note stating the removal of files to the log (ONE line!)
     MSG_REMOVED="\n(NOTE: files were removed during cleanup)"
-    echo "$MSG_REMOVED" > /tmp/asdfasdf/COMMIT_EDITMSG_3
+    echo "$MSG_REMOVED" > "$WORKDIR"/COMMIT_MSG_3
 
     # adding the name of the removed file to the commit message really
     # clutters up the log a lot, so we don't do this!
-    ### echo "removed file: $match" >> /tmp/asdfasdf/COMMIT_EDITMSG_4
+    ### echo "removed file: $match" >> "$WORKDIR"/COMMIT_MSG_4
 done
 echo '---'
-
-# git rm --cached --ignore-unmatch
