@@ -43,6 +43,9 @@ for match in $MATCHES ; do
     # remove the file from the repository:
     TGT="$WORKDIR/removed/$SHA1"
     mkdir -p $TGT
+    # FIXME: we need to define how to handle the directory part of
+    # matches that don't live in the repository-root
+    ### dirname $match
     mkdir -p $TGT/orig-commitlogs
     mv -v $match $TGT
     cp -v $match.orig-log $TGT/orig-commitlogs/$GIT_COMMIT
