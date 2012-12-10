@@ -7,6 +7,7 @@
 # not have a trailing newline:
 echo
 
+# FIXME: use cmdline parameter for this:
 REGEXPS="/home/ehrenfeu/usr/packages/simplify/misc/git-filter.regexps"
 WORKDIR="/tmp/git_filtering"
 rm $WORKDIR/COMMIT_MSG_*
@@ -45,9 +46,14 @@ for match in $MATCHES ; do
     mkdir -p $TGT
     # FIXME: we need to define how to handle the directory part of
     # matches that don't live in the repository-root
-    ### dirname $match
+    ## SOLUTION: use a common name for the file itself and write the path
+    ## and name information into a file in the SHA1-dir using this format:
+    ## $GIT_COMMIT:full-path-to-original-file
+    echo "${GIT_COMMIT}:${match}" > $TGT/orig-name
     mkdir -p $TGT/orig-commitlogs
-    mv -v $match $TGT
+    # TODO: decide whether to rename the file using a common name (e.g.
+    # 'data') to capture renamings without duplicating the data
+    mv -v $match $TGT/data
     cp -v $match.orig-log $TGT/orig-commitlogs/$GIT_COMMIT
 
     # add a note stating the removal of files to the log (ONE line!)
