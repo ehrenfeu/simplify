@@ -41,18 +41,23 @@ for match in $MATCHES ; do
     # file was present, this is meant as an indicator for this!
     echo "$LOG_FULL" > "$match.orig-log"
 
-    # remove the file from the repository:
+    # prepare the directory tree to store the original data:
     TGT="$WORKDIR/removed/$SHA1"
-    mkdir -p $TGT
-    # FIXME: we need to define how to handle the directory part of
-    # matches that don't live in the repository-root
-    ## SOLUTION: use a common name for the file itself and write the path
-    ## and name information into a file in the SHA1-dir using this format:
-    ## $GIT_COMMIT:full-path-to-original-file
+    if ! [ -d "$TGT" ] ; then
+        mkdir -p $TGT/orig-commitlogs
+        # prepare the new dir by adding explanation headers etc.
+        cat > "$TGT/orig-name" << HERE_EOF
+# This file contains a mapping of commit-IDs to original file names.
+# The SHA1 value corresponds to the original commit (which can be looked
+# up in the "orig-commitlogs" directory), the part after the colon is
+# the full path + name of the "data" file during this commit.
+HERE_EOF
+    fi
+
+    # record the original name:
     echo "${GIT_COMMIT}:${match}" >> $TGT/orig-name
-    mkdir -p $TGT/orig-commitlogs
-    # TODO: decide whether to rename the file using a common name (e.g.
-    # 'data') to capture renamings without duplicating the data
+
+    # use a common name to capture renamings without duplicating files
     mv -v $match $TGT/data
     cp -v $match.orig-log $TGT/orig-commitlogs/$GIT_COMMIT
 
