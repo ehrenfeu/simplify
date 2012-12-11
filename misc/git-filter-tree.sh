@@ -49,7 +49,7 @@ for match in $MATCHES ; do
     ## SOLUTION: use a common name for the file itself and write the path
     ## and name information into a file in the SHA1-dir using this format:
     ## $GIT_COMMIT:full-path-to-original-file
-    echo "${GIT_COMMIT}:${match}" > $TGT/orig-name
+    echo "${GIT_COMMIT}:${match}" >> $TGT/orig-name
     mkdir -p $TGT/orig-commitlogs
     # TODO: decide whether to rename the file using a common name (e.g.
     # 'data') to capture renamings without duplicating the data
