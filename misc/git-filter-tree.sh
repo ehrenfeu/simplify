@@ -65,8 +65,6 @@ HERE_EOF
     MSG_REMOVED="\n(NOTE: files were removed during cleanup)"
     echo "$MSG_REMOVED" > "$WORKDIR"/COMMIT_MSG_3
 
-    # adding the name of the removed file to the commit message really
-    # clutters up the log a lot, so we don't do this!
-    ### echo "removed file: $match" >> "$WORKDIR"/COMMIT_MSG_4
+    # DON'T mess up the repository log with the removed filenames!
 done
 echo '---'
