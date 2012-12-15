@@ -3,12 +3,22 @@
 #     --msg-filter 'cat /tmp/git_filtering/COMMIT_MSG_*' \
 #     --tag-name-filter cat -- --all
 
+_usage() {
+    echo "Usage:"
+    echo "$0 regexp-file /path/to/workdir"
+    echo
+    exit 1
+}
+
 # git's "rewrite" message misses a trailing newline, so insert one:
 echo
 
-# FIXME: use cmdline parameter for this:
-REGEXPS="/home/ehrenfeu/usr/packages/simplify/misc/git-filter.regexps"
-WORKDIR="/tmp/git_filtering"
+if [ -z "$1" ] || [ -z "$2" ] ; then
+    _usage
+fi
+REGEXPS="$1"
+WORKDIR="$2"
+
 # COMMIT_MSG_* files are used to assemble the new log message that goes
 # into the repository when rewriting the commits. First we clean it:
 rm $WORKDIR/COMMIT_MSG_*
