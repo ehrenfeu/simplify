@@ -30,20 +30,20 @@ for match in $MATCHES ; do
     # create a placeholder file that goes into the repository
     SHA1=$(sha1sum "$match" | cut -d ' ' -f 1)
     cat > "$match.orig-info" << HERE_EOF
-This is a placeholder for a file that was removed during repository
-cleanup. This file changes /exactly/ when the original file was renamed,
-removed or the file content was changed.
+# This is a placeholder for a file that was removed during repository
+# cleanup. This file changes /exactly/ when the original file was renamed,
+# removed or the file content was changed.
 orig-name:'$match'
 orig-sha1:$SHA1
 HERE_EOF
 
     cat > "$match.orig-log" << HERE_EOF
-This file records the original log of a file that was removed during
-repository cleanup, including the ID of the original parent commit.
-NOTE: This file will change with /every/ commit where the original file
-existed, this is meant as an indicator for the presence of the file in the
-original repository.
--------- original log below this line --------
+# This file records the original log of a file that was removed during
+# repository cleanup, including the ID of the original parent commit.
+# NOTE: This file will change with /every/ commit where the original file
+# existed, this is meant as an indicator for the presence of the file in the
+# original repository.
+# -------- original log below this line --------
 $LOG_FULL
 HERE_EOF
 
