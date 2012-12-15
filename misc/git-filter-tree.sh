@@ -3,13 +3,14 @@
 #     --msg-filter 'cat /tmp/git_filtering/COMMIT_MSG_*' \
 #     --tag-name-filter cat -- --all
 
-# this echo is required since the "rewrite" message of git does
-# not have a trailing newline:
+# git's "rewrite" message misses a trailing newline, so insert one:
 echo
 
 # FIXME: use cmdline parameter for this:
 REGEXPS="/home/ehrenfeu/usr/packages/simplify/misc/git-filter.regexps"
 WORKDIR="/tmp/git_filtering"
+# COMMIT_MSG_* files are used to assemble the new log message that goes
+# into the repository when rewriting the commits. First we clean it:
 rm $WORKDIR/COMMIT_MSG_*
 
 # remember the existing log message (title + body):
@@ -23,23 +24,28 @@ LOG_FULL=$(git log -1 --parents --name-status $GIT_COMMIT)
 # including their complete path relative to the repository root!
 MATCHES=$(git ls-files | egrep --only-matching -f $REGEXPS)
 for match in $MATCHES ; do
-    # checkout is not required in tree-filter:
+    # checkout is required for 'index-filter' but not for 'tree-filter':
     ### git checkout $GIT_COMMIT $match
 
     # create a placeholder file that goes into the repository
     SHA1=$(sha1sum "$match" | cut -d ' ' -f 1)
-    MSG="
-    This is a placeholder for a file that was removed during repository
-    cleanup. This file changes exactly when the original file was renamed
-    or the file itself was changed.
-    original filename: '$match'
-    original sha1sum: $SHA1"
-    echo "$MSG" > "$match.orig-info"
+    cat > "$match.orig-info" << HERE_EOF
+This is a placeholder for a file that was removed during repository
+cleanup. This file changes /exactly/ when the original file was renamed,
+removed or the file content was changed.
+orig-name:'$match'
+orig-sha1:$SHA1
+HERE_EOF
 
-    # record the original log incl parent ids in a separate file
-    # NOTE: this file will change with EVERY commit where the original
-    # file was present, this is meant as an indicator for this!
-    echo "$LOG_FULL" > "$match.orig-log"
+    cat > "$match.orig-log" << HERE_EOF
+This file records the original log of a file that was removed during
+repository cleanup, including the ID of the original parent commit.
+NOTE: This file will change with /every/ commit where the original file
+existed, this is meant as an indicator for the presence of the file in the
+original repository.
+-------- original log below this line --------
+$LOG_FULL
+HERE_EOF
 
     # prepare the directory tree to store the original data:
     TGT="$WORKDIR/removed/$SHA1"
