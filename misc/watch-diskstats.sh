@@ -10,7 +10,7 @@ exit_usage() {
 }
 
 update_temp_hitachi() {
-    TEMP="$(hdparm -H /dev/sda | grep celsius  | cut -d ':' -f 2 | xargs)"
+    TEMP="$(hdparm -H /dev/$1 | grep celsius  | cut -d ':' -f 2 | xargs)"
 }
 
 if [ -z "$1" ] ; then
@@ -20,7 +20,7 @@ fi
 echo -n "current sleep state:"
 hdparm -C /dev/$1 | tail -n 1 | cut -d ':' -f 2
 
-update_temp_hitachi
+update_temp_hitachi $1
 SLEEP=0 # remember sleep-state
 OLD=$(grep "$1 " /proc/diskstats)
 echo "drive temperature: $TEMP "
@@ -30,7 +30,7 @@ echo
 while true ; do
     sleep 600
     # sleep 6
-    update_temp_hitachi
+    update_temp_hitachi $1
     NEW=$(grep " $1 " /proc/diskstats)
     DIFF=$(/bin/echo -e "${OLD}\n${NEW}" | uniq -u)
     OLD=$NEW
