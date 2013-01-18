@@ -1,6 +1,11 @@
-To update the upstream branch bash files using the debian packages
-the following commands can be used:
 
+Merge in changes from distribution packages
+===========================================
+
+To update the upstream branch bash files using the debian packages the
+following commands can be used:
+
+<code>
 # 1) fetch the package
 wget http://de.archive.ubuntu.com/ubuntu/pool/main/b/bash/bash_4.2-2ubuntu2_amd64.deb
 # 2) extract it
@@ -14,4 +19,4 @@ find etc/ -type f  | xargs rename -vf 's,etc/skel/\.,,'
 # 6) clean up
 tree -a etc/
 rm -r etc/ data.tar.gz 
-
+</code>
