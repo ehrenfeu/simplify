@@ -1,0 +1,2 @@
+# local rules for ntp-messages:
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ntpd\[[0-9]+\]: kernel time sync status change (2|6)001$

@@ -1,0 +1,4 @@
+# this seems to occur when there are inconsistencies with passwd/shadow/...
+# instead of filtering the messages you should rather check those files
+# using the commands pwck/grpck/pwconv/grpconv
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ CRON\[[0-9]+\]: Authentication failure$
