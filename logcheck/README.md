@@ -1,10 +1,10 @@
 Purpose
 =======
-Additional filter rules for [logcheck](http://fix.me) that can live in peaceful
-co-existence with the ones provided by your distribution by adding a `-local`
-suffix to their name. This way they don't clash with new versions from your
-package management systems and it's easy to identify which filters have been
-added locally.
+Additional filter rules for [logcheck](http://logcheck.org) that can live in
+peaceful co-existence with the ones provided by your distribution by adding a
+`-local` suffix to their name. This way they don't clash with new versions from
+your package management systems and it's easy to identify which filters have
+been added locally.
 
 Usage
 =====
