@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+
+XM="/usr/sbin/xm"
+
+if [ -x $XM ] ; then
+    echo
+    echo "--------------- Xen domains overview -----------------"
+    $XM uptime
+fi
