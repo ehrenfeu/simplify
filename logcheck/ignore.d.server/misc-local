@@ -1,1 +1,2 @@
+# misc logcheck ignore rules that don't fit well in other categories
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ poplock DB cleanup\[[[:digit:]]+\]: (started|completed)$

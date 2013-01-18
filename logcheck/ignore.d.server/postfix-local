@@ -1,2 +1,3 @@
+# postfix logcheck ingore rules
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix/smtpd?\[[[:digit:]]+\]: sql auxprop plugin using sqlite3 engine$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix/trivial-rewrite?\[[[:digit:]]+\]: warning: do not list domain [._[:alnum:]-]+ in BOTH mydestination and virtual_alias_domains$

@@ -1,3 +1,4 @@
+# logcheck ignore rules for postfix in combination with Plesk
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix-local\[[[:digit:]]+\]: postfix-local: from=.*, to=.*, dirname=/var/qmail/mailnames$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix-local\[[[:digit:]]+\]: hook_dir = '/opt/psa/handlers/before-local'$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix-local\[[[:digit:]]+\]: handlers dir = '/opt/psa/handlers/[/\._@[:alnum:]-]+'$

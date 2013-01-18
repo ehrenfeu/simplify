@@ -1,3 +1,4 @@
+# logcheck ignore rules for the Dr.Web antivirus suite (http://www.drweb.com)
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Loading /var/drweb/bases/[[:alnum:]]+.vdb - Ok, virus records: [[:digit:]]+$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: SIGHUP received, reloading...$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ drwebd.real: Dr.Web \(R\) daemon for Linux/Plesk Edition v[\.[:digit:]]+ \([ [:alnum:]]+\)$
