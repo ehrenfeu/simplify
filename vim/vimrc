@@ -27,6 +27,9 @@
     " use markers "{{{" and "}}}" to delimit folds
     " set foldmethod=marker
 
+    " use indenting levels for folding
+    set foldmethod=indent
+
     " smart indenting raises/lowers the indention level at special
     " programming keywords and brackets
     set smartindent
