@@ -85,8 +85,8 @@
     "  <50 - remember up to 50 lines *per* register
     set viminfo='50,<50
 
-    " remember the last 500 ":" commands and the last 500 searches (each)
-    set history=500
+    " remember the last 5000 ":" commands and the last 5000 searches (each)
+    set history=5000
 
 	" disable beep and visual bell
 	set vb t_vb=
