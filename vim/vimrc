@@ -2,7 +2,7 @@
 " VIM - config of Niko Ehrenfeuchter
 " VIM - Version 7.2
 " ~/.vimrc
-" Last Change: 11. Mai 2011, 18:47:54
+" Last Change: 25. Januar 2013, 15:01:26
 " -----------------------------------------------------------
 
 " settings {{{
@@ -106,6 +106,9 @@
 	" switch mappings of ` and ' (jump to marker)
 	nnoremap ' `
 	nnoremap ` '
+
+    " don't reset indenting on comments (see :help smartindent)
+    inoremap # X#
 
 " }}}
 
