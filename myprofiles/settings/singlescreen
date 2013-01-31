@@ -1,0 +1,2 @@
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/lake_P1020445_1440x900_autoHSV.JPG
+gsettings set org.gnome.desktop.background picture-options 'centered'

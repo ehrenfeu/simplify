@@ -1,0 +1,2 @@
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/raiser-dualscreen.jpg
+gsettings set org.gnome.desktop.background picture-options 'spanned'

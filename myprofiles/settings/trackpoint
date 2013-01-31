@@ -1,0 +1,1 @@
+gsettings set org.gnome.settings-daemon.peripherals.mouse motion-acceleration 9
