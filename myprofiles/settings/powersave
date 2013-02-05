@@ -1,0 +1,2 @@
+CPULIST=$(ls -d /sys/devices/system/cpu/cpu? | sed 's,.*/cpu,,')
+for cpu in $CPULIST ; do sudo cpufreq-set -c $cpu -g powersave ; done
