@@ -1,0 +1,4 @@
+myprofile_powersave
+myprofile_singlescreen
+myprofile_trackpoint
+sudo hdparm -y /dev/sda
