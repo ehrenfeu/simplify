@@ -2,7 +2,7 @@
 " VIM - config of Niko Ehrenfeuchter
 " VIM - Version 7.2
 " ~/.vimrc
-" Last Change: 25. Januar 2013, 15:01:26
+" Last Change: 04. Februar 2013, 17:03:36
 " -----------------------------------------------------------
 
 " settings {{{
@@ -208,6 +208,6 @@
 	let @f = "A	/* FIXME */"
 
     " trailing TODO-comment in register "t"
-	let @f = "A	/* TODO */"
+	let @t = "A	/* TODO */"
 
 " }}}
