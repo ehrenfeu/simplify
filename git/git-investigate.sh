@@ -33,3 +33,9 @@ git-size-name-biggest-blobs() {
         grep $SHA revlist.txt
     done
 }
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]] ; then
+    echo "This file is not meant to be executed directly, as it contains"
+    echo "only function definitions. Add them to your environment by using"
+    echo "the 'source' command instead."
+fi
