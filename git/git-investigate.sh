@@ -38,4 +38,11 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]] ; then
     echo "This file is not meant to be executed directly, as it contains"
     echo "only function definitions. Add them to your environment by using"
     echo "the 'source' command instead."
+else
+    echo "New functions available:"
+    echo " - git-mk-packlist (creates file 'packlist.txt')"
+    echo " - git-mk-revlist (creates file 'revlist.txt')"
+    echo " - git-object-history"
+    echo " - git-history-biggest-blobs"
+    echo " - git-size-name-biggest-blobs"
 fi
