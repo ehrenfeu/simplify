@@ -12,19 +12,31 @@ git-mk-revlist() {
 }
 
 git-object-history() {
+    if [ -z "$1" ] ; then
+        echo "error: no filename given!"
+        return
+    fi
     FNAME=$(grep $1 revlist.txt | cut -d ' ' -f 2)
     git log --all --pretty=oneline -- "$FNAME"
 }
 
 git-history-biggest-blobs() {
-    for SHA in $(tail -n $1 packlist.txt | cut -d ' ' -f 1) ; do
+    NUM=20
+    if [ -n "$1" ] ; then
+        NUM=$1
+    fi
+    for SHA in $(tail -n $NUM packlist.txt | cut -d ' ' -f 1) ; do
         echo -------------------- $SHA ----------------
         git-object-history $SHA
     done
 }
 
 git-size-name-biggest-blobs() {
-    for PACKSET in $(tail -n $1 packlist.txt | sed 's,  *,|,g') ; do
+    NUM=20
+    if [ -n "$1" ] ; then
+        NUM=$1
+    fi
+    for PACKSET in $(tail -n $NUM packlist.txt | sed 's,  *,|,g') ; do
         SHA=$(echo $PACKSET | cut -d '|' -f 1)
         SIZE=$(echo $PACKSET | cut -d '|' -f 3)
         SIZE=$(echo "scale=1; $SIZE / (1024*1024)" | bc -l)
