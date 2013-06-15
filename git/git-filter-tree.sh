@@ -34,6 +34,9 @@ LOG_FULL=$(git log -1 --parents --name-status $GIT_COMMIT)
 # including their complete path relative to the repository root!
 MATCHES=$(git ls-files | egrep --only-matching -f $REGEXPS)
 for match in $MATCHES ; do
+    # echo "${GIT_COMMIT}:${match}" >> "$WORKDIR/matchlist.txt"
+    # continue
+    echo "${GIT_COMMIT}:${match}"
     # checkout is required for 'index-filter' but not for 'tree-filter':
     ### git checkout $GIT_COMMIT $match
 
