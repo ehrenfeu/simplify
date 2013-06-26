@@ -1,3 +1,4 @@
 xrandr --output LVDS1 --mode 1366x768 --output DP2 --off
-gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/lake_P1020445_1440x900_autoHSV.JPG
+# gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/lake_P1020445_1440x900_autoHSV.JPG
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/IMG_6667.crpd.1366x768.jpg
 gsettings set org.gnome.desktop.background picture-options 'centered'
