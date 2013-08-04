@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# A hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+
+
+UNCLEAN=$(git submodule foreach \
+    'test $(git status --porcelain | wc -l) -gt 0 && echo $name' | \
+    grep -v '^Entering '
+)
+
+# if [ -n "$UNCLEAN" ] ; then
+#     echo
+#     echo "> > > FOUND UNCLEAN SUBMODULES: $UNCLEAN < < <"
+#     echo
+# fi
+
+for SUBM in $UNCLEAN ; do
+    echo "**********************************"
+    echo "* WARNING: submodule is unclean! *"
+    echo "**********************************"
+    echo "Module: $SUBM"
+    cd $SUBM
+    git status --porcelain
+    echo "**********************************"
+    echo
+    cd -
+done
