@@ -2,7 +2,7 @@
 " VIM - config of Niko Ehrenfeuchter
 " VIM - Version 7.2
 " ~/.vimrc
-" Last Change: 04. Februar 2013, 17:03:36
+" Last Change: 05. Dezember 2013, 19:37:34
 " -----------------------------------------------------------
 
 " settings {{{
@@ -26,9 +26,6 @@
 
     " use markers "{{{" and "}}}" to delimit folds
     " set foldmethod=marker
-
-    " use indenting levels for folding
-    set foldmethod=indent
 
     " smart indenting raises/lowers the indention level at special
     " programming keywords and brackets
@@ -122,6 +119,9 @@
         autocmd BufWrite *.tex			call LastMod()
         autocmd BufWrite *.bib			call LastMod()
         autocmd BufWrite *.gdf			call LastMod()
+
+        " use indenting levels for folding on certain file types
+        autocmd BufRead *.py 	set foldmethod=indent
 
     endif
 
