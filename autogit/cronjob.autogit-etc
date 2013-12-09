@@ -2,7 +2,10 @@
 # cron-job for git-etc
 #
 
-MAILTO=ne704
+# set the user that should receive mails about changes in the repo:
+MAILTO=root
+
+# adjust the path here in case the script is located differently:
 AUTOCOMMIT=/opt/simplify/autogit/autogit-commit.sh
 
 # look for (and commit) changes in /etc every 15 minutes
