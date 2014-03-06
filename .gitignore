@@ -1,2 +1,6 @@
 .*.sw?
 vim/.netrwhist
+
+vim/doc/
+vim/plugin/fugitive.vim
+vim/syntax/ijmacro.vim
