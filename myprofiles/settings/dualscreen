@@ -1,4 +1,4 @@
 xrandr --output LVDS1 --mode 1366x768 --output DP2 --mode 1920x1200 --right-of LVDS1
 sleep 1
-gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/raiser-dualscreen.jpg
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/.desktopbg_dualscreen
 gsettings set org.gnome.desktop.background picture-options 'spanned'
