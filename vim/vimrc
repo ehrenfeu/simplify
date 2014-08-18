@@ -2,7 +2,7 @@
 " VIM - config of Niko Ehrenfeuchter
 " VIM - Version 7.2
 " ~/.vimrc
-" Last Change: 05. Dezember 2013, 19:37:34
+" Last Change: 12. August 2014, 09:52:10
 " -----------------------------------------------------------
 
 " settings {{{
@@ -122,6 +122,7 @@
 
         " use indenting levels for folding on certain file types
         autocmd BufRead *.py 	set foldmethod=indent
+        autocmd BufRead *.py 	syntax sync fromstart
 
     endif
 
