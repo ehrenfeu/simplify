@@ -25,5 +25,6 @@ highlight Comment    ctermfg=Blue
 highlight StatusLine ctermfg=blue	ctermbg=white
 highlight Statement  ctermfg=Yellow			cterm=NONE
 highlight Type						cterm=NONE
-highlight Folded     ctermbg=blue   ctermfg=white
+highlight Folded     ctermbg=black   ctermfg=lightblue
+"highlight Folded     ctermbg=104E8B   ctermfg=lightblue
 highlight Typedef    ctermfg=Red
