@@ -24,6 +24,8 @@ for file in $CONFIGS ; do
     install_link $file
 done
 
-for file in "$BASE"/*.inc.sh ; do
-    install_link $(basename $file)
-done
+if [ -n "$WITHINCLUDES" ] ; then
+    for file in "$BASE"/*.inc.sh ; do
+        install_link $(basename $file)
+    done
+fi
