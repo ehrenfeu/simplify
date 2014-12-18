@@ -22,14 +22,13 @@ if [ -d "$HOME/bin" ] ; then
     export PATH
 fi
 
-# check for old-style profile inclusion files, warn and load anyway
+# check for old-style profile inclusion files and warn
 rm -f "$HOME/.found_deprecated_incfiles"
-for INC in $(find "$HOME" -maxdepth 1 -name '.profile_inc.*') ; do
+for INC in $(find "$HOME" -maxdepth 1 \( -name '.profile_inc.*' -o -name '.profile_*.inc' \)) ; do
     echo "$INC" >> "$HOME/.found_deprecated_incfiles"
-    . "$INC"
 done
 
 # read profile-files provided for inclusion
-for INC in $(find "$HOME" -maxdepth 1 -name '.profile_*.inc') ; do
+for INC in $(find "$HOME" -maxdepth 1 -name '.profile_*.inc.sh') ; do
     . "$INC"
 done

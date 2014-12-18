@@ -1,12 +1,11 @@
 # ~/.bash_functions: sourced from ~/.bashrc
 
-# check for old-style profile inclusion files, warn and load anyway
-for INC in $(find "$HOME" -maxdepth 1 -name '.bash_functions_inc.*') ; do
+# check for old-style profile inclusion files and warn
+for INC in $(find "$HOME" -maxdepth 1 \( -name '.bash_functions_inc.*' -o -name '.bash_functions_*.inc' \)) ; do
     echo "$INC" >> "$HOME/.found_deprecated_incfiles"
-    . "$INC"
 done
 
 # read function-files provided for inclusion
-for INC in $(find "$HOME" -maxdepth 1 -name '.bash_functions_*.inc') ; do
+for INC in $(find "$HOME" -maxdepth 1 -name '.bash_functions_*.inc.sh') ; do
     . "$INC"
 done
