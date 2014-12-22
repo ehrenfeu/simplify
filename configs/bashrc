@@ -58,11 +58,11 @@ fi
 # is above a certain limit, otherwise just $HOME is substitued by '~'
 _short_wdir() {
     # how many characters of the $PWD should be kept
-	local pwdmaxlen=30
+	local pwdmaxlen=34
     # use '~' instead of full path for homedir
 	local shortPWD="${PWD/$HOME/\~}"
     # indicator that there has been directory truncation:
-	local trunc_symbol="[...]"
+	local trunc_symbol="«"
 	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
 		local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
 		printf "${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
