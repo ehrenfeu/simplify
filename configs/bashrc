@@ -60,7 +60,7 @@ _short_wdir() {
     # how many characters of the $PWD should be kept
 	local pwdmaxlen=30
     # use '~' instead of full path for homedir
-	local shortPWD="${PWD/$HOME/~}"
+	local shortPWD="${PWD/$HOME/\~}"
     # indicator that there has been directory truncation:
 	local trunc_symbol="[...]"
 	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
