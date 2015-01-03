@@ -1,0 +1,33 @@
+[core]
+    # "-R" is required to let the color-codes pass through
+    # "-+S" enables wrapping/folding for long lines
+    pager = less -R -+S
+
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    diffw = diff --word-diff=plain --word-diff-regex='[A-z0-9_]+|[^[:space:]]'
+    spop = !git checkout 'stash^{tree}' -- . && git stash drop
+
+[color]
+    ui = auto
+    diff = auto
+    branch = auto
+    status = auto
+    interactive = auto
+  [color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+  [color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    # whitespace = red reverse
+
+  [color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
