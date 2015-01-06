@@ -31,12 +31,15 @@ bblu='\[\033[01;34m\]' # bold blue
 bvio='\[\033[01;35m\]' # bold violet
 bmag='\[\033[01;36m\]' # bold magenta
 
+# set the default color for the username:
+usrclr=$grn
+
 # set a prefix if we're inside a screen since old screen-versions (or
 # non-ubuntu ones) can't be easily distinguished from a regular session
 [ "$TERM" == "screen" ] && scn="$bylw[S]$blw"
 
-if [ -s ~/.bash_prompt_hostcolor.inc.sh ] ; then
-    source ~/.bash_prompt_hostcolor.inc.sh
+if [ -s ~/.bash_prompt_colors.inc.sh ] ; then
+    source ~/.bash_prompt_colors.inc.sh
 elif [ -n "$SSH_TTY" ] ; then
     # red hostname if we're on SSH (doesn't work for dropbear):
 	host=$blw$red'@\h'

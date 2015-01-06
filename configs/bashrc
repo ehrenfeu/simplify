@@ -66,7 +66,7 @@ else
 fi
 
 if [ "$color_prompt" = yes ]; then
-	PS1=$scn$red'${debian_chroot:+($debian_chroot)}'$grn'\u'$host$wdir
+	PS1=$scn$red'${debian_chroot:+($debian_chroot)}'$usrclr'\u'$host$wdir
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
