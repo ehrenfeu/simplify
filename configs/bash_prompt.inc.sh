@@ -3,20 +3,20 @@
 # is above a certain limit, otherwise just $HOME is substitued by '~'
 _short_wdir() {
     # how many characters of the $PWD should be kept
-	local pwdmaxlen=34
+    local pwdmaxlen=34
     # put the tilde char into a variable to avoid escaping issues, otherwise
     # the substitution below would work only in bash >= 4.3 xor < 4.3
     local tildechar='~'
     # use '~' instead of full path for homedir
-	local shortPWD="${PWD/$HOME/$tildechar}"
+    local shortPWD="${PWD/$HOME/$tildechar}"
     # indicator that there has been directory truncation:
-	local trunc_symbol="«"
-	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
-		local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
-		printf "${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
-	else
-		printf "${shortPWD}"
-	fi
+    local trunc_symbol="«"
+    if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
+        local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
+        printf "${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
+    else
+        printf "${shortPWD}"
+    fi
 }
 
 # color shorthands
@@ -45,9 +45,9 @@ if [ -s ~/.bash_prompt_colors.inc.sh ] ; then
     source ~/.bash_prompt_colors.inc.sh
 elif [ -n "$SSH_TTY" ] ; then
     # red hostname if we're on SSH (doesn't work for dropbear):
-	host=$blw$red'@\h'
+    host=$blw$red'@\h'
 else
-	host=$blw$bgrn'@\h'
+    host=$blw$bgrn'@\h'
 fi
 
 # blue directory name
