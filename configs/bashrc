@@ -124,7 +124,9 @@ if type -t __git_ps1 > /dev/null ; then
 fi
 
 # clean up our variables
-unset scn host wdir blw red grn ylw blu bred bgrn bylw bblu
+unset scn host wdir usrclr
+unset blw red grn ylw blu vio mag
+unset bred bgrn bylw bblu bvio bmag
 
 #set bell-style none
 xset b off &> /dev/null
