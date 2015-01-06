@@ -4,8 +4,11 @@
 _short_wdir() {
     # how many characters of the $PWD should be kept
 	local pwdmaxlen=34
+    # put the tilde char into a variable to avoid escaping issues, otherwise
+    # the substitution below would work only in bash >= 4.3 xor < 4.3
+    local tildechar='~'
     # use '~' instead of full path for homedir
-	local shortPWD="${PWD/$HOME/\~}"
+	local shortPWD="${PWD/$HOME/$tildechar}"
     # indicator that there has been directory truncation:
 	local trunc_symbol="«"
 	if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
