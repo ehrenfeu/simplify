@@ -1,1 +1,7 @@
+# unity / compiz
 gsettings set org.gnome.settings-daemon.peripherals.mouse motion-acceleration 9
+
+# cinnamon
+echo '[/]
+motion-threshold=1
+motion-acceleration=9.0' | dconf load /org/cinnamon/settings-daemon/peripherals/mouse/
