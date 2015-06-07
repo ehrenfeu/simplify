@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer:	Niko Ehrenfeuchter
-" Last Change:	2011 May 04
+" Last Change:	2015 June 07
 " based on colorscheme "torte" by Thorsten Maerz <info@netztorte.de>
 " grey on transparent bg, optimized for TFT panels
 
@@ -25,6 +25,7 @@ highlight Comment    ctermfg=Blue
 highlight StatusLine ctermfg=blue	ctermbg=white
 highlight Statement  ctermfg=Yellow			cterm=NONE
 highlight Type						cterm=NONE
-highlight Folded     ctermbg=black   ctermfg=lightblue
+"highlight Folded     ctermbg=black   ctermfg=lightblue
 "highlight Folded     ctermbg=104E8B   ctermfg=lightblue
+highlight Folded     ctermbg=104E8B   ctermfg=darkgrey
 highlight Typedef    ctermfg=Red
