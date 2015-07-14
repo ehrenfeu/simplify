@@ -17,7 +17,7 @@ if [ -z "$1" ] ; then
     exit_usage
 fi
 
-echo -n "current sleep state:"
+echo -n "$(date "+%F %R") current sleep state:"
 hdparm -C /dev/$1 | tail -n 1 | cut -d ':' -f 2
 
 update_temp_hitachi $1
@@ -29,7 +29,7 @@ echo
 
 while true ; do
     sleep 600
-    # sleep 6
+    # sleep 10
     update_temp_hitachi $1
     NEW=$(grep " $1 " /proc/diskstats)
     DIFF=$(/bin/echo -e "${OLD}\n${NEW}" | uniq -u)
