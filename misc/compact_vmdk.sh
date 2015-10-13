@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# NOTE:
+# first, start up the VM, log in and fill the free space with zeros, e.g.:
+# > cat /dev/zero > zero.fill ; sync ; sleep 1 ; sync ; rm -f zero.fill
+
 # exit on any error:
 set -e
 
