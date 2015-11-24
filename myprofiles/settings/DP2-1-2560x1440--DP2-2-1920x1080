@@ -1,0 +1,5 @@
+xrandr --output eDP1 --off --output DP2-1 --mode 2560x1440 --output DP2-2 --mode 1920x1080 --right-of DP2-1
+sleep 1
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/.desktopbg_single-2560x1440
+# gsettings set org.gnome.desktop.background picture-options 'spanned'
+gsettings set org.gnome.desktop.background picture-options 'centered'
