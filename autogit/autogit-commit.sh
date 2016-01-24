@@ -27,12 +27,13 @@ if ! [ -d ".git" ] ; then
     _exit_usage
 fi
 
-# tell git to stage all changes (new, modified, deleted)
-git add --all
+DIRTY=$(git status --porcelain)
 
 # only call 'commit' on real changes, otherwise git exits
 # with status '1' and cron will complain...
-if ! git status | grep -qs '^nothing to commit (working directory clean)$' ; then
+if [ -n "$DIRTY" ] ; then
+    # tell git to stage all changes (new, modified, deleted)
+    git add --all
     git commit -q -m "[autogit] changes in $1"
     # check diff size and remember if small enough:
     if [ $(git diff-tree -p --no-commit-id HEAD | wc -l) -le 100 ] ; then
