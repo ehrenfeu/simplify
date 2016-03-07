@@ -1,0 +1,1 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ smartd\[[[:digit:]]+\]: Device: /dev/[^[:space:]]+( \[[_/[:alnum:][:space:]]+\])?, 4 Currently unreadable \(pending\) sectors$
