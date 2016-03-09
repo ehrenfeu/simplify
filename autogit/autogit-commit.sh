@@ -4,7 +4,7 @@
 # set -x
 
 _exit_usage() {
-    echo "USAGE: $0 /full/path/to/git/repo/"
+    echo "USAGE: $0 /full/path/to/git/workingdir/  [ /path/to/git/dir ]"
     echo
     exit 100
 }
@@ -17,12 +17,16 @@ if [ -z "$1" ] ; then
     _exit_usage
 fi
 
+if [ -n "$2" ] ; then
+    export GIT_DIR="$2"
+fi
+
 set -e
 cd "$1"
 set +e
 
-if ! [ -d ".git" ] ; then
-    echo "ERROR: '$1' is not a git repository!"
+if ! [ -d ".git" ] && [ -z "$GIT_DIR" ] ; then
+    echo "ERROR: '$1' is not a git working directory!"
     echo
     _exit_usage
 fi
