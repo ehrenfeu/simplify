@@ -17,13 +17,19 @@ if [ -z "$1" ] ; then
     _exit_usage
 fi
 
-if [ -n "$2" ] ; then
-    export GIT_DIR="$2"
-fi
-
 set -e
 cd "$1"
 set +e
+
+AUTOGIT_DIR=".autogit_dir"
+if [ -r $AUTOGIT_DIR ] ; then
+    export GIT_DIR="$(cat $AUTOGIT_DIR)"
+fi
+
+# override if a git-dir is given explicitly as parameter:
+if [ -n "$2" ] ; then
+    export GIT_DIR="$2"
+fi
 
 if ! [ -d ".git" ] && [ -z "$GIT_DIR" ] ; then
     echo "ERROR: '$1' is not a git working directory!"
