@@ -1,5 +1,7 @@
 # local rules for ntp-messages:
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ntpd\[[0-9]+\]: kernel time sync status change (2|6)001$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ntpd\[[0-9]+\]: [0-9]+ out of [0-9]+ peers valid$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ntpd\[[0-9]+\]: bad peer [0-9]+\.debian\.pool\.ntp\.org \(([0-9.]{7,15}|[0-9a-fA-F:.]{4,39}\))$
 # missing rules, copied from the ubuntu lucid package (1:4.2.4p8+dfsg-1ubuntu2.3):
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ntpd\[[0-9]+\]: time reset [+-]*[0-9]{1,2}\.[0-9]{6} s$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ ntpd\[[0-9]+\]: synchronisation lost$
