@@ -14,6 +14,7 @@ Setup
 
 First, clone the repository containing this script. The proposed location is
 /opt (otherwise you have to adjust the cronjob, see below):
+
 ```bash
 cd /opt
 git clone http://github.com/ehrenfeu/simplify.git
@@ -23,6 +24,7 @@ Next, initialize the repo for the directory tree you'd like to track (/etc in
 this case), make sure only root can access the repository (so you don't
 accidentially leak the files to a regular user), add the ignores and configure
 git for the root user:
+
 ```bash
 cd /etc
 cp -v /opt/simplify/autogit/gitignore.etc .gitignore
@@ -37,6 +39,7 @@ git commit -a -m "initial import of /etc on host '${HOSTNAME}'"
 Finally, install and configure the cronjob that auto-commits all changes
 (adjust the cronjob-file to configure who will receive notification emails,
 where to find the "autogit" script and how often to run it):
+
 ```bash
 cd /etc/cron.d/
 cp -v /opt/simplify/autogit/cronjob.autogit-etc autogit-etc
