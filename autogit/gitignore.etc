@@ -24,3 +24,4 @@ nologin
 *.old
 .pwd.lock
 sudoers.tmp
+aliases.db
