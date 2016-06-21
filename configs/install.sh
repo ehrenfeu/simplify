@@ -10,15 +10,18 @@ TSTAMP=$(date +%FT%H%M%S)
 
 install_link() {
     if [ -s ".$1" ] ; then
-        mv .$1 .${1}.pre-$TSTAMP
+        echo mv .$1 .${1}.pre-$TSTAMP
     fi
-    ln -sv "$BASE"/$1 .$1
+    echo ln -sv "$BASE"/$1 .$1
 }
 
 CONFIGS="bashrc \
 bash_logout \
 bash_functions \
 profile"
+
+echo "NOT CHANGING ANYTHING, only printing commands for copy-paste!"
+echo "-------------------------------------------------------------"
 
 for file in $CONFIGS ; do
     install_link $file
@@ -29,3 +32,6 @@ if [ -n "$WITHINCLUDES" ] ; then
         install_link $(basename $file)
     done
 fi
+
+echo "-------------------------------------------------------------"
+echo
