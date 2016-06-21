@@ -27,7 +27,7 @@ for file in $CONFIGS ; do
     install_link $file
 done
 
-if [ -n "$WITHINCLUDES" ] ; then
+if [ -z "$NOINCLUDES" ] ; then
     for file in "$BASE"/*.inc.sh ; do
         install_link $(basename $file)
     done
