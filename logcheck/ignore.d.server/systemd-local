@@ -1,0 +1,1 @@
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd-timesyncd\[[[:digit:]]+\]: interval/delta/delay/jitter/drift [[:digit:]]+s/[.0-9+-]+s/[.0-9]+s/[.0-9]+s/\+[0-9]+ppm$
