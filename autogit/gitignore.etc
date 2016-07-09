@@ -17,6 +17,8 @@ shadow-
 lvm/cache
 lvm/backup
 lvm/archive
+# subversion metadata:
+.svn/
 # various other files:
 ld.so.cache
 prelink.cache
