@@ -1,0 +1,2 @@
+# etc-svn-monitoring
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ logger: etc-svn-monitoring: executed successfully.$
