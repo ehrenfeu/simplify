@@ -1,3 +1,5 @@
 # local rules for davical-messages:
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ apache2: davical: LOG: : iCalendar: Call to deprecated method 'iCalHeader'$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ apache2: davical: LOG: : iCalendar: Call to deprecated method 'iCalFooter'$
+# temporarily take out all "LOG" messages from davical:
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ apache2: davical: LOG: .*$
