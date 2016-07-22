@@ -2,7 +2,7 @@
 " VIM - config of Niko Ehrenfeuchter
 " VIM - Version 7.2
 " ~/.vimrc
-" Last Change: 30. Juni 2015, 14:31:41
+" Last Change: 22. Juli 2016, 13:46:44
 " -----------------------------------------------------------
 
 " settings {{{
@@ -122,7 +122,7 @@
 
         " use indenting levels for folding on certain file types
         autocmd BufRead *.py 	set foldmethod=indent
-        autocmd BufRead *.py 	syntax sync fromstart
+        autocmd BufRead *.py 	syntax sync minlines=99999
 
         " .hgsb are SVI Huygens template files written in Tcl
         autocmd BufRead *.hgsb 	set filetype=tcl
