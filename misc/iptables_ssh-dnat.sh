@@ -2,10 +2,11 @@
 #
 
 # This script assumes special entries in /etc/hosts that are used to set up the
-# required iptables rules to do a destination NAT to port 22. Every target host
-# needs to be listed with its regular hostname and a special name defining the
-# input port. Assuming a hostname "myhostname" and the desired port "22001",
-# the corresponding entry in the hosts file should look like this:
+# required iptables rules to do a destination NAT to an ssh daemon running on
+# some port number starting with 22. Every target host needs to be listed with
+# its regular hostname and a special name defining the port. Assuming a
+# hostname "myhostname" and the desired port "22001", the corresponding entry
+# in the hosts file should look like this:
 #
 # 10.1.77.3   myhostname   ssh_dnat_port_22001
 
@@ -58,6 +59,6 @@ echo
 OPTS="--protocol tcp --dport $TGTPORT --in-interface eth0 --destination aldebaran"
 
 iptables $ACTION INPUT $OPTS --match state --state NEW --jump ACCEPT
-iptables $ACTION PREROUTING --table nat $OPTS --jump DNAT --to ${TGTIP}:22
+iptables $ACTION PREROUTING --table nat $OPTS --jump DNAT --to ${TGTIP}:${TGTPORT}
 
 list_colon22 "New"
