@@ -3,3 +3,4 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-logind\[[[:digit:]]+\]: New session [[:alnum:]]+ of user [^ ]+\.*$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-logind\[[[:digit:]]+\]: Removed session [[:alnum:]]+\.$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd\[[[:digit:]]+\]: Start(ing|ed) Cleanup of Temporary Directories\.+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd\[[[:digit:]]+\]: Reload(ing|ed) LSB: Apache2 web server\.$
