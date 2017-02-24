@@ -1,0 +1,3 @@
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ rsyslogd-[[:digit:]]+: action 'action 17' suspended
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ rsyslogd0: action 'action 17' resumed \(module 'builtin:ompipe'\)
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ rsyslogd-[[:digit:]]+: action 'action 17' resumed \(module 'builtin:ompipe'\)
