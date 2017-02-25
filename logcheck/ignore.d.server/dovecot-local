@@ -8,6 +8,7 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (imap|pop3)-login: Disconnected \(tried to use disabled plaintext auth\): method=CRAM-MD5, rip=[.[:digit:]]+, lip=[.[:digit:]]+
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (imap|pop3)-login: Disconnected \(tried to use unsupported auth mechanism\): user=<[-_.@[:alnum:]]+>, method=(CRAM-MD5|NTLM), rip=[.[:digit:]]+, lip=[.[:digit:]]+, TLS
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (imap|pop3)-login: Aborted login \(no auth attempts\):
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (imap|pop3)-login: Aborted login \(auth failed, (1|2) attempts\): user=<[-_.@[:alnum:]]+>, method=PLAIN, rip=[.[:digit:]]+, lip=[.[:digit:]]+, TLS
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (imap|pop3)-login: Disconnected: Inactivity \(no auth attempts\):
 # ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (imap|pop3)-login: Disconnected \(auth failed, [[:digit:]]+ attempts\): user=.*, method=PLAIN, rip=[.[:digit:]]+, lip=[.[:digit:]]+, TLS
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dovecot: (imap|pop3)-login: Disconnected \(auth failed, (1|2) attempts\): user=<[-_.@[:alnum:]]+>, method=PLAIN, rip=[.[:digit:]]+, lip=[.[:digit:]]+, TLS
