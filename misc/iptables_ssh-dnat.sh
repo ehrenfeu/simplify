@@ -50,8 +50,8 @@ TGTHOST=$2
 
 list_colon22 "Previous"
 
-TGTIP=$(grep $TGTHOST /etc/hosts | cut -d ' ' -f 1)
-TGTPORT=$(grep $TGTHOST /etc/hosts | sed -n 's,.*ssh_dnat_port_\([0-9]*\).*,\1,p')
+TGTIP=$(grep $TGTHOST /etc/hosts | head -n 1 | cut -d ' ' -f 1)
+TGTPORT=$(grep $TGTHOST /etc/hosts | head -n 1 | sed -n 's,.*ssh_dnat_port_\([0-9]*\).*,\1,p')
 
 echo "Target IP and port retrieved from /etc/hosts: $TGTIP:$TGTPORT"
 echo
