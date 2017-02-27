@@ -1,0 +1,22 @@
+# this is the configuration file for the central
+# backup script 'run-backup-control.sh'
+
+
+######### global function definitions #########
+
+BACKUPCONTROL_FUNCTIONS="${HOME}/bin/backup_functions.inc.sh"
+
+
+
+######### target base directory for backup-storage #########
+
+BAKDIR="${HOME}/backups/${HOSTNAME}"
+
+
+
+######### mail settings #########
+
+# FROM="${USER}@$(hostname).$(dnsdomainname)"
+RECIPIENTS="user@domain.org"
+# SUBJECT="[backup-control] report"
+
