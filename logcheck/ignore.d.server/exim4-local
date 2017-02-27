@@ -1,0 +1,5 @@
+# local rules for exim4-messages:
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ exim4\[[[:digit:]]+\]: Stopping MTA: exim4_listener.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ exim4\[[[:digit:]]+\]: Starting MTA:undocumented line MESSAGE_SIZE_LIMIT=20M found in$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ exim4\[[[:digit:]]+\]: /etc/exim4/update-exim4.conf.conf, generating exim macro$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ exim4\[[[:digit:]]+\]: exim4.$
