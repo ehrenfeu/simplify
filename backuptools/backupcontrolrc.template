@@ -9,13 +9,10 @@ BACKUPCONTROL_FUNCTIONS="${HOME}/bin/backup_functions.inc.sh"
 
 
 ######### target base directory for backup-storage #########
-
 BAKDIR="${HOME}/backups/${HOSTNAME}"
 
 
-
 ######### mail settings #########
-
 # FROM="${USER}@$(hostname).$(dnsdomainname)"
 RECIPIENTS="user@domain.org"
 # SUBJECT="[backup-control] report"
