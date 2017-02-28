@@ -3,8 +3,8 @@
 
 
 ######### global function definitions #########
+BACKUPCONTROL_FUNCTIONS="/opt/simplify/backuptools/inc"
 
-BACKUPCONTROL_FUNCTIONS="${HOME}/bin/backup_functions.inc.sh"
 
 
 
