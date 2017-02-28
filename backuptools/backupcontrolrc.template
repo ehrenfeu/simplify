@@ -20,3 +20,5 @@ BAKDIR="${HOME}/backups/${HOSTNAME}"
 RECIPIENTS="user@domain.org"
 # SUBJECT="[backup-control] report"
 
+
+## vim: ft=sh
