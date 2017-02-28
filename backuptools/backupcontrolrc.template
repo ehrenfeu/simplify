@@ -6,6 +6,8 @@
 BACKUPCONTROL_FUNCTIONS="/opt/simplify/backuptools/inc"
 
 
+######### directory with backup scripts (plugins) to run #########
+BACKUP_D="${HOME}/.backupcontrol/backup.d"
 
 
 ######### target base directory for backup-storage #########
