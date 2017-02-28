@@ -18,3 +18,4 @@ Make sure the files are readable by logcheck, you can test this by running
 `logcheck-test` on individual files, like for example:
 
     sudo -u logcheck logcheck-test -s -r /opt/simplify/logcheck/ignore.d.server/ntp-local
+    sudo -u logcheck logcheck-test --log-file /var/log/syslog.1 -r /opt/simplify/logcheck/ignore.d.server/ntp-local
