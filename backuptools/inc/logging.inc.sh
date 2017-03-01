@@ -5,7 +5,9 @@
 # first, set a default verbosity:
 __LOG_LEVEL=30  # WARN
 
-# next, evaluate if a verbosity level was requested:
+# next, evaluate if a verbosity level was requested (like this, it is possible
+# to configure the loglevel by setting the var LOG_VERBOSITY *before* sourcing
+# this file):
 [ "$LOG_VERBOSITY" = "INFO" ] && __LOG_LEVEL=20
 [ "$LOG_VERBOSITY" = "DEBUG" ] && __LOG_LEVEL=10
 
