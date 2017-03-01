@@ -3,11 +3,11 @@
 
 
 ######### global function definitions #########
-BACKUPCONTROL_FUNCTIONS="/opt/simplify/backuptools/inc"
+BACKUPTOOLS_INC="${HOME}/.backuptools/inc"
 
 
 ######### directory with backup scripts (plugins) to run #########
-BACKUP_D="${HOME}/.backupcontrol/backup.d"
+BACKUP_D="${HOME}/.backuptools/backup.d"
 
 
 ######### target base directory for backup-storage #########
