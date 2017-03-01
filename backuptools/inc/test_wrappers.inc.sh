@@ -21,6 +21,15 @@ _file_executable_or_exit() {
     fi
 }
 
+_exit_if_file_exists() {
+    # print an error message and exit if the given file already exits to
+    # prevent overwriting (e.g. a backup target file)
+    if _file_exists "$1" ; then
+        echo "Error: target file $1 exists, aborting!"
+        exit 1
+    fi
+}
+
 
 _check_hostname() {
     # 'bash' sets HOSTNAME by default, but it doesn't seem
