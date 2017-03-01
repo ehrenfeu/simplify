@@ -15,7 +15,7 @@ _file_executable() {
 }
 
 _file_executable_or_exit() {
-    if [ ! -x "$1" ] ; then
+    if ! _file_executable "$1" ; then
         echo "$0 error: cant find $1, exiting."
         exit 1
     fi
