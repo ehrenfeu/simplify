@@ -44,7 +44,7 @@ _check_hostname() {
 
 
 _check_target_path() {
-    # check if a given path exists, and set the TGT_PATH variable if so
+    # set the TGT_PATH variable if a given path exists, exit otherwise
     if [ -z "$1" ] ; then
         echo "$0, $FUNCNAME error: no target path specified, exiting."
         # print usage message if defined
