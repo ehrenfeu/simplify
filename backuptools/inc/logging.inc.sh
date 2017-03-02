@@ -12,21 +12,21 @@ __LOG_LEVEL=30  # WARN
 [ "$LOG_VERBOSITY" = "DEBUG" ] && __LOG_LEVEL=10
 
 logc() {
-    [ "$__LOG_LEVEL" -le 50 ] && echo "[CRITICAL] $*"
+    [ "$__LOG_LEVEL" -le 50 ] && echo "[CRITICAL] $*" || true
 }
 
 loge() {
-    [ "$__LOG_LEVEL" -le 40 ] && echo "[ERROR] $*"
+    [ "$__LOG_LEVEL" -le 40 ] && echo "[ERROR] $*" || true
 }
 
 logw() {
-    [ "$__LOG_LEVEL" -le 30 ] && echo "[WARN] $*"
+    [ "$__LOG_LEVEL" -le 30 ] && echo "[WARN] $*" || true
 }
 
 logi() {
-    [ "$__LOG_LEVEL" -le 20 ] && echo "[INFO] $*"
+    [ "$__LOG_LEVEL" -le 20 ] && echo "[INFO] $*" || true
 }
 
 logd() {
-    [ "$__LOG_LEVEL" -le 10 ] && echo "[DEBUG] $*"
+    [ "$__LOG_LEVEL" -le 10 ] && echo "[DEBUG] $*" || true
 }
