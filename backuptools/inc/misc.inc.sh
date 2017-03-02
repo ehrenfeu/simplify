@@ -4,6 +4,7 @@
 locate_config_file() {
     # locate the configuration file for a specific backup script by using the
     # naming convention (script name without ".sh" suffix) and load it:
+    logd "$FUNCNAME()"
     BASENAME="$(basename $0 | sed 's,\.sh$,,')"
     CONF="$HOME/.backuptools/configs/$BASENAME"
     if ! [ -f "$CONF" ] ; then
