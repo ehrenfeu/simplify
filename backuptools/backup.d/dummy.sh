@@ -20,5 +20,12 @@ locate_config_file
 
 echo
 _pb_title
-_pb "Some dummy text."
+_pb "This is some test text."
+_pb
+_pb "Variables defined in the central config file:"
+_pb
+_pb "BACKUPTOOLS_INC:  $BACKUPTOOLS_INC"
+_pb "BACKUP_D:         $BACKUP_D"
+_pb "BAKDIR:           $BAKDIR"
+_pb "RECIPIENTS:       $RECIPIENTS"
 _pb_footer
