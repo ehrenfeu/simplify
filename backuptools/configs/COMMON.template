@@ -14,10 +14,11 @@ BACKUP_D="${HOME}/.backuptools/backup.d"
 BAKDIR="${HOME}/backups/${HOSTNAME}"
 
 
-######### mail settings #########
+######### mail and pretty-printing settings #########
 # FROM="${USER}@$(hostname).$(dnsdomainname)"
 RECIPIENTS="user@domain.org"
 # SUBJECT="[backup-control] report"
+PP_BOX_WIDTH=70
 
 
 ## vim: ft=sh

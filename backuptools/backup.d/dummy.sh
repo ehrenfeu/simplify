@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-PP_BOX_WIDTH="56"
+[ -z "$PP_BOX_WIDTH" ] && PP_BOX_WIDTH="76"
 LOG_VERBOSITY="DEBUG"
 
 set -e
