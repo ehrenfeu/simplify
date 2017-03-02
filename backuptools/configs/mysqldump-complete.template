@@ -1,0 +1,11 @@
+# config for mysqldump-script
+DB_USER="ro_user"
+DB_PW="password"
+
+# this var is only used by the 'specific' script to select the 
+# databases to dump, not the 'complete' one (it just ignores it
+# and simply uses the credentials above...)
+DBS_TO_DUMP="db_1 db_2 db_3"
+
+
+## vim: ft=sh
