@@ -1,0 +1,9 @@
+# config for adsm / tsm script
+DSMC="/opt/tivoli/tsm/client/ba/bin/dsmc"
+
+### ! ! ! WARNING ! ! ! ###
+# paths have to be specified *with* a trailing slash!!!
+# otherwise the tsm-call takes ages and even misses new files!
+STORE="/home/backups/"
+
+## vim: ft=sh
