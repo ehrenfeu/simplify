@@ -18,7 +18,7 @@ source "$CONF"
 source "${HOME}/.backuptools/functions.inc.sh"
 
 # export variables required by the plugin scripts below
-export BACKUPTOOLS_INC PP_BOX_WIDTH
+export BACKUPTOOLS_INC BAKDIR PP_BOX_WIDTH
 
 
 ### <sanity>
