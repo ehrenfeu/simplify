@@ -44,8 +44,13 @@ LOGTGT="${LOGDST}/${LOGNAME}-${DATEymd}.log"
 logi "$_rsync $RSYNC_OPTS $BAKSRC $BAKDST"
 logi
 
-echo "-------------------------" >> "$LOGTGT"
 date >> "$LOGTGT"
+
+_pb "Running rsync:"
+_pb "  * options: $RSYNC_OPTS"
+_pb "  * src: $BAKSRC"
+_pb "  * dst: $BAKDST"
+_pb
 
 $_rsync $RSYNC_OPTS "$BAKSRC" "$BAKDST" >> "$LOGTGT"
 
