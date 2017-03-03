@@ -84,5 +84,5 @@ _pb_footer_cond() {
 
 _pb_file_with_size() {
     # convenience function to print a message with a filename and its size
-    _pb "   $(basename $1: $(ls -hs "$1"  | cut -d ' ' -f 1)"
+    _pb "   $(basename $1): $(ls -hs "$1"  | cut -d ' ' -f 1)"
 }
