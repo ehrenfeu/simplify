@@ -1,6 +1,8 @@
 #!/bin/bash
 #
 
+export LC_ALL=C
+
 set -e
 
 # we expect a folder ".backuptools" in the home directory containing the
