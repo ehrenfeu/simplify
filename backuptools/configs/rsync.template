@@ -1,0 +1,12 @@
+# config for rsync backup script
+RSYNC_OPTS="-auv"
+
+BAKSRC="/opt/redmine/files"
+
+# NOTE: be careful whether or not to add a trailing '/' to BAKDST!!
+BAKDST="${HOME}/backups/${HOSTNAME}/rsync/"
+
+LOGNAME="rsync"
+LOGDST="${HOME}/backups/${HOSTNAME}/rsync/logs"
+
+## vim: ft=sh
