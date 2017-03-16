@@ -33,9 +33,9 @@ _pb_title() {
     fi
     EFF_LEN="${PP_BOX_WIDTH}"
     TIT_LEN=$(echo -n "$TITLE" | wc -c)
-    PRE_LEN=$(( (EFF_LEN - TIT_LEN - 2) / 2 ))
+    PRE_LEN=$(( (EFF_LEN - TIT_LEN - 4) / 2 ))
     PREFIX=$(for i in $(seq $PRE_LEN) ; do echo -n "_" ; done)
-    echo "${PREFIX}($TITLE)${PP_FILL_L}${PP_FILL_L}" | \
+    echo "${PREFIX}| $TITLE |${PP_FILL_L}${PP_FILL_L}" | \
             cut -c -${EFF_LEN}
 }
 
