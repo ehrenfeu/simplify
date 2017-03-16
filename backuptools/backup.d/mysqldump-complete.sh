@@ -8,7 +8,7 @@ STORE="$1/mysql"
 
 _mysqldump_bin="/usr/bin/mysqldump"
 _timeout="/usr/bin/timeout"
-_compress="gzip"
+_compress="/bin/gzip"
 _compress_suffix="gz"
 
 set -e
