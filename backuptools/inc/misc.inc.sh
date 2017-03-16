@@ -41,6 +41,6 @@ compress_backup_file() {
     fi
     _pb
     _pb "compressing file:"
-    _compress "$1"
+    "$_compress" "$1"
     _pb_file_with_size "${1}.$_compress_suffix"
 }
