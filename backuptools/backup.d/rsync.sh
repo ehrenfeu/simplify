@@ -34,12 +34,12 @@ if ! [[ -d "$BAKSRC" || -d "$BAKDST" || -d "$RSYNC_OPTS" || -d "$LOGDST" ]] ; th
 	exit 1
 fi
 
-_check_target_path "${BAKDST}"
-
+_check_target_path "${LOGDST}"
 if [ -z "$LOGNAME" ] ; then
     LOGNAME="rsync"
 fi
 LOGTGT="${LOGDST}/${LOGNAME}-${DATEymd}.log"
+_exit_if_file_exists "$LOGTGT"
 
 logi "$_rsync $RSYNC_OPTS $BAKSRC $BAKDST"
 logi
@@ -51,6 +51,8 @@ _pb "  * options: $RSYNC_OPTS"
 _pb "  * src: $BAKSRC"
 _pb "  * dst: $BAKDST"
 _pb
+
+_check_target_path "${BAKDST}"
 
 $_rsync $RSYNC_OPTS "$BAKSRC" "$BAKDST" >> "$LOGTGT"
 
