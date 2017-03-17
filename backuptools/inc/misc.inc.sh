@@ -41,6 +41,9 @@ compress_backup_file() {
     fi
     _pb
     _pb "compressing file:"
+    _compress_tgt="${1}.$_compress_suffix"
+    # gzip will wait interactively if the file exists, so cover this:
+    _exit_if_file_exists "$_compress_tgt"
     "$_compress" "$1"
-    _pb_file_with_size "${1}.$_compress_suffix"
+    _pb_file_with_size "$_compress_tgt"
 }
