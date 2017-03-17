@@ -69,3 +69,8 @@ _check_target_file() {
         exit 1
     fi
 }
+
+_exit_if_file_exists() {
+    # an alias for the above function, until it has been replaced properly
+    _check_target_file "$1"
+}
