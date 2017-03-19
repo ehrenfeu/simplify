@@ -4,9 +4,10 @@ RSYNC_OPTS="-auv"
 BAKSRC="/opt/redmine/files"
 
 # NOTE: be careful whether or not to add a trailing '/' to BAKDST!!
-BAKDST="${HOME}/backups/${HOSTNAME}/rsync/"
+BAKDST="${BAKDIR}/rsync/"
 
 LOGNAME="rsync"
-LOGDST="${HOME}/backups/${HOSTNAME}/rsync/logs"
+LOGDST="${BAKDIR}/rsync/logs"
+
 
 ## vim: ft=sh
