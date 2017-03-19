@@ -68,6 +68,16 @@ section of `/etc/mysql/my.cnf`:
 ignore-table=mysql.event
 ```
 
+Rsync
+-----
+```
+mkdir -pv ~/.backuptools/backup.d && cd ~/.backuptools/backup.d
+ln -s ${TOOLSREPO}/backup.d/rsync.sh
+cp -v ${TOOLSREPO}/configs/rsync.template ~/.backuptools/configs/rsync
+chmod go-rwx ~/.backuptools/configs/rsync
+vim ~/.backuptools/configs/rsync
+```
+
 Restricted Rsync
 ----------------
 ```
