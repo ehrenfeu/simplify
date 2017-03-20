@@ -37,6 +37,15 @@ if ! [ -d ".git" ] && [ -z "$GIT_DIR" ] ; then
     _exit_usage
 fi
 
+# some dpkg-foo: if a given file in the subdir "_admin" exists, we update the
+# list of dpkg-installed packages in this file, before doing the git stuff
+# (this way we make sure that we always commit an updated package list on a
+# debian system along with the changes in the monitored repository):
+DPKG_SELECTIONS="_admin/dpkg__get-selections"
+if [ -f "$DPKG_SELECTIONS" ] ; then
+    dpkg --get-selections > $DPKG_SELECTIONS
+fi
+
 DIRTY=$(git status --porcelain)
 
 # only call 'commit' on real changes, otherwise git exits
