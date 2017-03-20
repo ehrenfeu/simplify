@@ -1,0 +1,6 @@
+# config for pgsql-dumpall script
+# DMP_OPTS="--clean --verbose"
+DMP_OPTS="--clean"
+
+
+## vim: ft=sh
