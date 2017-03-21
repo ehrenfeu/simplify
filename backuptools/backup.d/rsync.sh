@@ -3,8 +3,8 @@
 [ -z "$PP_BOX_WIDTH" ] && PP_BOX_WIDTH="76"
 LOG_VERBOSITY="WARN"
 
-_rsync="/usr/bin/rsync"
-_timeout="/usr/bin/timeout"
+_rsync=$(_file_executable_or_exit "/usr/bin/rsync")
+_timeout=$(_file_executable_or_exit "/usr/bin/timeout")
 
 set -e
 
@@ -24,8 +24,6 @@ locate_config_file
 echo
 _pb_title "rsync ($BAKSRC)"
 
-_file_executable_or_exit "$_timeout"
-_file_executable_or_exit "$_rsync"
 
 ############################
 

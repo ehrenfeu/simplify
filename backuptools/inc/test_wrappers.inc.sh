@@ -15,7 +15,12 @@ _file_executable() {
 }
 
 _file_executable_or_exit() {
-    if ! _file_executable "$1" ; then
+    local EXEC_FILE=$(which "$1")
+    local RET=$?
+    # which returns 0 IFF file exists AND is executable
+    if [ "$RET" -eq "0" ] ; then
+        echo $EXEC_FILE
+    else
         echo "$0 error: cant find $1, exiting."
         exit 1
     fi

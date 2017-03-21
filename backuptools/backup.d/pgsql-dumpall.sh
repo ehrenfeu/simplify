@@ -6,9 +6,9 @@ LOG_VERBOSITY="WARN"
 
 STORE="$1/pgsql"
 
-_pg_dump_bin="/usr/bin/pg_dumpall"
-_timeout="/usr/bin/timeout"
-_compress="pbzip2"
+_pg_dump_bin=$(_file_executable_or_exit "pg_dumpall")
+_timeout=$(_file_executable_or_exit "timeout")
+_compress=$(_file_executable_or_exit "pbzip2")
 _compress_suffix="bz2"
 
 set -e
@@ -31,9 +31,6 @@ _usage() {
 echo
 _pb_title
 
-_file_executable_or_exit "$_timeout"
-_file_executable_or_exit "$_compress"
-_file_executable_or_exit "$_pg_dump_bin"
 _check_target_path "${STORE}"
 
 DMP_FILE="${STORE}/pg_dumpall-$DATEYmdHM.sql"

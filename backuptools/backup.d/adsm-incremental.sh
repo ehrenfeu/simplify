@@ -13,12 +13,15 @@ logd "This is '$0'"
 
 locate_config_file
 
+# $DSMC has to be set in the config, so let's check it:
+DSMC_EXEC=$(_file_executable_or_exit "$DSMC")
+
 # # # # # # # #
 
 tsm_client_incr() {
     for i in $(seq 1 10) ; do
-        logi "calling '$DSMC incr \"$*\"'"
-        $DSMC incr "$*"
+        logi "calling '$DSMC_EXEC incr \"$*\"'"
+        $DSMC_EXEC incr "$*"
     	STATUS="$?"
     	if test "$STATUS" != "0" ; then
     		loge "TSM-client returned status '$STATUS'"
@@ -33,7 +36,6 @@ tsm_client_incr() {
 
 # # # # # # # #
 
-_file_executable_or_exit "$DSMC"
 _check_target_path "${STORE}"
 
 echo
