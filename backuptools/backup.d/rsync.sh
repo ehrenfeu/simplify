@@ -52,14 +52,29 @@ _pb
 
 _check_target_path "${BAKDST}"
 
+set +e
 $_rsync $RSYNC_OPTS "$BAKSRC" "$BAKDST" >> "$LOGTGT"
+RET_BAKEXEC=$?
+set -e
+
+check_return_value $RET_BAKEXEC
 
 date >> "$LOGTGT"
 
-cat "$LOGTGT" | _pb_stdin
-
 if [ -n "$DST_GROUP" ] ; then
+    _pb
+    _pb
+    _pb "Running 'chgrp' on destination directory:"
+    set +e
     chgrp -R "$DST_GROUP" "$BAKDST"
+    RET_CHGRP=$?
+    set -e
+    check_return_value $RET_CHGRP
+    _pb
 fi
+
+# now print the rsync details, in a sub-box:
+_pb_footer
+cat "$LOGTGT" | _pb_stdin
 
 _pb_footer
