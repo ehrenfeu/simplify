@@ -70,11 +70,11 @@ if [ -n "$DST_GROUP" ] ; then
     RET_CHGRP=$?
     set -e
     check_return_value $RET_CHGRP
-    _pb
 fi
 
 # now print the rsync details, in a sub-box:
 _pb_footer
+_pb
 cat "$LOGTGT" | _pb_stdin
 
 _pb_footer
