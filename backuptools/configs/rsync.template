@@ -9,5 +9,8 @@ BAKDST="${BAKDIR}/rsync/"
 LOGNAME="rsync"
 LOGDST="${BAKDIR}/rsync/logs"
 
+# OPTIONAL: do a (recursive) chgrp on the destination directory:
+DST_GROUP="backup"
+
 
 ## vim: ft=sh

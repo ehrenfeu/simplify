@@ -57,4 +57,9 @@ $_rsync $RSYNC_OPTS "$BAKSRC" "$BAKDST" >> "$LOGTGT"
 date >> "$LOGTGT"
 
 cat "$LOGTGT" | _pb_stdin
+
+if [ -n "$DST_GROUP" ] ; then
+    chgrp -R "$DST_GROUP" "$BAKDST"
+fi
+
 _pb_footer
