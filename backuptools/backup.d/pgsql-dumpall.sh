@@ -6,17 +6,13 @@ LOG_VERBOSITY="WARN"
 
 STORE="$1/pgsql"
 
-_pg_dump_bin=$(_file_executable_or_exit "pg_dumpall")
-_timeout=$(_file_executable_or_exit "timeout")
-_compress=$(_file_executable_or_exit "pbzip2")
-_compress_suffix="bz2"
-
 set -e
 
 # source the common functions
 source "${HOME}/.backuptools/functions.inc.sh"
 
 logd "This is '$0'"
+
 
 # TODO: add instructions about permissions for pg_dumpall to README!!
 locate_config_file
@@ -27,6 +23,11 @@ _usage() {
 }
 
 # # # # # # # #
+
+_pg_dump_bin=$(_file_executable_or_exit "pg_dumpall")
+_timeout=$(_file_executable_or_exit "timeout")
+_compress=$(_file_executable_or_exit "pbzip2")
+_compress_suffix="bz2"
 
 echo
 _pb_title

@@ -3,9 +3,6 @@
 [ -z "$PP_BOX_WIDTH" ] && PP_BOX_WIDTH="76"
 LOG_VERBOSITY="WARN"
 
-_rsync=$(_file_executable_or_exit "/usr/bin/rsync")
-_timeout=$(_file_executable_or_exit "/usr/bin/timeout")
-
 set -e
 
 # source the common functions
@@ -21,11 +18,14 @@ logd "This is '$0'"
 
 locate_config_file
 
-echo
-_pb_title "rsync ($BAKSRC)"
-
 
 ############################
+
+_rsync=$(_file_executable_or_exit "/usr/bin/rsync")
+_timeout=$(_file_executable_or_exit "/usr/bin/timeout")
+
+echo
+_pb_title "rsync ($BAKSRC)"
 
 if ! [[ -d "$BAKSRC" || -d "$BAKDST" || -d "$RSYNC_OPTS" || -d "$LOGDST" ]] ; then
 	echo "$0 error in config file, check specified options!"

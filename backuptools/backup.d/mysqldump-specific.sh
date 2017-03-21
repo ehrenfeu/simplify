@@ -6,11 +6,6 @@ LOG_VERBOSITY="WARN"
 
 STORE="$1/mysql"
 
-_mysqldump_bin=$(_file_executable_or_exit "mysqldump")
-_timeout=$(_file_executable_or_exit "timeout")
-_compress=$(_file_executable_or_exit "gzip")
-_compress_suffix="gz"
-
 set -e
 
 # source the common functions
@@ -26,6 +21,11 @@ _usage() {
 }
 
 # # # # # # # #
+
+_mysqldump_bin=$(_file_executable_or_exit "mysqldump")
+_timeout=$(_file_executable_or_exit "timeout")
+_compress=$(_file_executable_or_exit "gzip")
+_compress_suffix="gz"
 
 echo
 _pb_title
