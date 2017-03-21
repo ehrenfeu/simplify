@@ -23,8 +23,6 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd\[[[:digit:]]+\]: apt-daily.timer: Adding .* random time\.$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-logind\[[[:digit:]]+\]: Failed to remove POSIX shared memory directory [^[:space:]]+: Directory not empty$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd\[[[:digit:]]+\]: (Reloading|Reloaded) [:/\. _[:alnum:]-]+\.$
-# the following line is probably superseded by the rule one directly above already:
-^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd\[[[:digit:]]+\]: Reload(ing|ed) LSB: Apache2 web server\.$
 
 ### temporarily disabled rules:
 # ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd\[[[:digit:]]+\]: (Starting|Started) ([:/\. _[:alnum:]-]+)(\.|\.\.\.)$
