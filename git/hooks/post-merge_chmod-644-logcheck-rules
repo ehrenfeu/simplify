@@ -5,6 +5,5 @@
 #
 # To enable this hook, rename this file to "post-merge".
 
-ls -la logcheck/ignore.d.server/*-local
 chmod 644 logcheck/ignore.d.server/*-local
 
