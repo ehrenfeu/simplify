@@ -1,0 +1,11 @@
+# ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  incomplete startup packet$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  received fast shutdown request$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  aborting any active transactions$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  autovacuum launcher shutting down$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  shutting down$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  database system is shut down$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  database system was shut down at [ :[:alnum:]-]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  database system is ready to accept connections$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  autovacuum launcher started$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postgres\[[[:digit:]]+\]: \[[-[:digit:]]+\] [-[:digit:]]{10} [:[:digit:]]{8} [[:upper:]]{3,5} LOG:  incomplete startup packet$
