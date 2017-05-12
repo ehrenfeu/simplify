@@ -1,0 +1,10 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] type=[[:digit:]]+ audit\([:\.[:digit:]]+\):  operation="profile_replace" pid=[[:digit:]]+ name="/usr/sbin/mysqld"
+
+# ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /etc/mysql/debian-start\[[[:digit:]]+\]: 
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /etc/mysql/debian-start\[[[:digit:]]+\]: Upgrading MySQL tables if necessary.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /etc/mysql/debian-start\[[[:digit:]]+\]: /usr/bin/mysql_upgrade: the '--basedir' option is always ignored$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /etc/mysql/debian-start\[[[:digit:]]+\]: Looking for 'mysql' as: /usr/bin/mysql$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /etc/mysql/debian-start\[[[:digit:]]+\]: Looking for 'mysqlcheck' as: /usr/bin/mysqlcheck$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /etc/mysql/debian-start\[[[:digit:]]+\]: This installation of MySQL is already upgraded to [\.[:digit:]]+, use --force if you still need to run mysql_upgrade$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /etc/mysql/debian-start\[[[:digit:]]+\]: Checking for insecure root accounts.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /etc/mysql/debian-start\[[[:digit:]]+\]: Triggering myisam-recover for all MyISAM tables$
