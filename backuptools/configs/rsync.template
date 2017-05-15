@@ -19,6 +19,8 @@
 # # combined with -a/--archive:
 # --no-group                  DO NOT preserve group
 RSYNC_OPTS="-auv"
+# RSYNC_OPTS="$RSYNC_OPTS --no-group"  # <-- uncomment to not preserve group
+
 
 BAKSRC="/opt/redmine/files"
 
