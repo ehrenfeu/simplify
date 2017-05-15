@@ -72,6 +72,7 @@ else
 fi
 unset color_prompt force_color_prompt
 
+# TODO: consider using PROMPT_COMMAND for setting the terminal's title:
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
