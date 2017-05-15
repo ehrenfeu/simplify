@@ -24,14 +24,15 @@ RSYNC_OPTS="-auv"
 
 BAKSRC="/opt/redmine/files"
 
-# NOTE: be careful whether or not to add a trailing '/' to BAKDST!!
+### NOTE: be careful whether or not to add a trailing '/' to BAKDST!!
 BAKDST="${BAKDIR}/rsync/"
 
 LOGNAME="rsync"
 LOGDST="${BAKDIR}/rsync/logs"
 
-# OPTIONAL: do a (recursive) chgrp on the destination directory:
-DST_GROUP="backup"
+### OPTIONAL: do a (recursive) chgrp on the destination directory (in this
+### case you probably want to add "--no-group" to the options above):
+# DST_GROUP="backup"
 
 
 ## vim: ft=sh
