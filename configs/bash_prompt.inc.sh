@@ -1,24 +1,5 @@
-# define a function '_short_wdir' that takes the value of pwd and returns
-# a truncated version (with a prefix to indicate truncation) if the length
-# is above a certain limit, otherwise just $HOME is substitued by '~'
-_short_wdir() {
-    # how many characters of the $PWD should be kept
-    local pwdmaxlen=34
-    # put the tilde char into a variable to avoid escaping issues, otherwise
-    # the substitution below would work only in bash >= 4.3 xor < 4.3
-    local tildechar='~'
-    # use '~' instead of full path for homedir
-    local shortPWD="${PWD/$HOME/$tildechar}"
-    # indicator that there has been directory truncation:
-    local trunc_symbol="«"
-    if [ ${#shortPWD} -gt $pwdmaxlen ] ; then
-        local pwdoffset=$(( ${#shortPWD} - $pwdmaxlen ))
-        printf "${trunc_symbol}${shortPWD:$pwdoffset:$pwdmaxlen}"
-    else
-        printf "${shortPWD}"
-    fi
-}
-
+# TODO: use `tput` for generating the escape codes below (see
+# https://askubuntu.com/questions/24358 for details)
 # color shorthands
 blw='\[\033[00m\]'     # black-white
 red='\[\033[0;31m\]'   # red
@@ -50,5 +31,9 @@ else
     host=$blw$bgrn'@\h'
 fi
 
+# set the number of trailing directory components to retain when expanding the
+# \w and \W prompt string escapes:
+export PROMPT_DIRTRIM=3
+
 # blue directory name
-wdir=$blw':'$bblu'$(_short_wdir)'$blw'\$ '
+wdir=$blw':'$bblu'\w'$blw'\$ '
