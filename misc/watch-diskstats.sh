@@ -50,11 +50,11 @@ disk_is_spinning() {
 diskstats_changed() {
     NEW=$(grep " $1 " /proc/diskstats)
     DIFF=$(/bin/echo -e "${OLD}\n${NEW}" | uniq -u)
-    if test -n "$DIFF" ; then
-        echo "diskstats are differing!"
-        echo $OLD
-        echo $NEW
-    fi
+    # if test -n "$DIFF" ; then
+    #     echo "diskstats are differing!"
+    #     echo $OLD
+    #     echo $NEW
+    # fi
     OLD=$NEW
     test -n "$DIFF"
 }
@@ -100,5 +100,6 @@ while true ; do
         fi
     fi
     sleep 600
+    # sleep 30
     # sleep 10
 done
