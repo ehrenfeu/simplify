@@ -7,5 +7,6 @@ DB_PW="password"
 # and simply uses the credentials above...)
 DBS_TO_DUMP="db_1 db_2 db_3"
 
+BAKDST="${BAKDIR}/mysql/"
 
 ## vim: ft=sh

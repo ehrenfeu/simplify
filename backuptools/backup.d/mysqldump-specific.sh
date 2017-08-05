@@ -4,8 +4,6 @@
 [ -z "$PP_BOX_WIDTH" ] && PP_BOX_WIDTH="76"
 LOG_VERBOSITY="WARN"
 
-STORE="$1/mysql"
-
 set -e
 
 # source the common functions
@@ -30,7 +28,13 @@ _compress_suffix="gz"
 echo
 _pb_title
 
-_check_target_path "${STORE}"
+if [ -z "$BAKDST" ] ; then
+	echo "$0 error in config file, mandatory option(s) missing!"
+	exit 1
+fi
+
+
+_check_target_path "${BAKDST}"
 
 if [ -z "$DBS_TO_DUMP" ] ; then
 	_pb '*** ERROR *** no databases specified!'
@@ -53,7 +57,7 @@ DMP_OPTS="$DMP_OPTS --order-by-primary"
 # We're not using scheduled events, so exclude them drom dumping
 DMP_OPTS="$DMP_OPTS --events --skip-events --ignore-table=mysql.event"
 
-DMP_FILE="${STORE}/mysql-spec-$DATEYmdHM.sql"
+DMP_FILE="${BAKDST}/mysql-spec-$DATEYmdHM.sql"
 
 _exit_if_file_exists "$DMP_FILE"
 

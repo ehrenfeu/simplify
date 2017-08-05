@@ -4,8 +4,6 @@
 [ -z "$PP_BOX_WIDTH" ] && PP_BOX_WIDTH="76"
 LOG_VERBOSITY="WARN"
 
-STORE="$1/mysql"
-
 set -e
 
 # source the common functions
@@ -30,7 +28,13 @@ _compress_suffix="gz"
 echo
 _pb_title
 
-_check_target_path "${STORE}"
+if [ -z "$BAKDST" ] ; then
+	echo "$0 error in config file, mandatory option(s) missing!"
+	exit 1
+fi
+
+
+_check_target_path "${BAKDST}"
 
 
 DMP_OPTS=""
@@ -52,7 +56,7 @@ for IGN_TAB in $IGNORE_TABLES ; do
     DMP_OPTS="${DMP_OPTS} --ignore-table=${IGN_TAB}"
 done
 
-DMP_FILE="${STORE}/mysql-all-$DATEYmdHM.sql"
+DMP_FILE="${BAKDST}/mysql-all-$DATEYmdHM.sql"
 
 _exit_if_file_exists "$DMP_FILE"
 
