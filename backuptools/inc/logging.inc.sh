@@ -30,3 +30,12 @@ logi() {
 logd() {
     [ "$__LOG_LEVEL" -le 10 ] && echo "[DEBUG] $*" || true
 }
+
+
+set_logname() {
+    # set the logname for a specific backup script by using the
+    # naming convention (script name without ".sh" suffix):
+    logd "$FUNCNAME()"
+    LOGNAME="$(basename $0 | sed 's,\.sh$,,')"
+    logw "LOGNAME: $LOGNAME"
+}
