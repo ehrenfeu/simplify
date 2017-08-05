@@ -32,10 +32,8 @@ if ! [[ -d "$BAKSRC" || -d "$BAKDST" || -d "$RSYNC_OPTS" || -d "$LOGDST" ]] ; th
 	exit 1
 fi
 
+set_logname
 _check_target_path "${LOGDST}"
-if [ -z "$LOGNAME" ] ; then
-    LOGNAME="rsync"
-fi
 LOGTGT="${LOGDST}/${LOGNAME}-${DATEymd}.log"
 _exit_if_file_exists "$LOGTGT"
 
