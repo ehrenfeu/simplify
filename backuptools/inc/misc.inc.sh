@@ -21,13 +21,15 @@ check_return_value() {
     # check if the supplied value is '0' (success) or exit otherwise, printing
     # the corresponding success or error messages
     RET=$1
-    if [ -z "$BAKDST" ] ; then
+    if [ -z "$LOGDST" ] || [ -z "$LOGNAME" ] ; then
         _pb
-        _pb "  WARNING: unable to store backup command return value!"
+        _pb "  WARNING: LOGDST and / or LOGNAME unset, unable"
+        _pb "           to store backup command return value!"
         _pb
     else
-        echo "$RET" > "${BAKDST}/last-run-exitval"
-        date +%s > "${BAKDST}/last-run-timestamp"
+        RETVALDST="${LOGDST}/${LOGNAME}"
+        echo "$RET" > "${RETVALDST}_last-run-exitval"
+        date +%s > "${RETVALDST}_last-run-timestamp"
     fi
 
     if [ "$RET" -eq "0" ] ; then
