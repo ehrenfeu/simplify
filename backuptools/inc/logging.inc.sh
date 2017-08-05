@@ -37,5 +37,5 @@ set_logname() {
     # naming convention (script name without ".sh" suffix):
     logd "$FUNCNAME()"
     LOGNAME="$(basename $0 | sed 's,\.sh$,,')"
-    logw "LOGNAME: $LOGNAME"
+    logd "LOGNAME: $LOGNAME"
 }
