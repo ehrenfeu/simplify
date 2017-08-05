@@ -21,13 +21,13 @@ check_return_value() {
     # check if the supplied value is '0' (success) or exit otherwise, printing
     # the corresponding success or error messages
     RET=$1
-    if [ -z "$STORE" ] ; then
+    if [ -z "$BAKDST" ] ; then
         _pb
-        _pb "  WARNING: unable to store backup return values!"
+        _pb "  WARNING: unable to store backup command return value!"
         _pb
     else
-        echo "$RET" > "${STORE}/last-run-exitval"
-        date +%s > "${STORE}/last-run-timestamp"
+        echo "$RET" > "${BAKDST}/last-run-exitval"
+        date +%s > "${BAKDST}/last-run-timestamp"
     fi
 
     if [ "$RET" -eq "0" ] ; then
