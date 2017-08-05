@@ -25,6 +25,9 @@ _timeout=$(_file_executable_or_exit "timeout")
 _compress=$(_file_executable_or_exit "gzip")
 _compress_suffix="gz"
 
+# required to store return value and timestamp:
+set_logname
+
 echo
 _pb_title
 
