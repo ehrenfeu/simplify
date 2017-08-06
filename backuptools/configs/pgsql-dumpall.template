@@ -3,4 +3,7 @@
 DMP_OPTS="--clean"
 
 
+BAKDST="${BAKDIR}/mysql"
+LOGDST="$BAKDST"
+
 ## vim: ft=sh

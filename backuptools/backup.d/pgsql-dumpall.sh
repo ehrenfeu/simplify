@@ -4,8 +4,6 @@
 [ -z "$PP_BOX_WIDTH" ] && PP_BOX_WIDTH="76"
 LOG_VERBOSITY="WARN"
 
-STORE="$1/pgsql"
-
 set -e
 
 # source the common functions
@@ -29,12 +27,20 @@ _timeout=$(_file_executable_or_exit "timeout")
 _compress=$(_file_executable_or_exit "pbzip2")
 _compress_suffix="bz2"
 
+# required to store return value and timestamp:
+set_logname
+
 echo
 _pb_title
 
-_check_target_path "${STORE}"
+if [ -z "$BAKDST" ] ; then
+	echo "$0 error in config file, mandatory option 'BAKDST' missing!"
+	exit 1
+fi
 
-DMP_FILE="${STORE}/pg_dumpall-$DATEYmdHM.sql"
+_check_target_path "${BAKDST}"
+
+DMP_FILE="${BAKDST}/pg_dumpall-$DATEYmdHM.sql"
 
 _exit_if_file_exists "$DMP_FILE"
 
