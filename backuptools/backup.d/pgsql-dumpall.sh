@@ -48,6 +48,7 @@ logi "DUMP OPTIONS:"
 logi "$DMP_OPTS"
 
 _pb "doing a complete dump of *ALL* postgres-dbs..."
+_pb
 
 # kill the dumper if it has not finished after 5 minutes (600s):
 set +e

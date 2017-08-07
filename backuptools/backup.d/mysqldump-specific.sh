@@ -71,6 +71,7 @@ _pb "doing a complete dump of these mysql-dbs:"
 for db in ${DBS_TO_DUMP} ; do
 	_pb "  * ${db}"
 done
+_pb
 
 # kill the dumper if it has not finished after 5 minutes (600s):
 set +e
