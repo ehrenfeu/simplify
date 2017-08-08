@@ -26,7 +26,7 @@ hi Normal                 term=NONE            cterm=NONE             ctermbg=NO
 hi NonText                term=NONE            cterm=NONE             ctermbg=NONE          ctermfg=NONE
 hi Boolean                term=NONE            cterm=bold             ctermbg=NONE          ctermfg=NONE
 hi Character              term=NONE            cterm=NONE             ctermbg=NONE          ctermfg=161
-hi Comment                term=bold            cterm=NONE             ctermbg=NONE          ctermfg=242
+hi Comment                term=bold            cterm=NONE             ctermbg=NONE          ctermfg=55
 hi Conditional            term=NONE            cterm=bold             ctermbg=NONE          ctermfg=NONE
 hi Constant               term=NONE            cterm=bold             ctermbg=NONE          ctermfg=37
 hi Debug                  term=NONE            cterm=NONE             ctermbg=NONE          ctermfg=124
