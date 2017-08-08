@@ -1,0 +1,18 @@
+### config for tar-snapshot backup script
+
+TAR_OPTS="--create --bzip2 --dereference"
+# TAR_OPTS="$TAR_OPTS --verbose"
+
+# TAR_EXCLUDES="--exclude=cache/*"
+
+
+BAKSRC="/opt/redmine/files"
+
+### NOTE: be careful whether or not to add a trailing '/' to BAKDST!!
+BAKDST="${BAKDIR}/tar-snapshot/redmine_files"
+
+LOGNAME="tar-snapshot"
+LOGDST="${BAKDST}"
+
+
+## vim: ft=sh
