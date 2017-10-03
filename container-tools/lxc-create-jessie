@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# exit immediately on any error
+set -e
+
+usage_exit() {
+    echo
+    echo "Usage:"
+    echo
+    echo "    $0 container_name /path/to/ssh_pubkey_or_authorized_keys"
+    echo
+    exit $1
+}
+
+HOST_DIST=$(lsb_release -i -s)
+HOST_REL=$(lsb_release -r -s)
+if [ "$HOST_DIST $HOST_REL" != "Ubuntu 17.04" ] ; then
+    cat << EOT
+NOTE: this script is meant for Ubuntu 17.04 (zesty), for other releases (or
+even other distributions) it might not work correctly!
+EOT
+    exit 100
+fi
+
+if [ -z "$1" ] ; then
+    echo "ERROR: No name given for container!"
+    usage_exit 1
+fi
+VM_HOSTNAME=$1
+
+if [ -z "$2" ] ; then
+    echo "ERROR: No file for 'authorized_keys' given!"
+    usage_exit 2
+fi
+AUTH_KEYS=$2
+
+export LANG=C
+export LC_ALL=C
+export DISTRIBUTION=debian
+export SUITE=jessie
+# export MIRROR="http://mirror.switch.ch/ftp/mirror/$DISTRIBUTION/"
+export MIRROR="http://ftp.halifax.rwth-aachen.de/$DISTRIBUTION/"
+
+BASEDIR=/scratch/containers
+TGT_ROOT="$BASEDIR/$VM_HOSTNAME/rootfs"
+TGT_LOCALE="en_US.UTF-8"
+
+BRIDGE_IP=$(ip -o -f inet addr show lxcbr0 | sed -n 's,.*inet \([0-9\.]*\)/.*,\1,p')
+
+echo SUITE=$SUITE
+echo VM_HOSTNAME=$VM_HOSTNAME
+echo TGT_ROOT=$TGT_ROOT
+echo TGT_LOCALE=$TGT_LOCALE
+echo BRIDGE_IP=$BRIDGE_IP
+echo
+echo lxc-create --lxcpath=$BASEDIR --name=$VM_HOSTNAME -t $DISTRIBUTION -- --release=$SUITE
+echo
+lxc-create --lxcpath=$BASEDIR --name=$VM_HOSTNAME -t $DISTRIBUTION -- --release=$SUITE
+
+echo "deb $MIRROR $SUITE main" > $TGT_ROOT/etc/apt/sources.list
+# configure apt to use the local apt-cacher-ng:
+echo "Acquire::http { Proxy \"http://$BRIDGE_IP:3142\"; };" > $TGT_ROOT/etc/apt/apt.conf.d/01proxy
+
+if [ -z "$LOCALPKGS" ] ; then
+    chroot $TGT_ROOT apt-get update
+else
+    echo "Using local packges and lists: $LOCALPKGS"
+    cp "$LOCALPKGS/lists/"* "$TGT_ROOT/var/lib/apt/lists/"
+    cp "$LOCALPKGS/archives/"*.deb "$TGT_ROOT/var/cache/apt/archives/"
+    chroot $TGT_ROOT apt-cache gencaches
+fi
+chroot $TGT_ROOT apt-get -y install eatmydata
+
+# on older host systems it was necesary to install sysvinit-core and
+# systemd-shim (see Debian bug #766233 for details), this is not required on
+# Ubuntu 17.04 any more, hence this line is commented:
+## chroot $TGT_ROOT eatmydata apt-get -y install sysvinit-core systemd-shim
+
+# prevent sshd's stupid behaviour of overriding the locale environment:
+sed -i 's,^AcceptEnv,#AcceptEnv,' $TGT_ROOT/etc/ssh/sshd_config
+# configure default locale
+sed -i "s,^# $TGT_LOCALE,$TGT_LOCALE," $TGT_ROOT/etc/locale.gen
+chroot $TGT_ROOT eatmydata locale-gen
+chroot $TGT_ROOT eatmydata update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+# clean up downloaded package cache:
+chroot $TGT_ROOT eatmydata apt-get clean
+
+# configure ssh-access for the root account
+mkdir $TGT_ROOT/root/.ssh
+cp $AUTH_KEYS $TGT_ROOT/root/.ssh/authorized_keys
+
+# ensure hostname resolution is working
+echo "127.0.1.1 $VM_HOSTNAME" >> $TGT_ROOT/etc/hosts
+
+echo
+echo "Use the following commands to start it and/or check its status:"
+echo "  # lxc-start --lxcpath=$BASEDIR --name=$VM_HOSTNAME -d"
+echo "  # lxc-ls --lxcpath=$BASEDIR --fancy"
+echo "  # ssh -i ${AUTH_KEYS/.pub/} root@$VM_HOSTNAME"

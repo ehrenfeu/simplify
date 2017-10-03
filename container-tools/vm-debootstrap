@@ -1,0 +1,41 @@
+#!/bin/sh
+
+
+echo "this script needs to be reviewed!"
+exit 1
+
+BASEDIR=/scratch/containers
+
+VM_HOSTNAME=$1
+cd $BASEDIR
+if test -e $VM_HOSTNAME; then
+    echo "System $VM_HOSTNAME already exists" >&2
+    exit 1
+fi
+if test -s nextID ; then
+    id=$(cat nextID)
+else
+    id=$(ls -1|wc -l)
+fi
+nid=$(( $id + 1 ))
+echo $nid >nextID
+hid=$( (echo "obase=16"; echo $id) | bc)
+
+eatmydata debootstrap --variant=minbase jessie $VM_HOSTNAME
+systemd-machine-id-setup --root=$BASEDIR/$VM_HOSTNAME
+cd $VM_HOSTNAME
+systemd-nspawn --bind=/var/cache apt-get update
+systemd-nspawn --bind=/var/cache apt-get install aptitude openssh-server
+
+cat >>etc/network/interfaces.d/host0 <<END
+auto host0
+iface host0 inet6 static
+        address 2001:780:0:e:107:3::$hid/64
+        gateway 2001:780:0:e::1
+END
+
+mkdir root/.ssh
+cp $HOME/.ssh/authorized_keys root/.ssh/
+
+echo $VM_HOSTNAME >etc/hostname
+mkdir -p /var/log/journal/$(cat etc/machine-id)
