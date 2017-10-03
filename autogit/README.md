@@ -17,7 +17,7 @@ First, clone the repository containing this script. The proposed location is
 
 ```bash
 cd /opt
-git clone http://github.com/ehrenfeu/simplify.git
+git clone https://github.com/ehrenfeu/simplify.git
 ```
 
 Next, initialize the repo for the directory tree you'd like to track (/etc in
