@@ -26,14 +26,20 @@ accidentially leak the files to a regular user), add the ignores and configure
 git for the root user:
 
 ```bash
-cd /etc
-cp -v /opt/simplify/autogit/gitignore.etc .gitignore
+REPONAME="config_${HOSTNAME}_etc"
+mkdir -pv /var/autogit
+export GIT_DIR=/var/autogit/${REPONAME}.git
+export GIT_WORK_TREE=/etc
 git init
-chmod go-rx .git
+chmod go-rx $GIT_DIR
+ls -la $GIT_DIR
+
+cd $GIT_WORK_TREE
+cp -v /opt/simplify/autogit/gitignore.etc .gitignore
 git add .
-git config --global user.name "root (${HOSTNAME})" 
-git config --global user.email "root@${HOSTNAME}" 
-git commit -a -m "initial import of /etc on host '${HOSTNAME}'" 
+git config --global user.name "root (${HOSTNAME})"
+git config --global user.email "root@${HOSTNAME}"
+git commit -a -m "Initial import of /etc on host '${HOSTNAME}'."
 ```
 
 Finally, install and configure the cronjob that auto-commits all changes
@@ -41,11 +47,14 @@ Finally, install and configure the cronjob that auto-commits all changes
 where to find the "autogit" script and how often to run it):
 
 ```bash
+# tell autogit-commit.sh about GIT_DIR:
+echo $GIT_DIR > $GIT_WORK_TREE/.autogit_dir
+
 cd /etc/cron.d/
 cp -v /opt/simplify/autogit/cronjob.autogit-etc autogit-etc
 vim autogit-etc
 git add autogit-etc
-git commit -m "add cronjob" 
+git commit -m "Add cronjob."
 ```
 
 **Optionally** (but recommended) configure a remote repository to auto-push the
