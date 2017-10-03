@@ -68,7 +68,13 @@ if [ -n "$DIRTY" ] ; then
     # determine if we have a remote repository to push to:
     if git remote -v | grep -qs push ; then
         echo '>  push >>>'
-        git push 2>&1 | quote
+        # "pipefail" is required to capture the return value of "git push":
+        set -o pipefail
+        git push 2>&1 | quote || {
+            # the push failed, try to write a marker file:
+            MARKER="/tmp/autogit_push_failed"
+            echo "Pushing '$1' failed!" >> $MARKER
+        }
         echo '---------------'
     fi
     echo
