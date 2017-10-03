@@ -26,7 +26,7 @@ accidentially leak the files to a regular user), add the ignores and configure
 git for the root user:
 
 ```bash
-REPONAME="config_${HOSTNAME}_etc"
+REPONAME="autogit-etc-${HOSTNAME}"
 mkdir -pv /var/autogit
 export GIT_DIR=/var/autogit/${REPONAME}.git
 export GIT_WORK_TREE=/etc
@@ -40,6 +40,44 @@ git add .
 git config --global user.name "root (${HOSTNAME})"
 git config --global user.email "root@${HOSTNAME}"
 git commit -a -m "Initial import of /etc on host '${HOSTNAME}'."
+```
+
+**Optionally** (but recommended) configure a remote repository to auto-push the
+changes. As mentioned, **DO NOT USE** a public service like github here, as
+this will compromise highly sensitive data:
+```bash
+GITHOST="git.your-domain.xy"
+GITUSER="git"
+GITLAB_USER="ag-etc-${HOSTNAME}"
+GITPORT=22072
+KEYNAME="$HOME/.ssh/id_rsa.autogit-etc-${HOSTNAME}"
+
+# generate the ssh-key used for pushing:
+ssh-keygen -N '' -trsa -f $KEYNAME
+
+# add the git server to the ssh config, make it use the generated ssh key:
+echo "
+Host $GITHOST
+  User $GITUSER
+  Port $GITPORT
+  IdentityFile $KEYNAME" >> $HOME/.ssh/config
+
+# print the public key, so it can be added to the gitlab user:
+echo -e "\nPublic key for repository >>> $REPONAME <<<\n" && cat $KEYNAME.pub && echo
+
+# add the remote git server:
+git remote add origin $GITUSER@$GITHOST:$GITLAB_USER/${REPONAME}.git
+git remote -v
+
+# initial push to "master":
+git push --all
+
+# set the action git push should take if no refspec is given (push current
+# branch to same name on remote):
+git config --global push.default current
+
+# push "production" and set it as upstream:
+git push --set-upstream
 ```
 
 Finally, install and configure the cronjob that auto-commits all changes
@@ -56,12 +94,3 @@ vim autogit-etc
 git add autogit-etc
 git commit -m "Add cronjob."
 ```
-
-**Optionally** (but recommended) configure a remote repository to auto-push the
-changes. As mentioned, **DO NOT USE** a public service like github here, as
-this will compromise highly sensitive data:
-```bash
-git remote add origin git-repo-hosting-machine:etc-${HOSTNAME}.git
-git push --all
-```
-
