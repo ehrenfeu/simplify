@@ -1,9 +1,8 @@
 #!/bin/bash
 #
 # This script is intended to be run e.g. from a user's crontab to check if a
-# marker file from the "autogit-commit" script exists that denotes a failed
-# push. In case the marker is there, a message is sent to the desktop using
-# the "notify-send" tool.
+# marker file from the "autogit-commit" script exists. In case the marker is
+# there, a message is sent to the desktop using the "notify-send" tool.
 
 # set -x
 
@@ -12,10 +11,16 @@
 # crontab entry if necessary)::
 [ -z "$DISPLAY" ] && export DISPLAY=:0
 
-MARKER="/tmp/autogit_push_failed"
+MARKER_COMMIT="/tmp/autogit_commit_summary"
+MARKER_PUSH="/tmp/autogit_push_failed"
 
-if [ -s "$MARKER" ] ; then
+if [ -s "$MARKER_COMMIT" ] ; then
+	BODY="$(cat $MARKER_COMMIT)"
+	notify-send --urgency=critical --icon=user-available "New autogit commit!" "$BODY"
+fi
+
+if [ -s "$MARKER_PUSH" ] ; then
 	# show max the last 5 entries from the marker file:
-	BODY="$(tail -n 5 $MARKER)"
+	BODY="$(tail -n 5 $MARKER_PUSH)"
 	notify-send --urgency=critical --icon=network-error-symbolic "autogit error!" "$BODY"
 fi
