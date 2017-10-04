@@ -10,7 +10,11 @@ _exit_usage() {
 }
 
 quote() {
-    sed 's:^:> :'
+    sed 's:^ *:> :'
+}
+
+quote2() {
+    sed 's:^ *:>> :'
 }
 
 if [ -z "$1" ] ; then
@@ -59,12 +63,13 @@ if [ -n "$DIRTY" ] ; then
         DIFF="$(git diff-tree -p --no-commit-id HEAD)"
     fi
     # print the commit message, list changed files (+stats)
-    FMT='%s%n%n> stats >>>%n'
-    git log -1 --pretty=format:"$FMT" HEAD
-    git diff-tree --abbrev -C -M --numstat --no-commit-id HEAD | quote
-    echo -n '>>'
-    git diff-tree --abbrev -C -M --shortstat --no-commit-id HEAD
-    echo '---------------'
+    {
+        FMT='%s%n%n> stats >>>%n'
+        git log -1 --pretty=format:"$FMT" HEAD
+        git diff-tree --abbrev -C -M --shortstat --no-commit-id HEAD | quote
+        git diff-tree --abbrev -C -M --numstat --no-commit-id HEAD | quote2
+        echo '---------------'
+    } | tee /tmp/autogit_commit_summary
     # determine if we have a remote repository to push to:
     if git remote -v | grep -qs push ; then
         echo '>  push >>>'
