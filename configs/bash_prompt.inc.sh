@@ -1,19 +1,21 @@
-# TODO: use `tput` for generating the escape codes below (see
-# https://askubuntu.com/questions/24358 for details)
-# color shorthands
-blw='\[\033[00m\]'     # black-white
-red='\[\033[0;31m\]'   # red
-grn='\[\033[0;32m\]'   # green
-ylw='\[\033[0;33m\]'   # yellow
-blu='\[\033[0;34m\]'   # blue
-vio='\[\033[0;35m\]'   # violet
-mag='\[\033[0;36m\]'   # magenta
-bred='\[\033[01;31m\]' # bold red
-bgrn='\[\033[01;32m\]' # bold green
-bylw='\[\033[01;33m\]' # bold yellow
-bblu='\[\033[01;34m\]' # bold blue
-bvio='\[\033[01;35m\]' # bold violet
-bmag='\[\033[01;36m\]' # bold magenta
+# color shorthands:
+blw="$(tput setaf 15)"    # black-white (actually bold-white)
+
+red="$(tput setaf 1)"     # red
+grn="$(tput setaf 2)"     # green
+ylw="$(tput setaf 3)"     # yellow
+blu="$(tput setaf 4)"     # blue
+mag="$(tput setaf 5)"     # magenta
+vio="$mag"                # violet
+cyn="$(tput setaf 6)"     # cyan
+
+bred="$(tput setaf 9)"    # bold red
+bgrn="$(tput setaf 10)"   # bold green
+bylw="$(tput setaf 11)"   # bold yellow
+bblu="$(tput setaf 12)"   # bold blue
+bmag="$(tput setaf 13)"   # bold magenta
+bvio="$bmag"              # bold violet
+bcyn="$(tput setaf 14)"   # bold cyan
 
 # set the default color for the username:
 usrclr=$grn
