@@ -134,8 +134,8 @@ fi
 
 # clean up our variables
 unset scn host wdir usrclr
-unset blw red grn ylw blu vio mag
-unset bred bgrn bylw bblu bvio bmag
+unset blw red grn ylw blu vio mag cyn
+unset bred bgrn bylw bblu bvio bmag bcyn
 
 #set bell-style none
 xset b off &> /dev/null
