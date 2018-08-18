@@ -14,10 +14,13 @@ def process_vcf_file(pathname):
     with open(pathname, 'r') as vcf_file:
         vcf_string = vcf_file.read()
         vcard = vobject.readOne(vcf_string)
-        photo_type = vcard.photo.params['TYPE'][0].lower()
-        outfname += "." + photo_type
         print("Processing '%s'..." % vcard.fn.value)
         print("  - UID: %s" % vcard.uid.value)
+        if 'photo' not in vcard.contents:
+            print("NO PHOTO in file '%s'!" % pathname)
+            return
+        photo_type = vcard.photo.params['TYPE'][0].lower()
+        outfname += "." + photo_type
         print("  - type: %s" % photo_type)
         if os.path.exists(outfname):
             print("NOT overwriting file '%s'!" % outfname)
@@ -25,7 +28,6 @@ def process_vcf_file(pathname):
         print("  - writing photo to file: %s" % outfname)
         with open(outfname, 'wb') as fout:
             fout.write(vcard.photo.value)
-        print("  - DONE!\n")
 
 
 def parse_arguments():
@@ -47,6 +49,7 @@ def main():
     """Parse commandline arguments and run parser."""
     args = parse_arguments()
     process_vcf_file(args.vcf)
+    print("DONE.\n")
 
 
 if __name__ == "__main__":
