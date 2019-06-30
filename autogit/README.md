@@ -26,7 +26,10 @@ accidentially leak the files to a regular user), add the ignores and configure
 git for the root user:
 
 ```bash
-REPONAME="autogit-etc-${HOSTNAME}"
+# first make sure to be independent of different /etc/hostname conventions
+# (e.g. Debian has the host's name only there, CentOS has the FQDN instead):
+SHORTNAME=${HOSTNAME%%\.*}
+REPONAME="autogit-etc-${SHORTNAME}"
 mkdir -pv /var/autogit
 export GIT_DIR=/var/autogit/${REPONAME}.git
 export GIT_WORK_TREE=/etc
@@ -37,9 +40,9 @@ ls -la $GIT_DIR
 cd $GIT_WORK_TREE
 cp -v /opt/simplify/autogit/gitignore.etc .gitignore
 git add .
-git config --global user.name "root (${HOSTNAME})"
-git config --global user.email "root@${HOSTNAME}"
-git commit -a -m "Initial import of /etc on host '${HOSTNAME}'."
+git config --global user.name "root (${SHORTNAME})"
+git config --global user.email "root@${SHORTNAME}"
+git commit -a -m "Initial import of /etc on host '${SHORTNAME}'."
 ```
 
 **Optionally** (but recommended) configure a remote repository to auto-push the
@@ -48,9 +51,9 @@ this will compromise highly sensitive data:
 ```bash
 GITHOST="git.your-domain.xy"
 GITUSER="git"
-GITLAB_USER="ag-etc-${HOSTNAME}"
+GITLAB_USER="ag-etc-${SHORTNAME}"
 GITPORT=22072
-KEYNAME="$HOME/.ssh/id_rsa.autogit-etc-${HOSTNAME}"
+KEYNAME="$HOME/.ssh/id_rsa.autogit-etc-${SHORTNAME}"
 
 # generate the ssh-key used for pushing:
 ssh-keygen -N '' -trsa -f $KEYNAME
