@@ -27,3 +27,5 @@ nologin
 .pwd.lock
 sudoers.tmp
 aliases.db
+postfix/virtual_aliases.db
+postfix/virtual_domains.db
