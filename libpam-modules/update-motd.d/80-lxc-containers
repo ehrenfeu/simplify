@@ -2,6 +2,7 @@
 #
 
 LXCLS="/usr/bin/lxc-ls"
+FANCYFULL="NAME,STATE,AUTOSTART,RAM,SWAP,IPV4,IPV6"
 
 # silently exit if there is no changelog:
 if ! [ -x ${LXCLS} ] ; then
@@ -12,7 +13,17 @@ fi
 echo
 echo "============================ LXC containers ==========================="
 echo "-------------------------------- ACTIVE -------------------------------"
-$LXCLS --active --fancy --fancy-format NAME,STATE,AUTOSTART,RAM,SWAP,IPV4,IPV6
+OUTPUT="$($LXCLS --active --fancy --fancy-format $FANCYFULL)"
+if [ "$(echo $OUTPUT | wc -m)" -gt 1 ] ; then
+    echo "$OUTPUT"
+else
+    echo "<NONE>"
+fi
 echo "------------------------------- STOPPED -------------------------------"
-$LXCLS --stopped --fancy --fancy-format NAME,STATE,AUTOSTART
+OUTPUT="$($LXCLS --stopped --fancy --fancy-format NAME,STATE,AUTOSTART)"
+if [ "$(echo $OUTPUT | wc -m)" -gt 1 ] ; then
+    echo "$OUTPUT"
+else
+    echo "<NONE>"
+fi
 echo "-----------------------------------------------------------------------"
