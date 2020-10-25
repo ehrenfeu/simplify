@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+
+LXCLS="/usr/bin/lxc-ls"
+
+# silently exit if there is no changelog:
+if ! [ -x ${LXCLS} ] ; then
+    exit 0
+fi
+
+
+echo
+echo "============================ LXC containers ==========================="
+echo "-------------------------------- ACTIVE -------------------------------"
+$LXCLS --active --fancy --fancy-format NAME,STATE,AUTOSTART,RAM,SWAP,IPV4,IPV6
+echo "------------------------------- STOPPED -------------------------------"
+$LXCLS --stopped --fancy --fancy-format NAME,STATE,AUTOSTART
+echo "-----------------------------------------------------------------------"
