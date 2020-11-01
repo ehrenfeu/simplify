@@ -1,0 +1,9 @@
+# local rules for ssh-messages:
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Accepted publickey for [a-z][0-9a-z_-]+ from [.0-9]{7,15} port [[:digit:]]+ ssh2: RSA [:0-9a-zA-Z\\/\+_-]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: userauth_pubkey: key type ssh-dss not in PubkeyAcceptedKeyTypes \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: pam_winbind(sshd:auth): getting password \(0x[[:alnum:]]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: pam_winbind(sshd:auth): pam_get_item returned a password$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: pam_winbind(sshd:auth): request wbcLogonUser failed: WBC_ERR_AUTH_ERROR, PAM error: PAM_USER_UNKNOWN \(10\), NTSTATUS: NT_STATUS_NO_SUCH_USER, Error message was: No such user$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Received disconnect from [:.[:xdigit:]]+ port [[:digit:]]+:11: (disconnected by user|Closed due to user request\.)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Received disconnect from [:.[:xdigit:]]+ 11: (Normal Shutdown, Thank you for playing|Client disconnecting normally) \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Connection closed by [:.[:digit:]]+ port [[:digit:]]+ \[preauth\]$
