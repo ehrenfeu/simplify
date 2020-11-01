@@ -1,0 +1,6 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/lib/snapd/snapd\[[[:digit:]]+\]: daemon.go:213: DEBUG: adding /
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/lib/snapd/snapd\[[[:digit:]]+\]: daemon.go:203: DEBUG: init done in [\. [:alnum:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ snap\[[[:digit:]]+\]: All snaps up-to-date\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/lib/snapd/snapd\[[[:digit:]]+\]: daemon.go:18[01]: DEBUG: uid=0;@ GET /v2/find\?q=&select=refresh [\. [:alnum:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ /usr/lib/snapd/snapd\[[[:digit:]]+\]: daemon.go:18[01]: DEBUG: uid=0;@ GET /v2/snaps
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ snap\[[[:digit:]]+\]: No snaps are installed yet. Try 'snap install hello-world'\.$

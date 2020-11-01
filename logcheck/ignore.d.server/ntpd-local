@@ -1,0 +1,2 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ntpd\[[[:digit:]]+\]: [[:xdigit:]:\.]+ local addr [[:xdigit:]:\.]+ -> <null>$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ntpd\[[[:digit:]]+\]: receive: Unexpected origin timestamp from [[:xdigit:]:\.]+$

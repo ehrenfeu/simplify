@@ -1,0 +1,5 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ PackageKit: daemon (start|quit)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ packagekitd\[[[:digit:]]+\]: (packagekitd:[[:digit:]]+): GLib-CRITICAL \*\*: Source ID [[:digit:]]+ was not found when attempting to remove it$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ org.freedesktop.PackageKit[4290]: Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ PackageKit: search-file transaction /[_[:alnum:]]+ from uid [[:digit:]]+ finished with success after [[:digit:]]+ms$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ PackageKit: what-provides transaction /[_[:alnum:]]+ from uid [[:digit:]]+ finished with success after [[:digit:]]+ms$

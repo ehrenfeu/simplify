@@ -1,0 +1,2 @@
+# local rules for ssh-messages:
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ colord\[[[:digit:]]+\]: \(colord:[[:digit:]]+\): Cd-WARNING .* failed to get session \[pid [[:digit:]]+\]: No such device or address$

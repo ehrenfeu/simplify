@@ -1,0 +1,7 @@
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mcelog: Please check your system cooling\. Performance will be impacted$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mcelog: Processor [[:digit:]]+ heated above trip temperature\. Throttling enabled\.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mcelog: Processor [[:digit:]]+ below trip temperature\. Throttling disabled$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mcelog: Running trigger .unknown-error-trigger.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mcelog: Too many trigger children running already$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mcelog: CPU [[:digit:]]+ on socket [[:digit:]]+ received unknown error$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ mcelog: Location: CPU [[:digit:]]+ on socket [[:digit:]]+$

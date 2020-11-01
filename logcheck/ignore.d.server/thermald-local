@@ -1,0 +1,7 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ thermald\[[[:digit:]]+\]: Dropped below poll threshold$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ thermald\[[[:digit:]]+\]: Read set point [[:digit:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ thermald\[[[:digit:]]+\]: thd_trip_cdev_state_reset(| index [[:digit:]]+:[._[:alnum:]-]+)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ thermald\[[[:digit:]]+\]: Set : threshold:[[:digit:]]+, temperature:[[:digit:]]+, cdev:[[:digit:]]+(rapl_controller), curr_state:[[:digit:]]+, max_state:[[:digit:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ thermald\[[[:digit:]]+\]: cdev index:[[:digit:]]+ consecutive call, increment exponentially state [[:digit:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ thermald\[[[:digit:]]+\]: storing set point [[:digit:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ thermald\[[[:digit:]]+\]: update_pid [[:digit:]]+ [[:digit:]]+ [[:digit:]]+ [[:digit:]]+ [[:digit:]]+$

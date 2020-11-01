@@ -1,0 +1,2 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ whoopsie\[[[:digit:]]+\]: \[[[:digit:]:]+\] (online|offline)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ whoopsie\[[[:digit:]]+\]: \[[[:digit:]:]+\] Cannot reach: https://daisy\.ubuntu\.com$

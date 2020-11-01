@@ -1,0 +1,2 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ rsyslogd[-[:digit:]]+: action 'action 17' suspended, next retry is [.: [:alnum:]]+ \[try http://www.rsyslog.com/e/[[:digit:]]+ \]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ rsyslogd[-[:digit:]]+: action 'action 17' resumed \(module 'builtin:ompipe'\) \[try http://www.rsyslog.com/e/[[:digit:]]+ \]$

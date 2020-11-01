@@ -1,0 +1,14 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: (WARNING|ERROR): (getpatch: )?Can't download [._[:alnum:]-]+ from [.[:alnum:]-]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: Can't connect to port [[:digit:]]+ of host .* \(IP: [[:digit:].]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: connect_error: getsockopt\(SO_ERROR\): fd=[[:digit:]]+ error=[[:digit:]]+: Connection refused$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: DON'T PANIC! Read http://www\.clamav\.net/support/faq$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: Downloading [._[:alnum:]-]+ \[[[:digit:]]+%\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: Giving up on [.[:alnum:]-]+\.\.\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: nonblock_connect: connect timing out \([[:digit:]]+ secs\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: Trying again in [[:digit:]]+ secs\.\.\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: Trying host [.[:alnum:]-]+ \([.[:digit:]]+\)\.\.\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: WARNING: Incremental update failed, trying to download daily\.cvd$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: WARNING: Local version: [[:digit:]]+(\.[[:digit:]]+)* Recommended version: [[:digit:]]+(\.[[:digit:]]+)*$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: WARNING: Your ClamAV installation is OUTDATED!$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: WARNING: getfile: [._[:alnum:]-]+ not found on .*$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ freshclam\[[[:digit:]]+\]: bytecode\.(cld|cvd) (is up to date|updated) \(version: [[:digit:]]+, sigs: [[:digit:]]+, f-level: [[:digit:]]+, builder: [._[:alnum:]-]+\)$

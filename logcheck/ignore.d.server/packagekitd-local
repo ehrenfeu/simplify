@@ -1,0 +1,1 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ packagekitd\[[[:digit:]]+\]: \(packagekitd:[[:digit:]]+\): GLib-CRITICAL \*\*: Source ID 9 was not found when attempting to remove it$

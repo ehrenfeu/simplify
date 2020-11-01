@@ -1,0 +1,13 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] cfg80211: World regulatory domain updated:$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] cfg80211:  DFS Master region: unset$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] cfg80211:   \(.*KHz.*\)
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] wlan[[:digit:]]+: Limiting TX power to [[:digit:]]+ dBm as advertised by [[:xdigit:]]+
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] em28xx 
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] cherry [[:digit:]:]+: 
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] hid-generic [[:digit:]:]+: 
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] input: 
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] hub [[:digit:]]+-[[:digit:]:\.]+: 
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] usb [[:digit:]]+-[[:digit:]:\.]+: 
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] usbcore: 
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel:( \[ *[[:digit:]]+\.[[:digit:]]+\])? CPU[[:digit:]]: (Core|Package) temperature above threshold, cpu clock throttled.*$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[\.[:digit:]]+\] Bluetooth: 
