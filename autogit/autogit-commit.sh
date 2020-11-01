@@ -81,6 +81,9 @@ if [ -n "$DIRTY" ] ; then
             echo "Pushing '$1' failed!" >> $MARKER
         }
         echo '---------------'
+    else
+        echo '>> WARNING - no remote repository defined, NOT PUSHING! <<'
+        echo '---------------'
     fi
     echo
     echo "${DIFF}"
