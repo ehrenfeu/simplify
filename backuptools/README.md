@@ -29,8 +29,13 @@ Cron execution
 Add something like this to your crontab (e.g. via `crontab -e`). Please note
 that so far *NOTHING* is backed up yet, as no plugins have been configured!
 ```
-38 3 * * * $HOME/bin/run-backup-control.sh
+45 2 * * *      $HOME/bin/run-backup-control.sh 2>&1 | mailx -E -s "Backup Control - $(cat /etc/hostname)" $LOGNAME
 ```
+
+NOTE: by using the pipe to `mailx` you are able to specify how the mail
+subject is looking. You can omit this, then it will use the default cron
+format. The sender name will be taken from `/etc/passwd` corresponding to the
+name specified for the account running the job.
 
 MySQL dumps
 -----------
