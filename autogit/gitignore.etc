@@ -19,6 +19,8 @@ lvm/backup
 lvm/archive
 # subversion metadata:
 .svn/
+# certbot lock file (might be present while certbot is running)
+letsencrypt/.certbot.lock
 # various other files:
 ld.so.cache
 prelink.cache
