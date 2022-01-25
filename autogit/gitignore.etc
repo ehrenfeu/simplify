@@ -31,3 +31,6 @@ sudoers.tmp
 aliases.db
 postfix/virtual_aliases.db
 postfix/virtual_domains.db
+
+# fake hardware-clock (e.g. used on Raspbian)
+fake-hwclock.data
