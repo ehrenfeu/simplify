@@ -26,6 +26,9 @@ accidentially leak the files to a regular user), add the ignores and configure
 git for the root user:
 
 ```bash
+# configure the git default branch name system-wide:
+git config --global init.defaultBranch main
+
 # first make sure to be independent of different /etc/hostname conventions
 # (e.g. Debian has the host's name only there, CentOS has the FQDN instead):
 SHORTNAME=${HOSTNAME%%\.*}
