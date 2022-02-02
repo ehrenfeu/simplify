@@ -53,10 +53,10 @@ GIT_SSH_HOST="git.your-domain.xy"
 GIT_SSH_USER="git"
 GIT_SSH_PORT=22072
 GIT_SERVICE_USER="ag-etc-${SHORTNAME}"
-KEYNAME="$HOME/.ssh/id_rsa.autogit-etc-${SHORTNAME}"
+KEYNAME="$HOME/.ssh/id_ed25519.autogit-etc-${SHORTNAME}"
 
 # generate the ssh-key used for pushing:
-ssh-keygen -N '' -trsa -f $KEYNAME
+ssh-keygen -N '' -ted25519 -f $KEYNAME
 
 # add the git server to the ssh config, make it use the generated ssh key:
 echo "
