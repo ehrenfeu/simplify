@@ -49,10 +49,10 @@ git commit -a -m "Initial import of /etc on host '${SHORTNAME}'."
 changes. As mentioned, **DO NOT USE** a public service like github here, as
 this will compromise highly sensitive data:
 ```bash
-GITHOST="git.your-domain.xy"
-GITUSER="git"
-GITLAB_USER="ag-etc-${SHORTNAME}"
-GITPORT=22072
+GIT_SSH_HOST="git.your-domain.xy"
+GIT_SSH_USER="git"
+GIT_SSH_PORT=22072
+GIT_SERVICE_USER="ag-etc-${SHORTNAME}"
 KEYNAME="$HOME/.ssh/id_rsa.autogit-etc-${SHORTNAME}"
 
 # generate the ssh-key used for pushing:
@@ -60,16 +60,16 @@ ssh-keygen -N '' -trsa -f $KEYNAME
 
 # add the git server to the ssh config, make it use the generated ssh key:
 echo "
-Host $GITHOST
-  User $GITUSER
-  Port $GITPORT
+Host $GIT_SSH_HOST
+  User $GIT_SSH_USER
+  Port $GIT_SSH_PORT
   IdentityFile $KEYNAME" >> $HOME/.ssh/config
 
 # print the public key, so it can be added to the gitlab user:
 echo -e "\nPublic key for repository >>> $REPONAME <<<\n" && cat $KEYNAME.pub && echo
 
 # add the remote git server:
-git remote add origin $GITUSER@$GITHOST:$GITLAB_USER/${REPONAME}.git
+git remote add origin $GIT_SSH_USER@$GIT_SSH_HOST:$GIT_SERVICE_USER/${REPONAME}.git
 git remote -v
 
 # initial push to "master":
