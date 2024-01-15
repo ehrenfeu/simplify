@@ -37,9 +37,9 @@ systemctl restart lxc-net.service
 For simplicity there is a Python script scanning for existing containers and
 trying to resolve the name for each of them to an IPv4 address.
 
-Simply run `/etc/_admin/bin/assemble-lxc-dnsmasq-hosts.py` and replace the
-corresponding contents of `/etc/lxc/dnsmasq-hosts.conf` and `/etc/hosts`
-according to its output.
+Simply run `assemble-lxc-dnsmasq-hosts.py` (consider symlinking it to
+`/etc/_admin/bin/` or similar) and replace the corresponding contents of
+`/etc/lxc/dnsmasq-hosts.conf` and `/etc/hosts` according to the output.
 
 ## Checking known dnsmasq DHCP leases
 
