@@ -40,7 +40,7 @@ def season_episode(season_length, episode):
 
 def process_eit(fname):
     print("-" * 80)
-    eit_file = Path(fname)
+    eit_fname = Path(fname)
     eit_parsed = EitList(fname)
     orig_name = eit_parsed.getEitName()
     try:
@@ -59,9 +59,9 @@ def process_eit(fname):
     print(f"New name: {new_name}")
 
     pairs = []
-    related_files = glob(eit_file.stem + "*")
+    related_files = glob(eit_fname.stem + "*")
     for related in related_files:
-        full_suffix = related.lstrip(eit_file.stem)
+        full_suffix = related.lstrip(eit_fname.stem)
         pairs.append([related, f"{new_name}{full_suffix}"])
 
     for pair in pairs:
