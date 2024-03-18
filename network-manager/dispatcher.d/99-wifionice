@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# this script goes to /etc/NetworkManager/dispatcher.d/99-wifionice
+
+IF=$1
+STATUS=$2
+
+case "$2" in
+    up)
+    if [ "$CONNECTION_ID" == "WIFIonICE" ]; then
+        logger -s "Attempting to log in to 'WIFIonICE'..."
+        /usr/local/bin/captive-wifionice.sh
+    fi
+    ;;
+    *) ;;
+esac
